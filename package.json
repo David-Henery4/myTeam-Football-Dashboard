@@ -13,5 +13,8 @@
     "@parcel/transformer-sass": "^2.3.2",
     "parcel": "^2.3.2",
     "sass": "^1.49.9"
+  },
+  "dependencies": {
+    "chart.js": "^3.7.1"
   }
 }
