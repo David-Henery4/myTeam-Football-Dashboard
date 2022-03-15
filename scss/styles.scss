@@ -1,0 +1,24 @@
+@import "variables";
+@import "header";
+
+// Reminder: Create theme classes
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html,body{
+    height: 100%;
+    width: 100vw;
+}
+
+body{
+    padding: 5%;
+    background-color: $primary-color-light;
+    font-family: $font-poppins;
+}
+
+
+
