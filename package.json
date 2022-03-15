@@ -15,6 +15,7 @@
     "sass": "^1.49.9"
   },
   "dependencies": {
-    "chart.js": "^3.7.1"
+    "chart.js": "^3.7.1",
+    "soccer.js": "^1.2.1"
   }
 }

@@ -1,5 +1,6 @@
 import * as model from "./model.js";
 import Chart from "chart.js/auto";
+const soccer = require("soccer.js").soccer;
 
 console.log("works");
 
@@ -69,3 +70,18 @@ const configLineChart = {
 
 const lineElement = document.getElementById("line-chart");
 const myLineChart = new Chart(lineElement, configLineChart);
+
+// WILL ALSO MOVE TO OTHER MODULE!
+const on = soccer.addTeam(["Arsenal", "Aston Villa","Burnley","Brentford","Brighton", "Cystal Palace", "Chelsea", "Everton","Leicester","Leeds", "Liverpool", "Man United", "Man City", "Norwich", "Newcastle","Southampton", "Tottenham","Watford", "Wolves", "West Ham",])
+
+console.log(on)
+console.log(soccer)
+
+ soccer.renderLeague({
+   leagueName: "Premier League", // name of your league
+  //  dropdown: 3, // collapse table from 3rd place and render toggle to table
+  //  zones: [1, 4], // set a promotion and relegation zone
+ });
+
+ console.log(soccer.league)
+
