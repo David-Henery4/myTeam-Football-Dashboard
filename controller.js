@@ -31,14 +31,14 @@ const myChart = new Chart(ctx, config);
 // line chart
 const dataLineChart = {
   labels: [
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-    "January",
-    "February",
-    "March",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+    "Jan",
+    "Feb",
+    "Mar",
     "April",
     "May",
   ],

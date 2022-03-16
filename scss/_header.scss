@@ -35,6 +35,7 @@ header {
 .theme__toggle--wrap {
   height: 100%;
   width: 25%;
+  max-width: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -103,6 +104,7 @@ header {
 
 .search__input {
   width: 90%;
+  max-width: 360px;
   position: relative;
   .search__icon {
     position: absolute;

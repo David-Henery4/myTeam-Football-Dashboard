@@ -124,7 +124,7 @@
 }
 .form__stat--title {
   width: 100%;
-  height: 20%;
+  height: 10%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -133,8 +133,10 @@
   }
 }
 .form__stat--content {
+  margin: 0 auto;
   width: 100%;
-  height: 80%;
+  max-width: 490px;
+  height: 90%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -159,10 +161,13 @@
   }
   .league-table {
     table {
+      width: 100%;
+      thead{
+        text-align: left;
+      }
       caption {
         background-color: $secondary-color-light;
       }
-      margin: 0 auto;
     }
   }
 }
