@@ -1,0 +1,56 @@
+
+
+// DATA SECTION MEDIA QUERY
+
+@media(min-width:760px){
+    .data__sections--wrap{
+        grid-template-areas:
+        "pie league"
+        "player league"
+        "team ."
+        "form form";
+        grid-template-rows: 1fr 0.5fr 0.5fr 0.2fr;
+        gap: 15px;
+        grid-template-columns: 50%;
+        // display: none;
+    }
+    .pie__chart--wrap{
+        height: 100%;
+    }
+    .pie__chart--title{
+        height: 25%;
+    }
+    // .pie__chart--content {
+    // //Might have to change
+    //     // width: 300px;
+    //     // height: 80%;
+    // }
+    .league__table--wrap{
+        // height: 170%;
+    }
+    .league__table--content{
+        .league-table{
+            table{
+                width: 100%;
+                height: 100%
+            }
+        }
+    }
+    .player__stats--wrap{
+        height: 75%
+    }
+    .team__stats--wrap{
+        position: relative;
+        bottom: 25%;
+        height: 75%;
+    }
+    .form__stat--wrap{
+    position: relative;
+    bottom: 25%;
+    height: 100%;
+    }
+    .form__stat--content{
+        max-width: 700px;
+        padding: 10px
+    }
+};

@@ -1,0 +1,27 @@
+
+@media(min-width:760px){
+    .logo{
+        img{
+        width: 6rem;
+        height: 6rem;
+      }
+    }
+    .title{
+        h1 {
+        font-size: 4.5rem;
+      }
+    }
+    .search__input{
+        // width: 100%;
+        max-width: 350px;
+        input{
+            border-radius:40px;
+            font-size: 1.1rem;
+            padding: 5% 12%;
+        }
+        .search__icon {
+            top: 15px;
+            left: 10px;
+        }
+    }
+}
