@@ -1,0 +1,91 @@
+
+@media (min-width:1000px){
+    body{
+        display: grid;
+        grid-template-areas: 
+        "navi head head head head head"
+        "navi head head head head head"
+        "navi main main main main main"
+        "navi main main main main main"
+        "navi main main main main main"
+        "navi main main main main main"
+        ;
+        gap: 10px;
+    }
+    .main__content{
+        grid-area: main;
+        height: 100vh;
+    }
+    .data__sections--wrap{
+        grid-template-areas:
+        "pie pie player player league league"
+        "pie pie team team league league"
+        "form form form form league league"
+        "form form form form league league";
+        grid-template-rows: 1fr;
+        gap: 10px;
+        grid-template-columns: 1fr;
+    }
+
+    //****//
+    // Header styles
+    header {
+    grid-area: head;
+    height: 15vh;
+    width: 100%;
+    grid-template-areas:
+        "title title . . . navT"
+        ". . . . . ."
+        "name name . . search search";
+    //   grid-template-rows: 1fr 1fr 1fr ;
+    }
+    .nav__top {
+    height: 100%;
+    }
+    .theme__toggle--wrap{
+        width: 100%;
+    }
+    .burger__wrap{
+        display: none;
+    }
+    .title__logo{
+        flex-direction: row;
+    }
+    .logo{
+        img{
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+    .title{
+        h1 {
+        font-size: 2rem;
+      }
+    }
+    .search__input{
+        max-width: 100%;
+        input{
+            border-radius:40px;
+            font-size: .7rem;
+            padding: 5% 12%;
+        }
+        .search__icon {
+            top: 10px;
+            left: 10px;
+        }
+    }
+    .team__name--wrap{
+        grid-area: name;
+        h4{
+            font-size: 2rem
+        }
+    };
+    //
+    .nav__slide{
+        display: flex;
+        width: 10rem;
+        height: 100vh;
+        position: relative;
+        grid-area: navi
+    }
+};

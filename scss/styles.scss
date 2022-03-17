@@ -5,6 +5,7 @@
 @import "sideNav";
 @import "header";
 @import "headerTablet";
+@import "desktop";
 
 *{
     padding: 0;
@@ -23,5 +24,10 @@ body{
     font-family: $font-poppins;
 }
 
+@media (min-width:1000px){
+    body{
+        padding: 1% 2%;
+    }
+}
 
 
