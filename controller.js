@@ -6,6 +6,7 @@ import PieView from "./views/pieView.js";
 import PlayersView from "./views/playersView.js";
 import FormView from "./views/formView.js";
 import LeagueView from "./views/leagueView.js";
+import teamNameView from "./views/teamNameView.js";
 //
 
 const search = function(){
