@@ -33,6 +33,7 @@
 .pie__chart--content {
   // Might have to change
   width: 288px;
+  // max-width: 100%;
   margin: 0 auto;
   // height: 50%;
 }
@@ -46,7 +47,7 @@
   background-color: $secondary-color-light;
 }
 .player__stats--title {
-  height: 20%;
+  height: 15%;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -58,7 +59,7 @@
 }
 .player__stats--table {
   width: 100%;
-  height: 80%;
+  height: 85%;
   font-size: 0.64rem;
   padding: 0px 5px;
   table {
