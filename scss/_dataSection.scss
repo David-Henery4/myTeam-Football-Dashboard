@@ -1,6 +1,7 @@
 .data__sections--wrap {
   width: 100%;
   display: grid;
+  display: none;// temp for now!
   gap: 1.5rem;
   grid-template-areas:
     "pie"
