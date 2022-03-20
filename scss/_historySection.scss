@@ -1,4 +1,5 @@
 .history__section--wrap{
+    display: none;// temp
     width: 100%;
     height: 100%;
     background-color: $secondary-color-light;
@@ -17,21 +18,22 @@
     align-items: center;
 }
 
-.history__section--content{
-    height: 85%;
-    width: 100%;
-    padding: 0% 5%;
-}
+// .history__section--content{
+//     height: 85%;
+//     width: 100%;
+//     padding: 0% 5%;
+// }
 
 .history__section--text{
     width: 100%;
-    // height: 50%;
+    //////// height: 50%;
     padding: 5%;
 }
 
 .history__section--img{
     width: 100%;
-    // height: 50%;
+    padding: 0% 5%;
+    /////// height: 50%;
     img{
     height: 100%;
     width: 100%;

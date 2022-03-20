@@ -1,5 +1,6 @@
 @media (min-width: 1020px) {
-  body {
+  .body__wrap{
+    // height: 100vh;
     display: grid;
     grid-template-areas:
       "navi head head head head head"
@@ -11,6 +12,8 @@
     gap: 10px;
     // grid-template-rows: 1fr 1fr 1fr 1fr 1fr 100% ;
   }
+
+  // DATA SECTIONS
   .main__content {
     grid-area: main;
   }
@@ -119,4 +122,37 @@
     }
     }
   }
+
+  // HISTORY SECTION
+  .history__section--wrap{
+  min-height: 75vh;
+  display: grid;
+  display: none;// temp
+  grid-template-areas:
+  "title title title img"
+  "tex tex tex img"
+  "tex tex tex img"
+  "tex tex tex img"
+  ;
+  }
+
+  .history__section--title{
+    grid-area: title;
+  }
+
+  .history__section--text{
+    grid-area: tex;
+  }
+
+  .history__section--img{
+    grid-area: img;
+    padding: 0%;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    img{
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+    }
+  }
+
 } ;

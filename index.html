@@ -18,13 +18,15 @@
     <title>Football Dashboard</title>
 </head>
 <body>
+    <div class="body__wrap">
 
-    <!-- SIDE NAV -->
-    <nav class="nav__slide">
-        <div class="slide__logo">
-            <span class="material-icons-outlined">
-                close
-            </span>
+        
+        <!-- SIDE NAV -->
+        <nav class="nav__slide">
+            <div class="slide__logo">
+                <span class="material-icons-outlined">
+                    close
+                </span>
             <img src="/images/football-logo.svg" alt="logo">
         </div>
         <ul>
@@ -39,7 +41,7 @@
             <p>02/02/22</p>
         </div>
     </nav>
-
+    
     <header>
         <!-- NAVS SECTION -->
         <nav class="nav__top">
@@ -56,7 +58,7 @@
                 </div>
             </div>
         </nav>
-
+        
         <!-- MAIN -->
         <div class="title__logo">
             <div class="logo"><img src="/images/football-logo.svg" alt="">
@@ -75,19 +77,20 @@
                 </form>
             </div>
         </div>
-
+        
         <!-- Was below in main content section -->
         <div class="team__name--wrap">
             <h4>Arsenal</h4>
         </div>
     </header>
     <!--****-->
-
+    
     <!-- MAIN CONTENT SECTION -->
     <section class="main__content">
-
+        
+        <!-- DATA SECTION -->
         <div class="data__sections--wrap">
-
+            
             <!-- PIE CHART -->
             <div class="pie__chart--wrap">
                 <div class="pie__chart--title">
@@ -173,13 +176,13 @@
 
             <!-- TEAM STATS -->
             <div class="team__stats--wrap">
-
+                
                 <div class="team__stats--title">
                     <h6>team stats</h6>
                 </div>
-
+                
                 <div class="team__stats--content">
-
+                    
                     <div class="team__stats--box">
                         <div class="team__stat--discription">
                             <h6>Avg Goals Scored</h6>
@@ -188,7 +191,7 @@
                             <p>1.8</p>
                         </div>
                     </div>
-
+                    
                     <div class="team__stats--box">
                         <div class="team__stat--discription">
                             <h6>Avg Goals Against</h6>
@@ -197,7 +200,7 @@
                             <p>1.8</p>
                         </div>
                     </div>
-
+                    
                     <div class="team__stats--box">
                         <div class="team__stat--discription">
                             <h6>Total Goals Scored</h6>
@@ -206,7 +209,7 @@
                             <p>1</p>
                         </div>
                     </div>
-
+                    
                     <div class="team__stats--box">
                         <div class="team__stat--discription">
                             <h6>Total Goals Against</h6>
@@ -215,7 +218,7 @@
                             <p>1</p>
                         </div>
                     </div>
-
+                    
                     <div class="team__stats--box">
                         <div class="team__stat--discription">
                             <h6>Longest Win Streak</h6>
@@ -224,7 +227,7 @@
                             <p>1</p>
                         </div>
                     </div>
-
+                    
                     <div class="team__stats--box">
                         <div class="team__stat--discription">
                             <h6>Largest Win</h6>
@@ -233,11 +236,11 @@
                             <p>1</p>
                         </div>
                     </div>
-
+                    
                 </div>
-
+                
             </div>
-
+            
             <!-- FORM STATS -->
             <div class="form__stat--wrap">
                 <div class="form__stat--title">
@@ -248,7 +251,7 @@
                     <canvas id="line-chart" width="800" height="450"></canvas>
                 </div>
             </div>
-
+            
             <!-- LEAGUE TABLE SECTION -->
             <div class="league__table--wrap">
                 <!-- <div class="league__table--title">
@@ -259,30 +262,54 @@
                     <div class="league-table league__styles"></div>
                 </div>
             </div>
-
+            
         </div>
-
+        
         <!-- HISTORY SECTION -->
         <div class="history__section--wrap">
             <div class="history__section--title">
                 <h4>History</h4>
             </div>
-            <div class="history__section--content">
-                <div class="history__section--text">
-                    <article>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab molestiae aliquid quos, sequi odio quia eum modi labore necessitatibus optio, minima omnis sit nesciunt ex totam deserunt consequatur? Praesentium iste vitae quasi est voluptatum quidem officiis culpa expedita.
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea, aliquam. Dolores atque culpa deserunt veritatis nemo.
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab molestiae aliquid quos, sequi odio quia eum modi labore necessitatibus optio, minima omnis sit nesciunt ex totam deserunt consequatur? Praesentium iste vitae quasi est voluptatum quidem officiis culpa expedita.
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea, aliquam. Dolores atque culpa deserunt veritatis nemo.
+            <!-- <div class="history__section--content">
+            </div> -->
+            <div class="history__section--text">
+                <article>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab molestiae aliquid quos, sequi odio quia eum modi labore necessitatibus optio, minima omnis sit nesciunt ex totam deserunt consequatur? Praesentium iste vitae quasi est voluptatum quidem officiis culpa expedita.
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea, aliquam. Dolores atque culpa deserunt veritatis nemo.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab molestiae aliquid quos, sequi odio quia eum modi labore necessitatibus optio, minima omnis sit nesciunt ex totam deserunt consequatur? Praesentium iste vitae quasi est voluptatum quidem officiis culpa expedita.
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea, aliquam. Dolores atque culpa deserunt veritatis nemo.
                     </article>
                 </div>
                 <div class="history__section--img">
                     <img src="/images/stadium-img-placeholder.jpg" alt="">
                 </div>
+                
             </div>
 
-        </div>
-        
-    </section>
-</body>
-</html>
+            <!-- FIXTURES SECTION -->
+            <div class="fixtures__section--wrap">
+                <div class="fixtures__section--title">
+                    <h4>Fixtures & Results</h4>
+                </div>
+                <div class="fixtures__section--content">
+                    <div class="fixtures__section--fixture">
+                        <p class="fixture__date">
+                            sat 12th mar 22
+                        </p>
+                        <p class="fixtue__competition">
+                            Premier League
+                        </p>
+                        <p class="fixture__time">
+                            3:00pm
+                        </p>
+                        <p class="fixture__teams">
+                            Arsenal 3-1 Tottenham
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </div>
+    </body>
+    </html>
