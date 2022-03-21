@@ -13,10 +13,14 @@
     // grid-template-rows: 1fr 1fr 1fr 1fr 1fr 100% ;
   }
 
-  // DATA SECTIONS
+  // CONTENT AREA
   .main__content {
     grid-area: main;
+    height: 75vh;
+    width: 80vw;
   }
+
+  // DATA SECTIONS
   .data__sections--wrap {
     grid-template-areas:
       "pie pie player player league league"
@@ -57,7 +61,7 @@
   header {
     grid-area: head;
     height: 15vh;
-    width: 100%;
+    width: 80vw;
     grid-template-areas:
       "title title . . . navT"
       ". . . . . ."
@@ -125,7 +129,7 @@
 
   // HISTORY SECTION
   .history__section--wrap{
-  min-height: 75vh;
+  // min-height: 75vh;
   // width: 81vw;
   display: grid;
   display: none;// temp
