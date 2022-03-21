@@ -8,11 +8,12 @@
     ;
     height: 100%;
     width: 100%;
+    background-color: $secondary-color-light;
+    border-radius: 20px;
 }
 
 .fixtures__section--title{
     grid-area: title;
-    height: 10%;
     padding: 5%;
     width: 100%;
     text-align: center;
@@ -26,27 +27,28 @@
 .fixtures__section--content{
     grid-area: cont;
     width: 100%;
+    overflow: scroll;
 }
 
 .fixture{
 background-color: $secondary-color-light;
 width: 75%;
-margin: 0 auto;
-padding: 2%;
+margin: 15px auto;
+padding: 1%;
+font-size: 0.8rem;
+position: relative;
+display: flex;
+flex-direction: column;
+align-items: center;
+border-radius: 60px;
 }
 
-.fixture__date{
 
-}
+// .fixture__competition{
+// }
 
-.fixture__competition{
+// .fixture__time{
+// }
 
-}
-
-.fixture__time{
-
-}
-
-.fixture__teams{
-
-}
+// .fixture__teams{
+// }
