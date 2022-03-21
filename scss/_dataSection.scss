@@ -27,16 +27,21 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  display: none;// might be temp
   h6{
     font-size: 1.2rem;
   }
   height: 15%;
 }
 .pie__chart--content {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  padding: 3%;
   // Might have to change
-  width: 288px;
+  // width: 288px;
   // max-width: 100%;
-  margin: 0 auto;
+  // margin: 0 auto;
   // height: 50%;
 }
 

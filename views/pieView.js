@@ -29,6 +29,18 @@ class PieView extends View {
     const config = {
       type: "doughnut",
       data: data,
+      options: {
+        maintainAspectRatio: false,
+        plugins: {
+          title: {
+            display:true,
+            text: "Wins/Draws/Loses",
+            font: {
+              size: "20px",
+            }
+          }
+        }
+      },
     };
     const myChart = new Chart(this._chartElement, config);
   }
