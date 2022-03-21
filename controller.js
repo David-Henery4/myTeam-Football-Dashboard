@@ -7,6 +7,7 @@ import PlayersView from "./views/playersView.js";
 import FormView from "./views/formView.js";
 import LeagueView from "./views/leagueView.js";
 import teamNameView from "./views/teamNameView.js";
+import Prediction from "./views/predictionView.js"
 //
 
 const search = function () {
