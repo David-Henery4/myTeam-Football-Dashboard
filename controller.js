@@ -40,6 +40,7 @@ sideNav.addEventListener("click", function (e) {
   const clicked = e.target.closest(".tab__btn");
   if (!clicked) return;
   console.log(clicked);
+  // for styling tab
   // tabBtn.forEach(t => {
   //     t.classList.remove("active__tab")
   // })
