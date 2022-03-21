@@ -9,36 +9,47 @@ import LeagueView from "./views/leagueView.js";
 import teamNameView from "./views/teamNameView.js";
 //
 
-const search = function(){
-const query = TeamView.searchQuery();
-console.log(`Heres the search query: ${query}`);
-console.log("works");
-}
-
-const pieChartSection = function(){
-
+const search = function () {
+  const query = TeamView.searchQuery();
+  console.log(`Heres the search query: ${query}`);
+  console.log("works");
 };
 
-const playersStatsVersion = function(){
+const pieChartSection = function () {};
 
+const playersStatsVersion = function () {};
+
+const teamStatsSection = function () {};
+
+const leagueTableSection = function () {};
+
+const formStatsSection = function () {};
+
+const init = function () {
+  TeamView.generalHandler(search);
 };
 
-const teamStatsSection = function(){
+init();
 
-}
+// Content Tab Component
 
-const leagueTableSection = function(){
-
-}
-
-const formStatsSection = function(){
-  
-}
-
-
-const init = function(){
-TeamView.generalHandler(search)
-}
-
-
-init()
+const sideNav = document.querySelector(".nav__slide");
+const tabBtn = document.querySelectorAll(".tab__btn");
+const sections = document.querySelectorAll(".section");
+sideNav.addEventListener("click", function (e) {
+  const clicked = e.target.closest(".tab__btn");
+  if (!clicked) return;
+  console.log(clicked);
+  // tabBtn.forEach(t => {
+  //     t.classList.remove("active__tab")
+  // })
+  //
+  sections.forEach((s) => {
+    s.classList.remove("active__tab");
+  });
+  const currentSectionTab = document.querySelector(
+    `.section--${clicked.dataset.tab}`
+  );
+  console.log(currentSectionTab);
+  currentSectionTab.classList.add("active__tab");
+});

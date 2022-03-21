@@ -27,19 +27,19 @@
                 <span class="material-icons-outlined">
                     close
                 </span>
-            <img src="/images/football-logo.svg" alt="logo">
-        </div>
-        <ul>
-            <li>Dashboard</li>
-            <li>History</li>
-            <li>Highlights</li>
-            <li>Fixtures</li>
-            <li>About Us</li>
-        </ul>
-        <div class="dateTime">
-            <p>12:00</p>
-            <p>02/02/22</p>
-        </div>
+                <img src="/images/football-logo.svg" alt="logo">
+            </div>
+            <ul>
+                <li class="tab__btn" data-tab="1">Dashboard</li>
+                <li class="tab__btn" data-tab="2">History</li>
+                <!-- <li class="tab__btn" data-tab="3">Highlights</li> -->
+                <li class="tab__btn" data-tab="3">Fixtures</li>
+                <!-- <li class="tab__btn" data-tab="5">About Us</li> -->
+            </ul>
+            <div class="dateTime">
+                <p>12:00</p>
+                <p>02/02/22</p>
+            </div>
     </nav>
     
     <header>
@@ -89,7 +89,7 @@
     <section class="main__content">
         
         <!-- DATA SECTION -->
-        <div class="data__sections--wrap">
+        <div class="data__sections--wrap section active__tab section--1">
             
             <!-- PIE CHART -->
             <div class="pie__chart--wrap">
@@ -266,7 +266,7 @@
         </div>
         
         <!-- HISTORY SECTION -->
-        <div class="history__section--wrap">
+        <div class="history__section--wrap section--2 section">
             <div class="history__section--title">
                 <h4>History</h4>
             </div>
@@ -287,7 +287,7 @@
             </div>
 
             <!-- FIXTURES SECTION -->
-            <div class="fixtures__section--wrap">
+            <div class="fixtures__section--wrap section--3 section">
                 <div class="fixtures__section--title">
                     <h4>Fixtures & Results</h4>
                 </div>

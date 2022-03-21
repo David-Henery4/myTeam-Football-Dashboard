@@ -5,6 +5,14 @@
     border-radius: 20px;
     padding: 5%;
     overflow: hidden;
+    // display: grid;
+    display: none;
+    grid-template-areas:
+    ". title title ."
+    "cont cont cont cont"
+    "cont cont cont cont"
+    "cont cont cont cont"
+    ;
 }
 
 .fixtures__section--title{
