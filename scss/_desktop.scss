@@ -24,12 +24,15 @@
   .data__sections--wrap {
     grid-template-areas:
       "pie pie player player league league"
+      "pie pie player player league league"
+      "pie pie team team league league"
       "pie pie team team league league"
       "form form form form league league"
       "form form form form league league";
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    // grid-template-rows: 1fr 1fr 1fr 1fr;
     gap: 10px;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(6,1fr);
+    grid-template-rows: repeat(6,1fr);
   }
   
   .player__stats--wrap{
@@ -41,13 +44,7 @@
     height: 100%;
   }
 
-  .form__stat--wrap{
-    bottom: 0;
-  };
 
-  .form__stat--content{
-    max-width: 100%;
-  }
 
   .pie__chart--title{
     // height: 20%;

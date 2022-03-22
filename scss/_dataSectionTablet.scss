@@ -6,9 +6,9 @@
         grid-template-areas:
         "pie league"
         "player league"
-        "team ."
+        "team league"
         "form form";
-        grid-template-rows: 1fr 0.5fr 0.5fr 0.2fr;
+        grid-template-rows: repeat(4,1fr);
         gap: 15px;
         grid-template-columns: 50%;
         // display: none;
@@ -28,20 +28,12 @@
         }
     }
     .player__stats--wrap{
-        height: 75%
+        // height: 75%
     }
     .team__stats--wrap{
-        position: relative;
-        bottom: 25%;
-        height: 75%;
+        // position: relative;
+        // bottom: 25%;
+        // height: 75%;
     }
-    .form__stat--wrap{
-    position: relative;
-    bottom: 25%;
-    height: 100%;
-    }
-    .form__stat--content{
-        max-width: 700px;
-        padding: 10px
-    }
+    
 };
