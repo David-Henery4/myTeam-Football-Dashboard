@@ -2,10 +2,18 @@
     display: grid;
 }
 
-.active__tab--fixtures{
-    display: block;
+.active__slide--nav{
+    transform: translateX(0%);
+    transition: 0.5s ease-in-out;
+    // background-color: #22A9E3;
+    backdrop-filter: blur(20px); // reminder doesn't work on mobile
+    -webkit-backdrop-filter: blur(10px); // this might help
 }
 
-.unActive__tab{
-    display: none;
-}
+// .active__tab--fixtures{
+//     display: block;
+// }
+
+// .unActive__tab{
+//     display: none;
+// }
