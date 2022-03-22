@@ -335,22 +335,29 @@
             
             <div class="prediction__section--wrap section--4 section">
                 <div class="prediction__chart--wrap">
-                    <canvas id="radar__chart"></canvas>
+                    <div class="prediction__chart--radar">
+                        <canvas id="radar__chart"></canvas>
+                    </div>
+                </div>
+                <div class="prediction__section--title">
+                    <h4>Next Fixture</h4>
                 </div>
                 <div class="prediction__section--content">
                     <table>
-                        <thead>
+                        <tbody>
+                        
+                            <tr>
+                                <th></th>
+                                <th>Comparison</th>
+                                <th></th>
+                            </tr>
                             <tr>
                                 <th>Arsenal</th>
                                 <th>vs</th>
                                 <th>Tottenham</th>
                             </tr>
-                            <tr>
-                                <th>Comparisons</th>
-                            </tr>
-                        </thead>
                         
-                        <tbody>
+                        
                             <tr>
                                 <td>70%</td>
                                 <td>Possession Distribution</td>
@@ -372,7 +379,9 @@
                             <td>-1.5</td>
                         </tr>
                         <tr>
-                            <td>Chance of win</td>
+                            <td></td>
+                            <th>Chance of win</th>
+                            <td></td>
                         </tr>
                         <tr>
                             <td>Home: 55%</td>
@@ -382,9 +391,9 @@
                     </tbody>
                     </table>
                     <div class="prediction__section--winner">
-                        <p>Winner</p>
-                        <p>Arsenal</p>
-                        <p>Win or Draw</p>
+                        <p class="result">Winner</p>
+                        <p class="team">Arsenal</p>
+                        <p class="outcomes">Win or Draw</p>
                     </div>
                 </div>
             </div>

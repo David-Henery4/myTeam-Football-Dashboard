@@ -4,9 +4,9 @@ import Chart from "chart.js/auto";
 class PieView extends View {
   _chartElement = document.getElementById("myChart");
 
-  constructor(){
+  constructor() {
     super();
-    this._displayPieChart()
+    this._displayPieChart();
   }
 
   _displayPieChart(pieData) {
@@ -33,17 +33,17 @@ class PieView extends View {
         maintainAspectRatio: false,
         plugins: {
           title: {
-            display:true,
+            display: true,
             text: "Wins/Draws/Loses",
             font: {
               size: "20px",
-            }
-          }
-        }
+            },
+          },
+        },
       },
     };
     const myChart = new Chart(this._chartElement, config);
   }
 }
 
-export default new PieView()
+export default new PieView();

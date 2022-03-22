@@ -51,12 +51,12 @@ class Prediction extends View {
       data: data,
       options: {
         maintainAspectRatio: false,
-        plugins:{
-            title: {
-                display:true,
-                text: "Next Fixture"
-            }
-        },
+        // plugins:{
+        //     title: {
+        //         display:true,
+        //         text: "Next Fixture"
+        //     }
+        // },
         elements: {
           line: {
             borderWidth: 3,

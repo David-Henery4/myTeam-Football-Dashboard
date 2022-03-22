@@ -159,4 +159,17 @@
       border-bottom-right-radius: 20px;
     }
   }
+
+  // PREDICTION SECTION
+  .prediction__section--wrap{
+    grid-template-areas:
+    ". title title ."
+    "chart chart pred pred"
+    "chart chart pred pred"
+    "chart chart pred pred"
+    ;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: none;
+    gap: 0px;
+    }
 } ;
