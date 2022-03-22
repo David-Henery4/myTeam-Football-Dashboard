@@ -52,6 +52,8 @@ class Header extends View {
       `.section--${clicked.dataset.tab}`
     );
     currentSectionTab.classList.add("active__tab");
+    //
+    this._removeNavSlide()
   }
 
   _switchingSectionsListener() {
@@ -62,14 +64,19 @@ class Header extends View {
   }
 
   // Activate navigation methods
-
   _activeSideNavEvent() {
     this._sideNav.classList.toggle("active__slide--nav");
   }
-
+  // Remove navigation
+  _removeNavSlide(){
+    this._sideNav.classList.remove("active__slide--nav")
+  }
+  //
   _activeSideNavListener() {
     this.burger.addEventListener("click", this._activeSideNavEvent.bind(this));
+    //
     this.closeNavIcon.addEventListener("click", this._activeSideNavEvent.bind(this));
+    //
   }
 }
 

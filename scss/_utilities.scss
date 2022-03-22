@@ -5,9 +5,10 @@
 .active__slide--nav{
     transform: translateX(0%);
     transition: 0.5s ease-in-out;
-    // background-color: #22A9E3;
-    backdrop-filter: blur(20px); // reminder doesn't work on mobile
-    -webkit-backdrop-filter: blur(10px); // this might help
+    height: 100%;
+    width: 100%;
+    backdrop-filter: blur(30px); // might not work mobile
+    -webkit-backdrop-filter: blur(30px); // this helps
 }
 
 // .active__tab--fixtures{
