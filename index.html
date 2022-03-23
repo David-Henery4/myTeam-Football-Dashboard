@@ -1,399 +1,484 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
+    />
     <!-- Links -->
     <!-- (scss) -->
-    <link rel="stylesheet" href="/scss/styles.scss">
+    <link rel="stylesheet" href="/scss/styles.scss" />
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,500&display=swap"
+      rel="stylesheet"
+    />
     <!-- Icons Material -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+      rel="stylesheet"
+    />
     <!-- Module -->
     <script defer src="/controller.js" type="module"></script>
     <title>Football Dashboard</title>
-</head>
-<body>
+  </head>
+  <body id="body--ele">
     <div class="body__wrap">
+      <!-- SIDE NAV -->
+      <nav class="nav__slide">
+        <div class="slide__logo">
+          <span class="material-icons-outlined close__nav--icon"> close </span>
+          <svg
+            width="44"
+            height="44"
+            viewBox="0 0 44 44"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M22 42C33.0457 42 42 33.0457 42 22C42 10.9543 33.0457 2 22 2C10.9543 2 2 10.9543 2 22C2 33.0457 10.9543 42 22 42Z"
+              stroke-width="4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M4 20.192L10.023 17.577L14.326 19.321L16.907 28.91L14.326 32.397H6.581M28.093 4.5L22.07 8.859V13.218L29.814 19.321L34.116 17.577L36.698 10.603L28.093 4.5ZM16.047 4.5L22.07 8.859V13.218L14.326 19.321L10.023 17.577L7.442 10.603L16.047 4.5Z"
+              stroke-width="4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M14.3242 38.5V32.397L16.9052 28.91H27.2312L29.8122 32.397V38.5"
+              stroke-width="4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M37.5594 32.397H29.8154L27.2344 28.91L29.8154 19.321L34.1174 17.577L41.0014 21.064"
+              stroke-width="4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          <!-- <img src="/images/football-logo.svg" alt="logo"> -->
+        </div>
+        <ul>
+          <li class="tab__btn" data-tab="1">
+            <a href="#dashboard">Dashboard</a>
+          </li>
+          <li class="tab__btn" data-tab="2"><a href="#history">History</a></li>
+          <!-- <li class="tab__btn" data-tab="3">Highlights</li> -->
+          <li class="tab__btn" data-tab="3">
+            <a href="#fixtures">Fixtures</a>
+          </li>
+          <li class="tab__btn" data-tab="4">
+            <a href="#prediction">Next game Prediction</a>
+          </li>
+          <!-- <li class="tab__btn" data-tab="5">About Us</li> -->
+        </ul>
+        <div class="dateTime">
+          <p>12:00</p>
+          <p>02/02/22</p>
+        </div>
+      </nav>
 
-        
-        <!-- SIDE NAV -->
-        <nav class="nav__slide">
-            <div class="slide__logo">
-                <span class="material-icons-outlined close__nav--icon">
-                    close
-                </span>
-                <img src="/images/football-logo.svg" alt="logo">
-            </div>
-            <ul>
-                <li class="tab__btn" data-tab="1"> <a href="#dashboard">Dashboard</a></li>
-                <li class="tab__btn" data-tab="2"><a href="#history">History</a></li>
-                <!-- <li class="tab__btn" data-tab="3">Highlights</li> -->
-                <li class="tab__btn" data-tab="3"><a href="#fixtures">Fixtures</a></li>
-                <li class="tab__btn" data-tab="4"><a href="#prediction">Next game Prediction</a></li>
-                <!-- <li class="tab__btn" data-tab="5">About Us</li> -->
-            </ul>
-            <div class="dateTime">
-                <p>12:00</p>
-                <p>02/02/22</p>
-            </div>
-    </nav>
-    
-    <header>
+      <header>
         <!-- NAVS SECTION -->
         <nav class="nav__top">
-            <div class="burger__wrap">
-                <span class="material-icons-outlined burger__btn">
-                    menu
-                </span>
+          <div class="burger__wrap">
+            <span class="material-icons-outlined burger__btn"> menu </span>
+          </div>
+          <!--**-->
+          <div class="theme__toggle--wrap">
+            <div class="theme__toggle--btn">
+              <span class="material-icons-outlined dark__icon">dark_mode</span>
+              <span class="material-icons-outlined light__icon"
+                >light_mode</span
+              >
             </div>
-            <!--**-->
-            <div class="theme__toggle--wrap">
-                <div class="theme__toggle--btn">
-                    <span class="material-icons-outlined dark__icon">dark_mode</span>
-                    <span class="material-icons-outlined light__icon">light_mode</span>
-                </div>
-            </div>
+          </div>
         </nav>
-        
+
         <!-- MAIN -->
         <div class="title__logo">
-            <div class="logo"><img src="/images/football-logo.svg" alt="">
-            </div>
-            <div class="title">
-                <h1>my<span>T</span>eam</h1>
-            </div>
+          <div class="logo">
+            <svg
+              width="44"
+              height="44"
+              viewBox="0 0 44 44"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M22 42C33.0457 42 42 33.0457 42 22C42 10.9543 33.0457 2 22 2C10.9543 2 2 10.9543 2 22C2 33.0457 10.9543 42 22 42Z"
+                stroke-width="4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M4 20.192L10.023 17.577L14.326 19.321L16.907 28.91L14.326 32.397H6.581M28.093 4.5L22.07 8.859V13.218L29.814 19.321L34.116 17.577L36.698 10.603L28.093 4.5ZM16.047 4.5L22.07 8.859V13.218L14.326 19.321L10.023 17.577L7.442 10.603L16.047 4.5Z"
+                stroke-width="4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M14.3242 38.5V32.397L16.9052 28.91H27.2312L29.8122 32.397V38.5"
+                stroke-width="4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M37.5594 32.397H29.8154L27.2344 28.91L29.8154 19.321L34.1174 17.577L41.0014 21.064"
+                stroke-width="4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+          <div class="title">
+            <h1>my<span>T</span>eam</h1>
+          </div>
         </div>
         <div class="search__wrap">
-            <div class="search__input">
-                <span class="material-icons-outlined search__icon">
-                    search
-                </span>
-                <form class="search__form" action="">
-                    <input class="search__input--query" placeholder="Search" type="text">
-                </form>
-            </div>
+          <div class="search__input">
+            <span class="material-icons-outlined search__icon"> search </span>
+            <form class="search__form" action="">
+              <input
+                class="search__input--query"
+                placeholder="Search"
+                type="text"
+              />
+            </form>
+          </div>
         </div>
-        
+
         <!-- Was below in main content section -->
         <div class="team__name--wrap">
-            <h4>Arsenal</h4>
+          <h4>Arsenal</h4>
         </div>
-    </header>
-    <!--****-->
-    
-    <!-- MAIN CONTENT SECTION -->
-    <section class="main__content">
-        
+      </header>
+      <!--****-->
+
+      <!-- MAIN CONTENT SECTION -->
+      <section class="main__content">
         <!-- DATA SECTION -->
-        <div id="dashboard" class="data__sections--wrap section active__tab section--1">
-            
-            <!-- PIE CHART -->
-            <div class="pie__chart--wrap">
-                <div class="pie__chart--title">
-                    <h6>Wins/Draws/Loses</h6>
-                </div>
-                <div class="pie__chart--content">
-                    <!-- PIE CHART HERE -->
-                    <canvas id="myChart" width="200" height="200"></canvas>
-                </div>
+        <div
+          id="dashboard"
+          class="data__sections--wrap section active__tab section--1"
+        >
+          <!-- PIE CHART -->
+          <div class="pie__chart--wrap">
+            <div class="pie__chart--title">
+              <h6>Wins/Draws/Loses</h6>
             </div>
-            
-            <!-- PLAYER STATS -->
-            <div class="player__stats--wrap">
-                <div class="player__stats--title">
-                    <h6>players stats</h6>
-                </div>
-                <div class="player__stats--table">
-                    <!-- PLAYER TABLE HERE -->
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Rank</th>
-                                <th>player</th>
-                                <th>Goals</th>
-                                <th>Assists</th>
-                                <th>Yellow Card</th>
-                                <th>Red Card</th>
-                            </tr>
-                        </thead>
-                        <tbody class="player__stats--body">
-                            <tr>
-                                <td>1st</td>
-                                <td>player1</td>
-                                <td>12</td>
-                                <td>5</td>
-                                <td>6</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>1st</td>
-                                <td>player1</td>
-                                <td>12</td>
-                                <td>5</td>
-                                <td>6</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>1st</td>
-                                <td>player1</td>
-                                <td>12</td>
-                                <td>5</td>
-                                <td>6</td>
-                                <td>1</td>
-                            </tr>
-                            <tr>
-                                <td>1st</td>
-                                <td>player1</td>
-                                <td>12</td>
-                                <td>5</td>
-                                <td>6</td>
-                                <td>1</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <div class="pie__chart--content">
+              <!-- PIE CHART HERE -->
+              <canvas id="myChart" width="200" height="200"></canvas>
+            </div>
+          </div>
+
+          <!-- PLAYER STATS -->
+          <div class="player__stats--wrap">
+            <div class="player__stats--title">
+              <h6>players stats</h6>
+            </div>
+            <div class="player__stats--table">
+              <!-- PLAYER TABLE HERE -->
+              <table>
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>player</th>
+                    <th>Goals</th>
+                    <th>Assists</th>
+                    <th>Yellow Card</th>
+                    <th>Red Card</th>
+                  </tr>
+                </thead>
+                <tbody class="player__stats--body">
+                  <tr>
+                    <td>1st</td>
+                    <td>player1</td>
+                    <td>12</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>1</td>
+                  </tr>
+                  <tr>
+                    <td>1st</td>
+                    <td>player1</td>
+                    <td>12</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>1</td>
+                  </tr>
+                  <tr>
+                    <td>1st</td>
+                    <td>player1</td>
+                    <td>12</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>1</td>
+                  </tr>
+                  <tr>
+                    <td>1st</td>
+                    <td>player1</td>
+                    <td>12</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>1</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- TEAM STATS -->
+          <div class="team__stats--wrap">
+            <div class="team__stats--title">
+              <h6>team stats</h6>
             </div>
 
-            <!-- TEAM STATS -->
-            <div class="team__stats--wrap">
-                
-                <div class="team__stats--title">
-                    <h6>team stats</h6>
+            <div class="team__stats--content">
+              <div class="team__stats--box">
+                <div class="team__stat--discription">
+                  <h6>Avg Goals Scored</h6>
                 </div>
-                
-                <div class="team__stats--content">
-                    
-                    <div class="team__stats--box">
-                        <div class="team__stat--discription">
-                            <h6>Avg Goals Scored</h6>
-                        </div>
-                        <div class="team__stat--num">
-                            <p>1.8</p>
-                        </div>
-                    </div>
-                    
-                    <div class="team__stats--box">
-                        <div class="team__stat--discription">
-                            <h6>Avg Goals Against</h6>
-                        </div>
-                        <div class="team__stat--num">
-                            <p>1.8</p>
-                        </div>
-                    </div>
-                    
-                    <div class="team__stats--box">
-                        <div class="team__stat--discription">
-                            <h6>Total Goals Scored</h6>
-                        </div>
-                        <div class="team__stat--num">
-                            <p>1</p>
-                        </div>
-                    </div>
-                    
-                    <div class="team__stats--box">
-                        <div class="team__stat--discription">
-                            <h6>Total Goals Against</h6>
-                        </div>
-                        <div class="team__stat--num">
-                            <p>1</p>
-                        </div>
-                    </div>
-                    
-                    <div class="team__stats--box">
-                        <div class="team__stat--discription">
-                            <h6>Longest Win Streak</h6>
-                        </div>
-                        <div class="team__stat--num">
-                            <p>1</p>
-                        </div>
-                    </div>
-                    
-                    <div class="team__stats--box">
-                        <div class="team__stat--discription">
-                            <h6>Largest Win</h6>
-                        </div>
-                        <div class="team__stat--num">
-                            <p>1</p>
-                        </div>
-                    </div>
-                    
+                <div class="team__stat--num">
+                  <p>1.8</p>
                 </div>
-                
+              </div>
+
+              <div class="team__stats--box">
+                <div class="team__stat--discription">
+                  <h6>Avg Goals Against</h6>
+                </div>
+                <div class="team__stat--num">
+                  <p>1.8</p>
+                </div>
+              </div>
+
+              <div class="team__stats--box">
+                <div class="team__stat--discription">
+                  <h6>Total Goals Scored</h6>
+                </div>
+                <div class="team__stat--num">
+                  <p>1</p>
+                </div>
+              </div>
+
+              <div class="team__stats--box">
+                <div class="team__stat--discription">
+                  <h6>Total Goals Against</h6>
+                </div>
+                <div class="team__stat--num">
+                  <p>1</p>
+                </div>
+              </div>
+
+              <div class="team__stats--box">
+                <div class="team__stat--discription">
+                  <h6>Longest Win Streak</h6>
+                </div>
+                <div class="team__stat--num">
+                  <p>1</p>
+                </div>
+              </div>
+
+              <div class="team__stats--box">
+                <div class="team__stat--discription">
+                  <h6>Largest Win</h6>
+                </div>
+                <div class="team__stat--num">
+                  <p>1</p>
+                </div>
+              </div>
             </div>
-            
-            <!-- MINUTE STAT STATS -->
-            <div class="minute__stat--wrap">
-                <div class="minute__stat--content">
-                    <div class="minute__stat--box">
-                        <h4>Minute Most likely to score</h4>
-                        <div class="minute__stat--percentage">
-                            <img src="/images/Ellipse-light-mode.svg" alt="">
-                            <p class="minute">14-18</p>
-                            <p class="percentage">25%</p>
-                        </div>
-                    </div>
-                    <div class="minute__stat--box">
-                        <h4>Minute Most likely to concede</h4>
-                        <div class="minute__stat--percentage">
-                            <img src="/images/Ellipse-light-mode.svg" alt="">
-                            <p class="minute">59-65</p>
-                            <p class="percentage">18%</p>
-                        </div>
-                    </div>
+          </div>
+
+          <!-- MINUTE STAT STATS -->
+          <div class="minute__stat--wrap">
+            <div class="minute__stat--content">
+              <div class="minute__stat--box">
+                <h4>Minute Most likely to score</h4>
+                <div class="minute__stat--percentage">
+                  <svg width="203" height="128" viewBox="0 0 203 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M14.2453 127.178C8.94949 128.657 3.39552 125.612 2.35339 120.213C0.0255413 108.153 -0.142776 95.7876 1.8847 83.7114C4.45637 68.3938 10.4922 53.9507 19.5274 41.494C28.5627 29.0373 40.3563 18.8994 54.0003 11.8608C67.6443 4.82214 82.7748 1.07058 98.2267 0.89493C113.679 0.719278 129.04 4.12422 143.128 10.8476C157.215 17.571 169.654 27.4334 179.486 39.6756C189.317 51.9178 196.28 66.2132 199.837 81.4612C202.599 93.3002 203.251 105.468 201.791 117.396C201.098 123.053 195.456 126.48 189.93 125.086V125.086C184.58 123.738 181.353 118.362 181.915 112.872C182.84 103.845 182.258 94.6693 180.172 85.7281C177.326 73.5297 171.756 62.0934 163.891 52.2996C156.026 42.5059 146.075 34.6159 134.805 29.2372C123.534 23.8585 111.245 21.1345 98.8839 21.2751C86.5223 21.4156 74.418 24.4168 63.5028 30.0477C52.5876 35.6786 43.1526 43.789 35.9245 53.7543C28.6963 63.7197 23.8676 75.2742 21.8103 87.5282C20.3124 96.4499 20.3126 105.569 21.788 114.511C22.7005 120.04 19.643 125.67 14.2453 127.178V127.178Z" />
+                  </svg>
+                  <p class="minute">14-18</p>
+                  <p class="percentage">25%</p>
                 </div>
+              </div>
+              <div class="minute__stat--box">
+                <h4>Minute Most likely to concede</h4>
+                <div class="minute__stat--percentage">
+                  <svg width="203" height="128" viewBox="0 0 203 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M14.2453 127.178C8.94949 128.657 3.39552 125.612 2.35339 120.213C0.0255413 108.153 -0.142776 95.7876 1.8847 83.7114C4.45637 68.3938 10.4922 53.9507 19.5274 41.494C28.5627 29.0373 40.3563 18.8994 54.0003 11.8608C67.6443 4.82214 82.7748 1.07058 98.2267 0.89493C113.679 0.719278 129.04 4.12422 143.128 10.8476C157.215 17.571 169.654 27.4334 179.486 39.6756C189.317 51.9178 196.28 66.2132 199.837 81.4612C202.599 93.3002 203.251 105.468 201.791 117.396C201.098 123.053 195.456 126.48 189.93 125.086V125.086C184.58 123.738 181.353 118.362 181.915 112.872C182.84 103.845 182.258 94.6693 180.172 85.7281C177.326 73.5297 171.756 62.0934 163.891 52.2996C156.026 42.5059 146.075 34.6159 134.805 29.2372C123.534 23.8585 111.245 21.1345 98.8839 21.2751C86.5223 21.4156 74.418 24.4168 63.5028 30.0477C52.5876 35.6786 43.1526 43.789 35.9245 53.7543C28.6963 63.7197 23.8676 75.2742 21.8103 87.5282C20.3124 96.4499 20.3126 105.569 21.788 114.511C22.7005 120.04 19.643 125.67 14.2453 127.178V127.178Z" />
+                  </svg>
+                  <p class="minute">59-65</p>
+                  <p class="percentage">18%</p>
+                </div>
+              </div>
             </div>
-            
-            <!-- LEAGUE TABLE SECTION -->
-            <div class="league__table--wrap">
-                <!-- <div class="league__table--title">
+          </div>
+
+          <!-- LEAGUE TABLE SECTION -->
+          <div class="league__table--wrap">
+            <!-- <div class="league__table--title">
                     <h6>Premier League</h6>
                 </div> -->
-                <div class="league__table--content">
-                    <!-- LEAGUE TABLE HERE -->
-                    <div class="league-table league__styles"></div>
-                </div>
+            <div class="league__table--content">
+              <!-- LEAGUE TABLE HERE -->
+              <div class="league-table league__styles"></div>
             </div>
-            
+          </div>
         </div>
-        
+
         <!-- HISTORY SECTION -->
         <div id="history" class="history__section--wrap section--2 section">
-            <div class="history__section--title">
-                <h4>History</h4>
-            </div>
-            <!-- <div class="history__section--content">
+          <div class="history__section--title">
+            <h4>History</h4>
+          </div>
+          <!-- <div class="history__section--content">
             </div> -->
-            <div class="history__section--text">
-                <article>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab molestiae aliquid quos, sequi odio quia eum modi labore necessitatibus optio, minima omnis sit nesciunt ex totam deserunt consequatur? Praesentium iste vitae quasi est voluptatum quidem officiis culpa expedita.
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea, aliquam. Dolores atque culpa deserunt veritatis nemo.
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab molestiae aliquid quos, sequi odio quia eum modi labore necessitatibus optio, minima omnis sit nesciunt ex totam deserunt consequatur? Praesentium iste vitae quasi est voluptatum quidem officiis culpa expedita.
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea, aliquam. Dolores atque culpa deserunt veritatis nemo.
-                    </article>
-                </div>
-                <div class="history__section--img">
-                    <img src="/images/stadium-img-placeholder.jpg" alt="">
-                </div>
-                
-            </div>
+          <div class="history__section--text">
+            <article>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab
+              molestiae aliquid quos, sequi odio quia eum modi labore
+              necessitatibus optio, minima omnis sit nesciunt ex totam deserunt
+              consequatur? Praesentium iste vitae quasi est voluptatum quidem
+              officiis culpa expedita. Lorem, ipsum dolor sit amet consectetur
+              adipisicing elit. Ea, aliquam. Dolores atque culpa deserunt
+              veritatis nemo. Lorem ipsum dolor sit amet consectetur adipisicing
+              elit. Ab molestiae aliquid quos, sequi odio quia eum modi labore
+              necessitatibus optio, minima omnis sit nesciunt ex totam deserunt
+              consequatur? Praesentium iste vitae quasi est voluptatum quidem
+              officiis culpa expedita. Lorem, ipsum dolor sit amet consectetur
+              adipisicing elit. Ea, aliquam. Dolores atque culpa deserunt
+              veritatis nemo.
+            </article>
+          </div>
+          <div class="history__section--img">
+            <img src="/images/stadium-img-placeholder.jpg" alt="" />
+          </div>
+        </div>
 
-            <!-- FIXTURES SECTION -->
-            <div id="fixtures" class="fixtures__section--wrap section--3 section">
-                <div class="fixtures__section--title">
-                    <h4>Fixtures & Results</h4>
-                </div>
-                <div class="fixtures__section--content">
-                    <div class="fixture">
-                        <p class="fixture__competition">Premier League</p>
-                        <p class="fixture__time">3:00pm / 12th mar 22</p>
-                        <p class="fixture__teams">Arsenal 3-1 Tottenham</p>
-                    </div>
-                    <div class="fixture">
-                        <p class="fixture__competition">Premier League</p>
-                        <p class="fixture__time">3:00pm / 12th mar 22</p>
-                        <p class="fixture__teams">Arsenal 3-1 Tottenham</p>
-                    </div>
-                    <div class="fixture">
-                        <p class="fixture__competition">Premier League</p>
-                        <p class="fixture__time">3:00pm / 12th mar 22</p>
-                        <p class="fixture__teams">Arsenal 3-1 Tottenham</p>
-                    </div>
-                    <div class="fixture">
-                        <p class="fixture__competition">Premier League</p>
-                        <p class="fixture__time">3:00pm / 12th mar 22</p>
-                        <p class="fixture__teams">Arsenal 3-1 Tottenham</p>
-                    </div>
-                    <div class="fixture">
-                        <p class="fixture__competition">Premier League</p>
-                        <p class="fixture__time">3:00pm / 12th mar 22</p>
-                        <p class="fixture__teams">Arsenal 3-1 Tottenham</p>
-                    </div>
-                    <div class="fixture">
-                        <p class="fixture__competition">Premier League</p>
-                        <p class="fixture__time">3:00pm / 12th mar 22</p>
-                        <p class="fixture__teams">Arsenal 3-1 Tottenham</p>
-                    </div>
-                    <div class="fixture">
-                        <p class="fixture__competition">Premier League</p>
-                        <p class="fixture__time">3:00pm / 12th mar 22</p>
-                        <p class="fixture__teams">Arsenal 3-1 Tottenham</p>
-                    </div>
-                </div>
+        <!-- FIXTURES SECTION -->
+        <div id="fixtures" class="fixtures__section--wrap section--3 section">
+          <div class="fixtures__section--title">
+            <h4>Fixtures & Results</h4>
+          </div>
+          <div class="fixtures__section--content">
+            <div class="fixture">
+              <p class="fixture__competition">Premier League</p>
+              <p class="fixture__time">3:00pm / 12th mar 22</p>
+              <p class="fixture__teams">Arsenal 3-1 Tottenham</p>
             </div>
+            <div class="fixture">
+              <p class="fixture__competition">Premier League</p>
+              <p class="fixture__time">3:00pm / 12th mar 22</p>
+              <p class="fixture__teams">Arsenal 3-1 Tottenham</p>
+            </div>
+            <div class="fixture">
+              <p class="fixture__competition">Premier League</p>
+              <p class="fixture__time">3:00pm / 12th mar 22</p>
+              <p class="fixture__teams">Arsenal 3-1 Tottenham</p>
+            </div>
+            <div class="fixture">
+              <p class="fixture__competition">Premier League</p>
+              <p class="fixture__time">3:00pm / 12th mar 22</p>
+              <p class="fixture__teams">Arsenal 3-1 Tottenham</p>
+            </div>
+            <div class="fixture">
+              <p class="fixture__competition">Premier League</p>
+              <p class="fixture__time">3:00pm / 12th mar 22</p>
+              <p class="fixture__teams">Arsenal 3-1 Tottenham</p>
+            </div>
+            <div class="fixture">
+              <p class="fixture__competition">Premier League</p>
+              <p class="fixture__time">3:00pm / 12th mar 22</p>
+              <p class="fixture__teams">Arsenal 3-1 Tottenham</p>
+            </div>
+            <div class="fixture">
+              <p class="fixture__competition">Premier League</p>
+              <p class="fixture__time">3:00pm / 12th mar 22</p>
+              <p class="fixture__teams">Arsenal 3-1 Tottenham</p>
+            </div>
+          </div>
+        </div>
 
-            <!-- Predictions Section -->
-            
-            <div id="prediction" class="prediction__section--wrap section--4 section">
-                <div class="prediction__chart--wrap">
-                    <div class="prediction__chart--radar">
-                        <canvas id="radar__chart"></canvas>
-                    </div>
-                </div>
-                <div class="prediction__section--title">
-                    <h4>Next Fixture</h4>
-                </div>
-                <div class="prediction__section--content">
-                    <table>
-                        <tbody>
-                        
-                            <tr>
-                                <th></th>
-                                <th>Comparison</th>
-                                <th></th>
-                            </tr>
-                            <tr>
-                                <th>Arsenal</th>
-                                <th>vs</th>
-                                <th>Tottenham</th>
-                            </tr>
-                        
-                        
-                            <tr>
-                                <td>70%</td>
-                                <td>Possession Distribution</td>
-                                <td>34%</td>
-                            </tr>
-                            <tr>
-                                <td>71%</td>
-                                <td>Head to Head</td>
-                                <td>29%</td>
-                        </tr>
-                        <tr>
-                            <td>60%</td>
-                            <td>Form</td>
-                            <td>40%</td>
-                        </tr>
-                        <tr>
-                            <td>-2.5</td>
-                            <td>Goals</td>
-                            <td>-1.5</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <th>Chance of win</th>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>Home: 55%</td>
-                            <td>Draw: 45%</td>
-                            <td>Away: 15%</td>
-                        </tr>
-                    </tbody>
-                    </table>
-                    <div class="prediction__section--winner">
-                        <p class="result">Winner</p>
-                        <p class="team">Arsenal</p>
-                        <p class="outcomes">Win or Draw</p>
-                    </div>
-                </div>
+        <!-- Predictions Section -->
+
+        <div
+          id="prediction"
+          class="prediction__section--wrap section--4 section"
+        >
+          <div class="prediction__chart--wrap">
+            <div class="prediction__chart--radar">
+              <canvas id="radar__chart"></canvas>
             </div>
-            
-        </section>
+          </div>
+          <div class="prediction__section--title">
+            <h4>Next Fixture</h4>
+          </div>
+          <div class="prediction__section--content">
+            <table>
+              <tbody>
+                <tr>
+                  <th></th>
+                  <th>Comparison</th>
+                  <th></th>
+                </tr>
+                <tr>
+                  <th>Arsenal</th>
+                  <th>vs</th>
+                  <th>Tottenham</th>
+                </tr>
+
+                <tr>
+                  <td>70%</td>
+                  <td>Possession Distribution</td>
+                  <td>34%</td>
+                </tr>
+                <tr>
+                  <td>71%</td>
+                  <td>Head to Head</td>
+                  <td>29%</td>
+                </tr>
+                <tr>
+                  <td>60%</td>
+                  <td>Form</td>
+                  <td>40%</td>
+                </tr>
+                <tr>
+                  <td>-2.5</td>
+                  <td>Goals</td>
+                  <td>-1.5</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <th>Chance of win</th>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Home: 55%</td>
+                  <td>Draw: 45%</td>
+                  <td>Away: 15%</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="prediction__section--winner">
+              <p class="result">Winner</p>
+              <p class="team">Arsenal</p>
+              <p class="outcomes">Win or Draw</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-    </body>
-    </html>
+  </body>
+</html>

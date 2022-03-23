@@ -2,7 +2,7 @@
   width: 100%;
   height: 100%;
   display: grid;
-  display: none;// temp for now!
+  display: none; // temp for now!
   gap: 1.5rem;
   grid-template-areas:
     "pie"
@@ -19,7 +19,7 @@
   grid-area: pie;
   height: 100%;
   width: 100%;
-  background-color: $secondary-color-light;
+  background-color: var(--secondary-color);
   border-radius: 20px;
 }
 .pie__chart--title {
@@ -27,8 +27,8 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  display: none;// might be temp
-  h6{
+  display: none; // might be temp
+  h6 {
     font-size: 1.2rem;
   }
   height: 15%;
@@ -51,7 +51,7 @@
   height: 100%;
   width: 100%;
   border-radius: 20px;
-  background-color: $secondary-color-light;
+  background-color: var(--secondary-color);
 }
 .player__stats--title {
   height: 15%;
@@ -82,7 +82,7 @@
   }
 
   tr:nth-child(odd) {
-    background-color: $shade-color-light;
+    background-color: var(--shade-color);
   }
 }
 
@@ -91,7 +91,7 @@
   grid-area: team;
   height: 100%;
   width: 100%;
-  background-color: $secondary-color-light;
+  background-color: var(--secondary-color);
   border-radius: 20px;
 }
 .team__stats--title {
@@ -120,7 +120,7 @@
     align-items: center;
   }
   .team__stats--box:nth-child(odd) {
-    background-color: $shade-color-light;
+    background-color: var(--shade-color);
   }
 }
 
@@ -130,11 +130,11 @@
   height: 100%;
   width: 100%;
   padding: 2%;
-  background-color: $secondary-color-light;
+  background-color: var(--secondary-color);
   border-radius: 20px;
 }
 
-.minute__stat--content{
+.minute__stat--content {
   height: 100%;
   width: 100%;
   display: flex;
@@ -142,7 +142,7 @@
   // align-items: center;
 }
 
-.minute__stat--box{
+.minute__stat--box {
   height: 100%;
   width: 50%;
   display: flex;
@@ -152,27 +152,28 @@
   text-align: center;
 }
 
-.minute__stat--percentage{
+.minute__stat--percentage {
   position: relative;
   width: 140px;
   margin-top: 2rem;
-  img{
+  svg {
+    fill: var(--flair-color);
     position: absolute;
     top: -120%;
     left: 5%;
     width: 8rem;
     height: 8rem;
+    transition: 1s;
     // background-color: rebeccapurple;
   }
 }
-
 
 // LEAGUE TABLE STATS
 .league__table--wrap {
   grid-area: league;
   height: 100%;
   width: 100%;
-  background-color: $secondary-color-light;
+  background-color: var(--secondary-color);
   border-radius: 20px;
 }
 .league__table--content {
@@ -188,11 +189,11 @@
     table {
       width: 100%;
       height: 100%;
-      thead{
+      thead {
         text-align: left;
       }
       caption {
-        background-color: $secondary-color-light;
+        background-color: var(--secondary-color);
       }
     }
   }

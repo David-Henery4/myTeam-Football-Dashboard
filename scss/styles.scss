@@ -20,11 +20,13 @@
 html,body{
     // height: 100%;
     width: 100vw;
+    transition: 1s;
 }
 
 body{
-    background-color: $primary-color-light;
+    background-color: var(--primary-color);
     font-family: $font-poppins;
+    color: var(--text-color);
 }
 
 .body__wrap{

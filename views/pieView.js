@@ -3,24 +3,21 @@ import Chart from "chart.js/auto";
 
 class PieView extends View {
   _chartElement = document.getElementById("myChart");
+  myChart;
 
   constructor() {
     super();
     this._displayPieChart();
   }
 
-  _displayPieChart(pieData) {
+  _displayPieChart(pieTheme = this.defaultChartTheme) {
     const data = {
       labels: ["Wins", "Draws", "Loses"],
       datasets: [
         {
           label: "My First Dataset",
           data: [22, 4, 7],
-          backgroundColor: [
-            "rgb(34, 169, 227)",
-            "rgba(34, 169, 227, 0.25)",
-            "rgb(200, 205, 86)",
-          ],
+          backgroundColor: pieTheme,
           hoverOffset: 4,
         },
       ],
@@ -42,7 +39,7 @@ class PieView extends View {
         },
       },
     };
-    const myChart = new Chart(this._chartElement, config);
+    this.myChart = new Chart(this._chartElement, config);
   }
 }
 

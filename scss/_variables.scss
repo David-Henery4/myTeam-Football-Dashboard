@@ -1,14 +1,22 @@
-// Dark-Mode Colours
-$primary-color-dark: #131326;
-$secondary-color-dark: #222536;
-$flair-color-dark: #C65300;
-$text-color-dark:#F8F9FE;    
-$shade-color-dark:rgba(255,255,255, 0.05);
 // Light-Mode Colours
-$primary-color-light: #F2F2F8;
-$secondary-color-light:rgba(34, 169, 227, 0.25);
-$flair-color-light: #22A9E3;
-$text-color-light: #0E0D0D;
-$shade-color-light:rgba(10,9,9, 0.05);
+:root{
+--primary-color: #F2F2F8;// rgb(242, 242, 248)
+--secondary-color:rgba(34, 169, 227, 0.25);
+--flair-color: #22A9E3; // rgb(34, 169, 227)
+--text-color: #0E0D0D; // rgb(14, 13, 13)
+--shade-color:rgba(10,9,9, 0.05);
+transition: 1s;
+}
+
+.dark-theme{
+    // Dark-Mode Colours
+    --primary-color: #131326; // rgb(19, 19, 38)
+    --secondary-color: #222536;// rgb(34, 37, 54)
+    --flair-color: #C65300; // rgb(198, 83, 0)
+    --text-color:#F8F9FE; // rgb(248, 249, 254)  
+    --shade-color:rgba(255,255,255, 0.05);
+    transition: 1s;
+}
+
 // Font family
 $font-poppins:'Poppins', sans-serif;

@@ -8,7 +8,7 @@
     ;
     height: 100%;
     width: 100%;
-    background-color: $secondary-color-light;
+    background-color: var(--secondary-color);
     border-radius: 20px;
 }
 
@@ -31,7 +31,7 @@
 }
 
 .fixture{
-background-color: $secondary-color-light;
+background-color: var(--secondary-color);
 width: 75%;
 margin: 15px auto;
 padding: 1%;
