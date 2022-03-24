@@ -5,6 +5,8 @@
 --flair-color: #22A9E3; // rgb(34, 169, 227)
 --text-color: #0E0D0D; // rgb(14, 13, 13)
 --shade-color:rgba(10,9,9, 0.05);
+// might be better way!
+--fixture-shade-color: rgba(34, 169, 227, 0.25);
 transition: 1s;
 }
 
@@ -15,6 +17,7 @@ transition: 1s;
     --flair-color: #C65300; // rgb(198, 83, 0)
     --text-color:#F8F9FE; // rgb(248, 249, 254)  
     --shade-color:rgba(255,255,255, 0.05);
+    --fixture-shade-color:rgba(255,255,255, 0.05);
     transition: 1s;
 }
 

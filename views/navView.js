@@ -1,17 +1,45 @@
-console.log("nav")
+console.log("nav");
 
 class Navigation {
+  dateTimeWrap = document.querySelector(".dateTime")
+  constructor() {
+    // this._displayDateandTime();
+    this._formatDateAndTime()
+  }
 
-constructor(){
-this._displayDateandTime()
+  _formatDateAndTime(){
+    setInterval( () =>{
+    const currentDate = new Date()
+    const local = navigator.language;
+    const options = {
+      year: "numeric",
+      day: "numeric",
+      month: "numeric",
+      hour12: true,
+      hour: "numeric",
+      minute: "numeric",
+    };
+    const formattedTime = new Intl.DateTimeFormat(local,options).format(currentDate)
+    const dateTimeArray = formattedTime.split(" ")
+    const dateForm = dateTimeArray[0].replace(",", "")
+    const dateFormStart = dateForm.slice(0,6)
+    const dateFormEnd = dateForm.slice(-2)
+    //
+    // Fully Formatted Values
+    const timeForm = dateTimeArray.slice(-2).join("")
+    const formattedDate = `${dateFormStart}${dateFormEnd}`
+    this._displayDateAndTime(formattedDate,timeForm)
+  },1000);
+  }
+
+  _displayDateAndTime(date,time) {
+    this.dateTimeWrap.innerHTML =" ";
+    this.dateTimeWrap.insertAdjacentHTML(
+      "afterbegin",
+      `<p>${time}</p>
+      <p>${date}</p>`
+    );
+  }
 }
-
-_displayDateandTime(){
-    console.log("hello")
-    const time = +new Date()
-    console.log(time)
-}
-
-};
 
 export default new Navigation();
