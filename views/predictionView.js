@@ -5,6 +5,7 @@ class Prediction extends View {
   radarChart = document.getElementById("radar__chart");
   newRadar;
   radarTheme = "rgba(10,9,9, 0.05)";
+  radarFontColor = "#0E0D0D";
 
   constructor() {
     super();
@@ -58,14 +59,18 @@ class Prediction extends View {
             grid: {
               color: this.radarTheme,
             },
+            pointLabels: {
+              color: this.radarFontColor,
+            },
           },
         },
-        // plugins:{
-        //     title: {
-        //         display:true,
-        //         text: "Next Fixture"
-        //     }
-        // },
+        plugins: {
+          legend: {
+            labels: {
+              color: this.radarFontColor,
+            },
+          },
+        },
         elements: {
           line: {
             borderWidth: 3,

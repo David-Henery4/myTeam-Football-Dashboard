@@ -5,10 +5,11 @@ class PieView extends View {
   _chartElement = document.getElementById("myChart");
   myChart;
   pieChartTheme = [
-  "rgb(34, 169, 227)",
-  "rgba(34, 169, 227, 0.25)",
-  "rgb(200, 205, 86)",
+    "rgb(34, 169, 227)",
+    "rgba(34, 169, 227, 0.25)",
+    "rgb(200, 205, 86)",
   ];
+  pieChartFontColor = "#0E0D0D";
   constructor() {
     super();
     this._displayPieChart();
@@ -38,6 +39,12 @@ class PieView extends View {
             text: "Wins/Draws/Loses",
             font: {
               size: "20px",
+            },
+            color: this.pieChartFontColor,
+          },
+          legend: {
+            labels: {
+              color: this.pieChartFontColor,
             },
           },
         },

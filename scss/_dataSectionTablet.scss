@@ -27,13 +27,21 @@
             }
         }
     }
-    .player__stats--wrap{
-        // height: 75%
+    
+    .player__stats--title{
+        h4{
+            font-size: 0.9rem
+        }
     }
-    .team__stats--wrap{
-        // position: relative;
-        // bottom: 25%;
-        // height: 75%;
+    .team__stats--title{
+        h4{
+            font-size: 0.9rem
+        }
     }
     
+    .minute__stat--box{
+        h4{
+            font-size: 0.9rem
+        }
+    }
 };
