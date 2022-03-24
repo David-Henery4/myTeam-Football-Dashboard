@@ -1,4 +1,5 @@
 import pieView from "./views/pieView.js";
+import predictionView from "./views/predictionView.js";
 import View from "./views/view.js";
 console.log("Dark Mode Module")
 
@@ -33,41 +34,27 @@ themeBtn.addEventListener("click", function(){
     if(darkMode !== "enabled"){
         enableDarkMode()
         const chartColors = ["rgb(198, 83, 0)", "#0C377A", "#00284A"];
+        const radarGridColor = "#F8F9FE";
+        predictionView.radarTheme = radarGridColor;
+        pieView.pieChartTheme = chartColors;
+        predictionView.newRadar.destroy()
+        predictionView._predictionChart()
         pieView.myChart.destroy();
-        pieView._displayPieChart(chartColors);
-    } else{
+        pieView._displayPieChart();
+      } else{
         disableDarkMode()
         const chartColors = [
           "rgb(34, 169, 227)",
           "rgba(34, 169, 227, 0.25)",
           "rgb(200, 205, 86)",
         ];
+        const radarGridColor = "rgba(10,9,9, 0.05)";
+        predictionView.radarTheme = radarGridColor;
+        pieView.pieChartTheme = chartColors;
+        predictionView.newRadar.destroy();
+        predictionView._predictionChart();
         pieView.myChart.destroy()
-        pieView._displayPieChart(chartColors);
+        pieView._displayPieChart();
     }
 })
 
-
-
-
-
-
-
-
-
-// ideas that didnt work / might revisit
-
-// console.log(View.themeCheck);
-
-// View.themeCheck = true;
-// console.log(View.themeCheck);
-// View.chartThemeColor = '#C65300';
-// pieView._displayPieChart();
-// console.log(View.chartThemeColor);
-
-// View.themeCheck = false;
-// console.log(View.themeCheck);
-// View.chartThemeColor = "#22A9E3";
-// pieView._displayPieChart();
-// console.log(View.chartThemeColor);
-// pieView._displayPieChart("#22A9E3");

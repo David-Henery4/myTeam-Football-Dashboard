@@ -1,6 +1,7 @@
 //              CONTROLLER
 import * as model from "./model.js";
 import * as dark from "./darkMode.js";
+import * as navi from "./views/navView.js";
 //
 import TeamView from "./views/teamView.js";
 import PieView from "./views/pieView.js";

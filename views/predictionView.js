@@ -3,11 +3,13 @@ import View from "./view";
 
 class Prediction extends View {
   radarChart = document.getElementById("radar__chart");
+  newRadar;
+  radarTheme = "rgba(10,9,9, 0.05)";
 
   constructor() {
     super();
-    this._predictionChart()
-  };
+    this._predictionChart();
+  }
 
   _predictionChart() {
     const data = {
@@ -24,7 +26,7 @@ class Prediction extends View {
       datasets: [
         {
           label: "Arsenal",
-          data: [65, 59, 90, 81, 56, 55, 40,88],
+          data: [65, 59, 90, 81, 56, 55, 40, 88],
           fill: true,
           backgroundColor: "rgba(255, 99, 132, 0.2)",
           borderColor: "rgb(255, 99, 132)",
@@ -35,7 +37,7 @@ class Prediction extends View {
         },
         {
           label: "Tottenham",
-          data: [28, 48, 40, 19, 96, 27, 100,10],
+          data: [28, 48, 40, 19, 96, 27, 100, 10],
           fill: true,
           backgroundColor: "rgba(54, 162, 235, 0.2)",
           borderColor: "rgb(54, 162, 235)",
@@ -51,6 +53,13 @@ class Prediction extends View {
       data: data,
       options: {
         maintainAspectRatio: false,
+        scales: {
+          r: {
+            grid: {
+              color: this.radarTheme,
+            },
+          },
+        },
         // plugins:{
         //     title: {
         //         display:true,
@@ -64,9 +73,8 @@ class Prediction extends View {
         },
       },
     };
-    const newRadar = new Chart(this.radarChart, config)
+    this.newRadar = new Chart(this.radarChart, config);
   }
-  
 }
 
 export default new Prediction()
