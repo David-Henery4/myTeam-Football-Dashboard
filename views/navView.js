@@ -1,4 +1,4 @@
-console.log("nav");
+
 
 class Navigation {
   dateTimeWrap = document.querySelector(".dateTime")

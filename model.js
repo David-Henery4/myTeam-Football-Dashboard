@@ -1,6 +1,5 @@
 console.log("model module works!");
-// football-data.org API-KEY:  64b5f5e2c5c74667bf07a2f0291886d9
-//elenaSports API-KEY: N2w0bGFlc2J1dTNpMGNxZWNzNDR1dmxya2o6MXQ4bG1udjdscjEyamNmYWNwdGE5ZW8wM3Rlc3AzNHBqdjJzNm02cTFubTE3bWpkbTNzNQ==
+
 
 // USING THIS ONE
 // API-FOOTBALL API-KEY (NEW): a78d0ec5177a3799beb9c9a2c3bb19ba
@@ -80,12 +79,58 @@ export const state = {
   leagueStanding: {
     standings: {},
   },
-  formStats: {
-    form: 0,
+  minuteGoalsData: {
+    minToScore: 0,
+    minToConcede: 0,
+  },
+  nextPredictionData: {
+    comparisonData: {
+      team1: {
+        possessionDist: 0,
+        H2H: 0,
+        form: 0,
+        goalsOverUnder: 0,
+      },
+      team2: {
+        possessionDist: 0,
+        H2H: 0,
+        form: 0,
+        goalsOverUnder: 0,
+      },
+      outcomesChances:{
+        homewin: 0,
+        draw:0,
+        awayWin:0,
+      },
+      outcomePrediction: {
+        name: "",
+        outcome: "",
+      }
+    },
+    predictionRadarData:{
+      attacking: 0,
+      defensive: 0,
+      strength:0,
+      wins:0,
+      draws:0,
+      losses:0,
+      goalsAgainst:0,
+      goalsFor:0,
+    }
   },
 };
 
 // LOGIC FOR FETCHING DATA
+
+// 1) fetching teams basic info
+
+const fetchBasicTeamInfo = async function(query){
+  const res = await fetch()
+  const data = await res.json()
+  // console.log(data)
+}
+
+
 
 // 1) query string to get a teams info: returns this
 // team: {
@@ -157,7 +202,10 @@ export const state = {
 // USE THIS TO GET PLAYER STATS
 // WILL USE SIMULAR INFO TO GET FIXTURES
 
-// Test wiki
+
+
+//******//
+// wikipedia api
 
 const fetchWiki = async function(query){
   // const searchquery = query.trim()
@@ -194,28 +242,4 @@ const fetchWikiImage = async function(query){
 };
 
 
-// fetchWiki("Boca_Juniors");
 
-// https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&list=search&exintro=1&explaintext=1&srsearch=football%20club%20southend&origin=*
-
-//https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&list=allpages&generator=search&exintro=1&apfrom=southampton&gsrsearch=football%20club&explaintext=2&origin=*
-
-// https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&list=allpages&generator=search&exintro=1&apfrom=arsenal&gsrsearch=football%20club
-
-
-// https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&exlimit=2&titles=Arsenal_F.C.&explaintext=2&format=json&formatversion=2&origin=*
-
-// https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exsentences=2&exlimit=2&titles=arsenal&explaintext=2&format=json&formatversion=2&origin=*
-
-//1
-// https://en.wikipedia.org/w/api.php?action=parse&format=json&page=arsenal&prop=text
-
-//2
-// https://en.wikipedia.org/w/api.php?action=query&titles=main%20page&prop=revisions&rvprop=content&format=json&titles=arsenal
-
-//3
-// https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=arsenal
-
-// https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=arsenal&namespace=0&limit=10
-
-// https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=arsenal&namespace=0&limit=10&origin=*

@@ -1,3 +1,7 @@
+// Module Replacement
+if (module.hot) {
+  module.hot.accept();
+}
 //              CONTROLLER
 import * as model from "./model.js";
 import * as dark from "./darkMode.js";
@@ -31,10 +35,7 @@ const leagueTableSection = function () {};
 const formStatsSection = function () {};
 
 const init = function () {
-  Header.headerHandler(search)
+  Header.headerHandler(search);
 };
 
 init();
-
-
-
