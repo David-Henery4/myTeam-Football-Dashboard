@@ -18,11 +18,28 @@ import Header from "./views/headerView.js";
 import History from "./views/historyView.js";
 //
 
-const search = function () {
+const search = async function () {
   const query = Header.searchQuery();
   console.log(`Heres the search query: ${query}`);
   console.log("works");
+  model.state.searchQuery = query
+  console.log(model.state)
+  // const title = await model.fetchWiki(query)
+  // const historyData = await model.fetchWikiIntro(title)
+  // historySection(historyData)
+  // historySection(data)
+  historySection(query)
 };
+
+const historySection = async function(query){
+  // on history tab click works but not right because user can search while on history page.
+  // const query = model.state.searchQuery
+  const title = await model.fetchWiki(query);
+  const historyData = await model.fetchWikiIntro(title);
+  console.log(historyData)
+  History.render(historyData)
+  // console.log(data)
+}
 
 const pieChartSection = function () {};
 
@@ -36,6 +53,7 @@ const formStatsSection = function () {};
 
 const init = function () {
   Header.headerHandler(search);
+  // History.historyHandler(historySection);
 };
 
 init();

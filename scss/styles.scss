@@ -11,35 +11,34 @@
 @import "desktop";
 @import "utilities";
 
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-html,body{
-    // height: 100%;
-    width: 100vw;
-    transition: 1s;
+html,
+body {
+  // height: 100%;
+  width: 100vw;
+  transition: 1s;
 }
 
-body{
-    background-color: var(--primary-color);
-    font-family: $font-poppins;
-    color: var(--text-color);
+body {
+  background-color: var(--primary-color);
+  font-family: $font-poppins;
+  color: var(--text-color);
 }
 
-.body__wrap{
-    // padding: 5%;
-    padding: 5%;
-    // height: 100vh;
-    // width: 100vw;
+.body__wrap {
+  // padding: 5%;
+  padding: 5%;
+  // height: 100vh;
+  // width: 100vw;
 }
 
-@media (min-width:1020px){
-    .body__wrap{
-        padding: 2%;
-    }
+@media (min-width: 1020px) {
+  .body__wrap {
+    padding: 2%;
+  }
 }
-
-

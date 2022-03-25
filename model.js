@@ -13,6 +13,14 @@ console.log("model module works!");
 // DATA STATE OBJECT
 
 export const state = {
+  queryTeamInfo:{
+    // teamId: 0,
+    // name: "",
+    // teamCodeInitals: "",
+    // country: "",
+    // logoImage:"",
+    venueImage:"",
+  },
   pieStats: {
     wins: 0,
     draws: 0,
@@ -118,19 +126,51 @@ export const state = {
       goalsFor:0,
     }
   },
+  teamHistoryInfo:{}
 };
 
 // LOGIC FOR FETCHING DATA
 
 // 1) fetching teams basic info
-
+// We can use:
+// id, name, code, country, logo, venueImage
 const fetchBasicTeamInfo = async function(query){
-  const res = await fetch()
+  const res = await fetch(
+    `https://v3.football.api-sports.io/teams?name=arsenal`,
+    {
+      method: "GET",
+      headers: {
+        "x-apisports-key": "a78d0ec5177a3799beb9c9a2c3bb19ba",
+      },
+    }
+  );
   const data = await res.json()
-  // console.log(data)
+  const teamData = data.response[0].team;
+  const teamVenue = data.response[0].venue.image;
+  console.log(data.response[0].team)
+  console.log(data.response[0].venue.image)
+  storingTeamAndVenueData(teamData)
+  storingTeamAndVenueData(teamVenue)
+  // const {queryTeamInfo} = teamData
+  // state.queryTeamInfo = {
+  //   teamId: teamData.id,
+  // }
+  // console.log(queryTeamInfo)
+  // console.log(state)
 }
 
+// fetchBasicTeamInfo()
 
+const storingTeamAndVenueData = function(teamData,venue){
+  state.queryTeamInfo = teamData
+  state.queryTeamInfo.venueImage = venue
+  console.log(venue)
+  // state.queryTeamInfo.venueImage = venue.image
+  console.log(state)
+  // state.queryTeamInfo = {
+  //   teamId: teamData.id,
+  // };
+}
 
 // 1) query string to get a teams info: returns this
 // team: {
@@ -153,7 +193,7 @@ const fetchBasicTeamInfo = async function(query){
 // }
 
 // We can use:
-// id, name, code, country, logo
+// id, name, code, country, logo, venueImage
 
 // Use team code,country & current = true
 // to get league.
@@ -207,7 +247,7 @@ const fetchBasicTeamInfo = async function(query){
 //******//
 // wikipedia api
 
-const fetchWiki = async function(query){
+export const fetchWiki = async function(query){
   // const searchquery = query.trim()
   // const regex = /[ ]{2,}/gi;
   // const searchTerm = searchquery.replaceAll(regex, " ")
@@ -218,19 +258,25 @@ const fetchWiki = async function(query){
   const data = await res.json()
   console.log(data.query.search[0].title)
   const title = data.query.search[0].title;
-  fetchWikiIntro(title)
-  fetchWikiImage(title)
+  return title
+  // fetchWikiIntro(title)
+  // fetchWikiImage(title)
 };
 
-fetchWiki("arsenal");
+// fetchWiki("arsenal");
 
-const fetchWikiIntro = async function(team){
+export const fetchWikiIntro = async function(team){
 const res = await fetch(
   `https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&exlimit=2&titles=${team}&explaintext=2&format=json&formatversion=2&origin=*`
 );
 const data = await res.json()
-// console.log(data.query.pages[0].extract)
-console.log(data)
+console.log(data.query.pages[0])
+console.log(data) // data here
+const { historyExtract = data.query.pages[0].extract } = data
+console.log(historyExtract)
+state.teamHistoryInfo.history = historyExtract
+console.log(state.teamHistoryInfo)
+return state.teamHistoryInfo;
 }
 
 const fetchWikiImage = async function(query){
@@ -238,7 +284,7 @@ const fetchWikiImage = async function(query){
     `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=pageimages&titles=${query}&piprop=original&pilicense=any&origin=*`
   );
   const data = await res.json()
-  console.log(data)
+  console.log(data) // data here
 };
 
 
