@@ -3,6 +3,7 @@ import View from "./view";
 class History extends View {
   _parentElement = document.querySelector(".history__section--text");
   _historyBtn = document.getElementById("history-btn");
+  _stadiumImgWrap = document.querySelector(".history__section--img");
 
   constructor() {
     super();
@@ -10,6 +11,10 @@ class History extends View {
 
   historyHandler(handler){
     this._historyBtn.addEventListener("click", handler)
+  }
+
+  _renderStadiumImage(){
+
   }
 
   _generateMarkup(){

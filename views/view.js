@@ -18,6 +18,10 @@ export default class View {
     this._parentElement.insertAdjacentHTML("afterbegin", markup);
   }
 
+  renderChart(){
+
+  };
+
   clear() {
     this._parentElement.innerHTML = "";
   }

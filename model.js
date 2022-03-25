@@ -19,7 +19,7 @@ export const state = {
     // teamCodeInitals: "",
     // country: "",
     // logoImage:"",
-    venueImage:"",
+    // venueImage:"",
   },
   pieStats: {
     wins: 0,
@@ -144,59 +144,49 @@ const fetchBasicTeamInfo = async function(query){
       },
     }
   );
-  const data = await res.json()
-  const teamData = data.response[0].team;
-  const teamVenue = data.response[0].venue.image;
-  console.log(data.response[0].team)
-  console.log(data.response[0].venue.image)
-  storingTeamAndVenueData(teamData)
-  storingTeamAndVenueData(teamVenue)
-  // const {queryTeamInfo} = teamData
-  // state.queryTeamInfo = {
-  //   teamId: teamData.id,
-  // }
+  const data = await res.json();
+  const teamData = data.response[0];
+  const teamVenue = data.response[0];
+  console.log(data.response[0].team);
+  console.log(data.response[0].venue);
+  // storingTeamAndVenueData(teamData)
+  // storingTeamAndVenueData(teamVenue)
+  //
+  // will move to: storingTeamAndVenueData
+  const {
+    id = teamData.team.id,
+    name = teamData.team.name,
+    teamCode = teamData.team.code,
+    country = teamData.team.country,
+    logo = teamData.team.logo,
+    venueImg = teamData.venue.image,
+  } = teamData;
+  //
+  state.queryTeamInfo = {
+    teamId: id,
+    teamName: name,
+    teamInitals: teamCode,
+    stadiumImg: venueImg,
+    teamCountry: country,
+    teamLogo: logo,
+  };
   // console.log(queryTeamInfo)
-  // console.log(state)
+  console.log(state);
 }
 
 // fetchBasicTeamInfo()
 
-const storingTeamAndVenueData = function(teamData,venue){
-  state.queryTeamInfo = teamData
-  state.queryTeamInfo.venueImage = venue
-  console.log(venue)
-  // state.queryTeamInfo.venueImage = venue.image
-  console.log(state)
-  // state.queryTeamInfo = {
-  //   teamId: teamData.id,
-  // };
-}
+const storingTeamAndVenueData = function(teamData,venue){}
 
-// 1) query string to get a teams info: returns this
-// team: {
-// id: 42
-// name: "Arsenal"
-// code: "ARS"
-// country: "England"
-// founded: 1886
-// national: false
-// logo: "https://media.api-sports.io/football/teams/42.png"
-// }
-// venue: {
-// id: 494
-// name: "Emirates Stadium"
-// address: "Queensland Road"
-// city: "London"
-// capacity: 60383
-// surface: "grass"
-// image: "https://media.api-sports.io/football/venues/494.png"
-// }
-
+// 1) query string to get a teams info: DONE
 // We can use:
 // id, name, code, country, logo, venueImage
 
+
+
 // Use team code,country & current = true
 // to get league.
+
 
 // league: {
 // id: 39
