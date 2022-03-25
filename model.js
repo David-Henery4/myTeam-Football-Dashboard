@@ -185,45 +185,41 @@ const storingTeamAndVenueData = function(teamData,venue){}
 
 
 // Use team code,country & current = true
-// to get league.
+// to get LEAGUE.
+const fetchLeagueInfo = async function(){
+  const res = await fetch(
+    `https://v3.football.api-sports.io/leagues?country=england&current=true&team=42`,
+    {
+      method: "GET",
+      headers: {
+        "x-apisports-key": "a78d0ec5177a3799beb9c9a2c3bb19ba",
+      },
+    }
+  );
+  const data = await res.json()
+  console.log(data)
+  console.log(data.response[0].league)
+  const leagueID = data.response[0].league.id;
+  const leagueYear = data.response[0].seasons.year;
+  state.queryTeamInfo.teamLeagueID = leagueID;
+  state.queryTeamInfo.teamLeagueYear = leagueYear;
+  fetchTeamStats(leagueID,leagueYear)
+};
 
+// fetchLeagueInfo()
 
-// league: {
-// id: 39
-// name: "Premier League"
-// type: "League"
-// logo: "https://media.api-sports.io/football/leagues/39.png"
-// }
-// country: {
-// name: "England"
-// code: "GB"
-// flag: "https://media.api-sports.io/flags/gb.svg"
-// }
-// seasons: [
-// {
-// year: 2021
-// start: "2021-08-13"
-// end: "2022-05-22"
-// current: true
-// coverage: {
-// fixtures: {
-// events: true
-// lineups: true
-// statistics_fixtures: true
-// statistics_players: true
-// }
-// standings: true
-// players: true
-// top_scorers: true
-// top_assists: true
-// top_cards: true
-// injuries: true
-// predictions: true
-// odds: true
-// }
+// need:
+// league id,
+// season of the league(EG - 21=current),
+// team id
+// 
 
 // then use league id, season of the league(only four digits E.G 2021/2022 = 2021) and team id.
 // TO GET TEAM STATS.
+
+const fetchTeamStats = async function(leagueID,seasonYear){
+  const res = await fetch(``)
+};
 
 // ALSO USE League id, Season number and team id (optional)
 // to get standings (Use without team name to get whole league) Maybe sort by or use 'rank' to get correct positions.
