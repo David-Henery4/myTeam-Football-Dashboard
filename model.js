@@ -286,6 +286,11 @@ const fetchTeamsFixtures = async function(){
     `https://v3.football.api-sports.io/fixtures?season=2021&team=42`,
     headers
   );
+  // get compition,
+  // get team names,
+  // K.O Time,
+  // date,
+  // score for previous fixtures
   const data = await res.json();
 };
 
@@ -314,19 +319,68 @@ const fetchPredictionData = async function(){
   const res = await fetch(
     `https://v3.football.api-sports.io/predictions?fixture=710859`
   );
-  const data = await resTwo.json();
+  const data = await res.json();
   // comparison data:
   // result percentage (home,draw,away)
+  // amount of goals chance (under 2.5 etc)
+  // winner name & outcome prediction 
+  const predictionData = data.response[0].predictions
+  const {
+    homeWin = predictionData.percent.home,
+    draw = predictionData.percent.draw,
+    awayWin = predictionData.percent.away,
+    predictedWinnerData = predictionData.winner,
+    overUnderGoalsData = predictionData.goals
+  } = predictionData
   // possession distribution percentages
   // H2H percentages
   // form percentages
-  // amount of goals chance (under 2.5 etc)
+  // attacking percentage (home vs away)
+  // defending percentage (home vs away)
+  const comparisonData = data.response[0].comparison;
+  const {
+    attacking = comparisonData.att,
+    defensive = comparisonData.def,
+    possessionDist = comparisonData.poisson_distribution,
+    h2h = comparisonData.h2h,
+    form = comparisonData.form
+  } = comparisonData;
   
-  // need radar data:
-  // 
+  // need radar data (both teams for comparison):
+  // wins
+  // draws
+  // loses
+  // goals for
+  // goals against
+  // sorting radar data
+  const homeTeamsData = data.response[0].teams.home;
+  const {
+    homeName = homeTeamsData.name,
+    homeFixtureData = homeTeamsData.league.fixtures,
+    homeGoalsFor = homeTeamsData.league.goals.for.total.total,
+    homeGoalAgainst = homeTeamsData.league.goals.against.total.total
+  } = homeTeamsData
+  
+  const awayTeamsData = data.response[0].teams.away
+  const {
+    awayName = awayTeamsData.name,
+    awayFixtureData = awayTeamsData.league.fixtures,
+    awayGoalsFor = awayTeamsData.league.goals.for.total.total,
+    awayGoalAgainst = awayTeamsData.league.goals.against.total.total,
+  } = awayTeamsData;
+
+
+  // sortingComparisonData()
+
 };
 
+const sortingComparisonData = function(data){
+  
+};
 
+const sortingRadarData = function(data){
+  
+}
 
 ////***********////
 // wikipedia api
