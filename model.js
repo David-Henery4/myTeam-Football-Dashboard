@@ -267,7 +267,7 @@ const fetchTeamsFixtures = async function(){
     `https://v3.football.api-sports.io/fixtures?season=2021&team=42`,
     headers
   );
-  // get compition,
+  // get compitition,
   // get team names,
   // K.O Time,
   // date,
@@ -298,11 +298,12 @@ const fetchPredictionInfo = async function(){
 
 const fetchPredictionData = async function(){
   const res = await fetch(
-    `https://v3.football.api-sports.io/predictions?fixture=710859`
+    `https://v3.football.api-sports.io/predictions?fixture=710859`, headers
   );
   const data = await res.json();
-
-  const predictionData = data.response[0].predictions
+  console.log(data)
+  // need to replace strength stat for radar
+  const predictionData = data.response[0].predictions;
   sortingPredictionData(predictionData)
 
   const comparisonData = data.response[0].comparison;
@@ -312,42 +313,41 @@ const fetchPredictionData = async function(){
   const awayTeamsData = data.response[0].teams.away
   sortingHomeAwayCompareData(homeTeamsData,awayTeamsData)
 };
+// fetchPredictionData()
 
 const sortingPredictionData = function(data){
-  const {
-    homeWin = data.percent.home,
-    draw = data.percent.draw,
-    awayWin = data.percent.away,
-    predictedWinnerData = data.winner,
-    overUnderGoalsData = data.goals,
-  } = data;
-  // state.nextPredictionData.comparisonData.outcomePrediction = data.winner
+  state.nextPredictionData.comparisonData.outcomePrediction = data.winner
+  state.nextPredictionData.comparisonData.overUnderGoalsData = data.goals
+  state.nextPredictionData.comparisonData.outcomePercentage = data.percent
 }
 
 const sortingComparisonData = function(data){
-  const {
-    attacking = data.att,
-    defensive = data.def,
-    possessionDist = data.poisson_distribution,
-    h2h = data.h2h,
-    form = data.form,
-  } = data;
+  // RADAR 
+  state.nextPredictionData.predictionRadarData.attack = data.att
+  state.nextPredictionData.predictionRadarData.defence = data.def
+  // COMPARISON
+  state.nextPredictionData.comparisonData.possessionDist = data.poisson_distribution;
+  state.nextPredictionData.comparisonData.h2h = data.h2h
+  state.nextPredictionData.comparisonData.form = data.form
 };
 
 const sortingHomeAwayCompareData = function(homeData,awayData){
-  const {
-    homeName = homeData.name,
-    homeFixtureData = homeData.league.fixtures,
-    homeGoalsFor = homeData.league.goals.for.total.total,
-    homeGoalAgainst = homeData.league.goals.against.total.total,
-  } = homeData;
-  //
-  const {
-    awayName = awayData.name,
-    awayFixtureData = awayData.league.fixtures,
-    awayGoalsFor = awayData.league.goals.for.total.total,
-    awayGoalAgainst = awayData.league.goals.against.total.total,
-  } = awayData;
+  // HOME TEAM DATA
+  // Comparison
+  state.nextPredictionData.comparisonData.homeName = homeData.name;
+  // RADAR
+  state.nextPredictionData.predictionRadarData.homeFixtureData = homeData.league.fixtures;
+  state.nextPredictionData.predictionRadarData.homeGoalsFor = homeData.league.goals.for.total.total
+  state.nextPredictionData.predictionRadarData.homeGoalsAgainst = homeData.league.goals.against.total.total;
+ 
+  // AWAY TEAM
+  // COMPARISON
+  state.nextPredictionData.comparisonData.awayName = awayData.name
+  // RADAR
+  state.nextPredictionData.predictionRadarData.awayFixtureData = awayData.league.fixtures;
+  state.nextPredictionData.predictionRadarData.awayGoalsFor = awayData.league.goals.for.total.total;
+  state.nextPredictionData.predictionRadarData.awayGoalsAgainst = awayData.league.goals.against.total.total;
+  console.log(state.nextPredictionData)
 }
 
 ////***********////
