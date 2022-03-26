@@ -290,15 +290,34 @@ const fetchLeagueStanding = async function(){
 // WILL USE SIMULAR INFO TO GET FIXTURES
 
 const fetchTeamsFixtures = async function(){
-
-}
+  const res = await fetch(
+    `https://v3.football.api-sports.io/fixtures?season=2021&team=42`,
+    {
+      method: "GET",
+      headers: {
+        "x-apisports-key": "a78d0ec5177a3799beb9c9a2c3bb19ba",
+      },
+    }
+  );
+  const data = await res.json();
+};
 
 const fetchTeamsPLayersData = async function(){
-
-}
+  const res = await fetch(
+    `https://v3.football.api-sports.io/players?season=2021&team=42`,
+    {
+      method: "GET",
+      headers: {
+        "x-apisports-key": "a78d0ec5177a3799beb9c9a2c3bb19ba",
+      },
+    }
+  );
+  const data = await res.json();
+};
 
 const fetchPredictionInfo = async function(){
-  
+  const res = await fetch();
+  const data = await res.json();
 };
 
 
