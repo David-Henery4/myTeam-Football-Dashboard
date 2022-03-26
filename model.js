@@ -91,6 +91,7 @@ export const state = {
     minsToConcede: [],
   },
   nextPredictionData: {
+    fixtureID: 0,
     comparisonData: {
       team1: {
         possessionDist: 0,
@@ -126,6 +127,17 @@ export const state = {
     },
   },
   teamHistoryInfo: {},
+  teamFixtures: {
+
+  }
+};
+
+// API Header:
+const headers = {
+  method: "GET",
+  headers: {
+    "x-apisports-key": "a78d0ec5177a3799beb9c9a2c3bb19ba",
+  },
 };
 
 // LOGIC FOR FETCHING DATA
@@ -136,12 +148,7 @@ export const state = {
 const fetchBasicTeamInfo = async function (query) {
   const res = await fetch(
     `https://v3.football.api-sports.io/teams?name=arsenal`,
-    {
-      method: "GET",
-      headers: {
-        "x-apisports-key": "a78d0ec5177a3799beb9c9a2c3bb19ba",
-      },
-    }
+    headers
   );
   const data = await res.json();
   const teamData = data.response[0];
@@ -187,12 +194,7 @@ const storingTeamAndVenueData = function (teamData, venue) {};
 const fetchLeagueInfo = async function (teamCode, country) {
   const res = await fetch(
     `https://v3.football.api-sports.io/leagues?country=${country}&current=true&team=${teamCode}`,
-    {
-      method: "GET",
-      headers: {
-        "x-apisports-key": "a78d0ec5177a3799beb9c9a2c3bb19ba",
-      },
-    }
+    headers
   );
   const data = await res.json();
   console.log(data);
@@ -219,12 +221,7 @@ const fetchTeamStats = async function (leagueID, seasonYear) {
   const team = state.queryTeamInfo.teamId;
   const res = await fetch(
     `https://v3.football.api-sports.io/teams/statistics?league=${leagueID}&season=${seasonYear}&team=${team}`,
-    {
-      method: "GET",
-      headers: {
-        "x-apisports-key": "a78d0ec5177a3799beb9c9a2c3bb19ba",
-      },
-    }
+    headers
   );
   // maybe change to array, use filter the
   // ones we wanna keep, then change back.
@@ -270,12 +267,7 @@ const fetchTeamStats = async function (leagueID, seasonYear) {
 const fetchLeagueStanding = async function(){
   const res = await fetch(
     `https://v3.football.api-sports.io/standings?league=39&season=2021`,
-    {
-      method: "GET",
-      headers: {
-        "x-apisports-key": "a78d0ec5177a3799beb9c9a2c3bb19ba",
-      },
-    }
+    headers
   );
   const data = await res.json();
   const {league = data.response[0].league.standings }= data
@@ -292,32 +284,46 @@ const fetchLeagueStanding = async function(){
 const fetchTeamsFixtures = async function(){
   const res = await fetch(
     `https://v3.football.api-sports.io/fixtures?season=2021&team=42`,
-    {
-      method: "GET",
-      headers: {
-        "x-apisports-key": "a78d0ec5177a3799beb9c9a2c3bb19ba",
-      },
-    }
+    headers
   );
   const data = await res.json();
 };
 
-const fetchTeamsPLayersData = async function(){
+const fetchTeamsPlayersData = async function(){
   const res = await fetch(
     `https://v3.football.api-sports.io/players?season=2021&team=42`,
-    {
-      method: "GET",
-      headers: {
-        "x-apisports-key": "a78d0ec5177a3799beb9c9a2c3bb19ba",
-      },
-    }
+    headers
   );
   const data = await res.json();
 };
 
 const fetchPredictionInfo = async function(){
-  const res = await fetch();
+  // for the fixture ID
+  const res = await fetch(
+    `https://v3.football.api-sports.io/fixtures?season=2021&team=42&next=01`,
+    headers
+  );
   const data = await res.json();
+  const {fixtureID = data.response.fixture.id} = data
+  state.nextPredictionData.fixtureID = fixtureID
+  //
+  // fetchPredictionData() // use fixtureID
+};
+
+const fetchPredictionData = async function(){
+  const res = await fetch(
+    `https://v3.football.api-sports.io/predictions?fixture=710859`
+  );
+  const data = await resTwo.json();
+  // comparison data:
+  // result percentage (home,draw,away)
+  // possession distribution percentages
+  // H2H percentages
+  // form percentages
+  // amount of goals chance (under 2.5 etc)
+  
+  // need radar data:
+  // 
 };
 
 
