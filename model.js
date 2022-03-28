@@ -206,12 +206,29 @@ const fetchTeamsFixtures = async function () {
     `https://v3.football.api-sports.io/fixtures?season=2021&team=42`,
     headers
   );
-  // get compitition,
-  // get team names,
-  // K.O Time,
-  // date,
-  // score for previous fixtures
+  //
   const data = await res.json();
+  const fixturesData = data.response;
+  sortFixturesData(fixturesData)
+};
+// fetchTeamsFixtures()
+
+// sort fixtures data
+
+const sortFixturesData = function(){
+  // will have to sort fixtures by date (BY DEFAULT SORTED BY COMPITITON)
+  const fixtureDetails = [];
+  fixturesData.forEach((e, i, arr) => {
+    const fixtureBreakdown = {};
+    fixtureBreakdown.homeTeam = e.teams.home.name;
+    fixtureBreakdown.awayTeam = e.teams.away.name;
+    fixtureBreakdown.kickOffTime = e.fixture.timestamp;
+    fixtureBreakdown.fixtureDate = e.fixture.date;
+    fixtureBreakdown.compitition = e.league.name;
+    fixtureBreakdown.score = e.score.fulltime;
+    fixtureDetails.push(fixtureBreakdown);
+  });
+  console.log(fixtureDetails);
 };
 
 const fetchTeamsPlayersData = async function () {
@@ -225,31 +242,19 @@ const fetchTeamsPlayersData = async function () {
   console.log(state.playerStats);
 
   const activePlayer = data.response.map((o, i, a) => {
-    const players = []
-    o.statistics.forEach((e,i,a) => {
-      if (e.games.appearences > 0){
-          players.push(o)
+    const players = [];
+    o.statistics.forEach((e, i, a) => {
+      if (e.games.appearences > 0) {
+        players.push(o);
       }
-    })
-    return players
+    });
+    return players;
   });
-
-  console.log(activePlayer)
-  const playersList = activePlayer.filter((e) => e.length > 0)
-  const squadListP2 = playersList.map(e => e[0])
-  console.log(squadListP2)
-  
-
-  // const squadStatistics = data.response.map((e,i,a) => {
-  //   return e.statistics
-  //   // return e.statistics.filter((e,i,a) => {
-  //   //   e.games.appearences > 0;
-  //   // });
-  // })
   //
-  // squadStatistics.filter((e,i,a) => {
-  //   console.log(e[i])
-  // });
+  console.log(activePlayer);
+  const playersList = activePlayer.filter((e) => e.length > 0);
+  const squadListP2 = playersList.map((e) => e[0]);
+  console.log(squadListP2);
 };
 // fetchTeamsPlayersData()
 
