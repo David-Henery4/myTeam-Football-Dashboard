@@ -191,23 +191,22 @@ const fetchLeagueStanding = async function () {
   );
   const data = await res.json();
   const { league = data.response[0].league.standings[0] } = data;
-  sortLeagueStandings(league)
+  sortLeagueStandings(league);
 };
 // fetchLeagueStanding()
 
-const sortLeagueStandings = function(league){
-league.forEach( e => {
-  const tableDetails = {
-  };
-  tableDetails.rank = e.rank
-  tableDetails.teamName = e.team.name
-  tableDetails.points = e.points
-  tableDetails.goalDiff = e.goalsDiff
-  tableDetails.tableData = e.all
-  state.leagueStanding.push(tableDetails)
-})
-// console.log(state.leagueStanding)
-}
+const sortLeagueStandings = function (league) {
+  league.forEach((e) => {
+    const tableDetails = {};
+    tableDetails.rank = e.rank;
+    tableDetails.teamName = e.team.name;
+    tableDetails.points = e.points;
+    tableDetails.goalDiff = e.goalsDiff;
+    tableDetails.tableData = e.all;
+    state.leagueStanding.push(tableDetails);
+  });
+  // console.log(state.leagueStanding)
+};
 
 // Use id of team, league id (optional), season number (E,G 2021/ use year property from previous search.)
 // USE THIS TO GET PLAYER STATS
@@ -221,13 +220,12 @@ const fetchTeamsFixtures = async function () {
   //
   const data = await res.json();
   const fixturesData = data.response;
-  sortFixturesData(fixturesData)
+  sortFixturesData(fixturesData);
 };
 // fetchTeamsFixtures()
 
-
 // sort fixtures data
-const sortFixturesData = function(fixturesData){
+const sortFixturesData = function (fixturesData) {
   // will have to sort fixtures by date (BY DEFAULT SORTED BY COMPITITON)
   const fixtureDetails = [];
   fixturesData.forEach((e, i, arr) => {
@@ -241,12 +239,12 @@ const sortFixturesData = function(fixturesData){
     fixtureDetails.push(fixtureBreakdown);
   });
   console.log(fixtureDetails);
-  state.teamFixtures = fixtureDetails
+  state.teamFixtures = fixtureDetails;
 };
 
 const fetchTeamsPlayersData = async function () {
-  const pageNumbers = [1,2,3]
-  const pagesCombined = []
+  const pageNumbers = [1, 2, 3];
+  const pagesCombined = [];
   await Promise.all(
     pageNumbers.map(async (page) => {
       const res = await fetch(
@@ -254,39 +252,52 @@ const fetchTeamsPlayersData = async function () {
         headers
       );
       const data = await res.json();
-      pagesCombined.push(data)
+      pagesCombined.push(data);
     })
-  )
-  const playerList = pagesCombined.flatMap(o => {
-    return o.response
-  })
+  );
+  const playerList = pagesCombined.flatMap((o) => {
+    return o.response;
+  });
   //
-  const firstTeam = []
-  playerList.forEach(p => {
-    p.statistics.forEach(e => {
+  const firstTeam = [];
+  playerList.forEach((p) => {
+    p.statistics.forEach((e) => {
       if (e.games.appearences > 5) firstTeam.push(p);
-    })
-  })
-  console.log(firstTeam)
-
+    });
+  });
+  console.log(firstTeam);
 
   // for creating new custom object
   // come back to
-  // playerAndStats.forEach(e => {
-  //   // const player = {
-    
-  //   // }
-  //   // const playerNames = {
-  //   //   fullName: e.player.name,
-  //   //   firstName: e.player.firstname,
-  //   //   lastName: e.player.lastname,
-  //   // };
-  //   // player.names = playerNames
-  //   //
-  //   e.statistics.forEach(e => {
-  //     console.log(e)
-  //   })
-  // })
+  // sort array by goals or avg rating
+  const formatedPlayerList = [];
+  firstTeam.forEach((e) => {
+    const player = {};
+    const playerNames = {
+      fullName: e.player.name,
+      firstName: e.player.firstname,
+      lastName: e.player.lastname,
+      // totalAppearences: 0,
+    };
+    player.names = playerNames;
+    //
+    e.statistics.forEach((s) => {
+      console.log(s.games.appearences);
+    });
+    //
+    // let appearences;
+    // e.statistics.forEach(s => {
+    //   appearences += s.games.appearences
+    // })
+    // player.totalAppearences = appearences;
+    //
+    // const appearences = e.statistics.reduce((acca, s, i, a) => {
+    //   return acca.games.appearences + s.games.appearences;
+    // }, 0);
+    // console.log(appearences);
+    // player.totalAppearences = appearences
+    console.log(player);
+  });
 };
 // fetchTeamsPlayersData()
 
