@@ -34,7 +34,7 @@ export const state = {
     longestWinStreak: 0,
     largestWin: 0,
   },
-  leagueStanding: {},
+  leagueStanding: [],
   minuteGoalsData: {
     minsToScore: [],
     minsToConcede: [],
@@ -190,12 +190,24 @@ const fetchLeagueStanding = async function () {
     headers
   );
   const data = await res.json();
-  const { league = data.response[0].league.standings } = data;
-  state.leagueStanding.standings = league;
-  console.log(league);
-  console.log(state);
+  const { league = data.response[0].league.standings[0] } = data;
+  sortLeagueStandings(league)
 };
 // fetchLeagueStanding()
+
+const sortLeagueStandings = function(league){
+league.forEach( e => {
+  const tableDetails = {
+  };
+  tableDetails.rank = e.rank
+  tableDetails.teamName = e.team.name
+  tableDetails.points = e.points
+  tableDetails.goalDiff = e.goalsDiff
+  tableDetails.tableData = e.all
+  state.leagueStanding.push(tableDetails)
+})
+// console.log(state.leagueStanding)
+}
 
 // Use id of team, league id (optional), season number (E,G 2021/ use year property from previous search.)
 // USE THIS TO GET PLAYER STATS
@@ -213,9 +225,9 @@ const fetchTeamsFixtures = async function () {
 };
 // fetchTeamsFixtures()
 
-// sort fixtures data
 
-const sortFixturesData = function(){
+// sort fixtures data
+const sortFixturesData = function(fixturesData){
   // will have to sort fixtures by date (BY DEFAULT SORTED BY COMPITITON)
   const fixtureDetails = [];
   fixturesData.forEach((e, i, arr) => {
@@ -229,6 +241,7 @@ const sortFixturesData = function(){
     fixtureDetails.push(fixtureBreakdown);
   });
   console.log(fixtureDetails);
+  state.teamFixtures = fixtureDetails
 };
 
 const fetchTeamsPlayersData = async function () {
