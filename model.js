@@ -250,24 +250,36 @@ const fetchTeamsPlayersData = async function () {
     headers
   );
   const data = await res.json();
-  console.log(data.response);
-  state.playerStats = data.response;
-  console.log(state.playerStats);
+  // console.log(data.response);
+  // state.playerStats = data.response;
+  // console.log(state.playerStats);
+  const playerAndStats = data.response
+  const firstTeam = []
+  playerAndStats.forEach(p => {
+    p.statistics.forEach(e => {
+      if (e.games.appearences > 5) firstTeam.push(p);
+    })
+  })
+  console.log(firstTeam)
 
-  const activePlayer = data.response.map((o, i, a) => {
-    const players = [];
-    o.statistics.forEach((e, i, a) => {
-      if (e.games.appearences > 0) {
-        players.push(o);
-      }
-    });
-    return players;
-  });
-  //
-  console.log(activePlayer);
-  const playersList = activePlayer.filter((e) => e.length > 0);
-  const squadListP2 = playersList.map((e) => e[0]);
-  console.log(squadListP2);
+
+  // for creating new custom object
+  // come back to
+  // playerAndStats.forEach(e => {
+  //   // const player = {
+    
+  //   // }
+  //   // const playerNames = {
+  //   //   fullName: e.player.name,
+  //   //   firstName: e.player.firstname,
+  //   //   lastName: e.player.lastname,
+  //   // };
+  //   // player.names = playerNames
+  //   //
+  //   e.statistics.forEach(e => {
+  //     console.log(e)
+  //   })
+  // })
 };
 // fetchTeamsPlayersData()
 
