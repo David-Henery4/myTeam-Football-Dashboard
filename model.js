@@ -245,17 +245,24 @@ const sortFixturesData = function(fixturesData){
 };
 
 const fetchTeamsPlayersData = async function () {
-  const res = await fetch(
-    `https://v3.football.api-sports.io/players?season=2021&team=42&page=2`,
-    headers
-  );
-  const data = await res.json();
-  // console.log(data.response);
-  // state.playerStats = data.response;
-  // console.log(state.playerStats);
-  const playerAndStats = data.response
+  const pageNumbers = [1,2,3]
+  const pagesCombined = []
+  await Promise.all(
+    pageNumbers.map(async (page) => {
+      const res = await fetch(
+        `https://v3.football.api-sports.io/players?season=2021&team=42&page=${page}`,
+        headers
+      );
+      const data = await res.json();
+      pagesCombined.push(data)
+    })
+  )
+  const playerList = pagesCombined.flatMap(o => {
+    return o.response
+  })
+  //
   const firstTeam = []
-  playerAndStats.forEach(p => {
+  playerList.forEach(p => {
     p.statistics.forEach(e => {
       if (e.games.appearences > 5) firstTeam.push(p);
     })
