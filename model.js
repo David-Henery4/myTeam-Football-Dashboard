@@ -13,12 +13,6 @@ console.log("model module works!");
 
 export const state = {
   queryTeamInfo: {
-    // teamId: 0,
-    // name: "",
-    // teamCodeInitals: "",
-    // country: "",
-    // logoImage:"",
-    // venueImage:"",
   },
   pieStats: {
     wins: 0,
@@ -59,12 +53,11 @@ const headers = {
     "x-apisports-key": "a78d0ec5177a3799beb9c9a2c3bb19ba",
   },
 };
+//************************************//
 
-// LOGIC FOR FETCHING DATA
+//       DATA FETCHING & HANDLING
 
-// 1) fetching teams basic info
-// We can use:
-// id, name, code, country, logo, venueImage
+
 const fetchBasicTeamInfo = async function (query) {
   const res = await fetch(
     `https://v3.football.api-sports.io/teams?name=${query}`,
@@ -73,8 +66,6 @@ const fetchBasicTeamInfo = async function (query) {
   const data = await res.json();
   const teamData = data.response[0];
   const teamVenue = data.response[0];
-  // console.log(data.response[0].team);
-  // console.log(data.response[0].venue);
   storingTeamAndVenueData(teamData)
 };
 
@@ -101,12 +92,7 @@ const storingTeamAndVenueData = function (teamData) {
   fetchLeagueInfo(id, country);
 };
 
-// 1) query string to get a teams info: DONE
-// We can use:
-// id, name, code, country, logo, venueImage
 
-// Use team code,country & current = true
-// to get LEAGUE.
 const fetchLeagueInfo = async function (teamCode, country) {
   const res = await fetch(
     `https://v3.football.api-sports.io/leagues?country=${country}&current=true&team=${teamCode}`,
@@ -128,15 +114,6 @@ const fetchLeagueInfo = async function (teamCode, country) {
 
 // fetchLeagueInfo()
 
-// need:
-// league id,
-// season of the league(EG - 21=current),
-// team id
-//
-
-// then use league id, season of the league(only four digits E.G 2021/2022 = 2021) and team id.
-// TO GET TEAM STATS.
-
 const fetchTeamStats = async function (leagueID, seasonYear) {
   const team = state.queryTeamInfo.teamId;
   const res = await fetch(
@@ -150,39 +127,10 @@ const fetchTeamStats = async function (leagueID, seasonYear) {
   const { teamWinDrawLose = data.response.fixtures } = data;
   const { teamGoalStats = data.response.goals } = data;
   const { biggestStats = data.response.biggest } = data;
-  // console.log(teamWinDrawLose);
-  // console.log(teamGoalStats);
-  // console.log(state);
   sortTeamRecordStats(teamWinDrawLose);
   sortTeamGoalStats(teamGoalStats);
   sortTeamLargestStats(biggestStats)
   fetchLeagueStanding(leagueID,seasonYear)
-  //piedata
-  // state.pieStats.wins = teamWinDrawLose.wins.total;
-  // state.pieStats.draws = teamWinDrawLose.draws.total;
-  // state.pieStats.loses = teamWinDrawLose.loses.total;
-  //        team goal stats
-  // for:
-  // avg goals scored
-  // state.teamStats.avgGoalsScored = teamGoalStats.for.average.total;
-  // // total goals scored
-  // state.teamStats.totalGoalScored = teamGoalStats.for.total.total;
-  // // against:
-  // // avg goals against
-  // state.teamStats.avgGoalsAgainst = teamGoalStats.against.average.total;
-  // // total goals against
-  // state.teamStats.totalGoalsAgainst = teamGoalStats.against.total.total;
-  // longest win streak
-  // state.teamStats.longestWinStreak = biggestStats.streak.wins;
-  // // largest win
-  // state.teamStats.largestWin = biggestStats.wins;
-
-  // minute goal stats
-  // most likely to score
-  // state.minuteGoalsData.minsToScore.push(teamGoalStats.for.minute);
-  // // most likely to concede
-  // state.minuteGoalsData.minsToConcede.push(teamGoalStats.against.minute);
-  // console.log(state);
 };
 
 const sortTeamGoalStats = function(goalStats){
@@ -215,8 +163,6 @@ const sortTeamLargestStats = function(largeStats){
   // largest win
   state.teamStats.largestWin = largeStats.wins;
 };
-// ALSO USE League id, Season number and team id (optional)
-// to get standings (Use without team name to get whole league) Maybe sort by or use 'rank' to get correct positions.
 
 const fetchLeagueStanding = async function (leagueID,seasonYear) {
   const res = await fetch(
@@ -240,12 +186,7 @@ const sortLeagueStandings = function (league) {
     tableDetails.tableData = e.all;
     state.leagueStanding.push(tableDetails);
   });
-  // console.log(state.leagueStanding)
 };
-
-// Use id of team, league id (optional), season number (E,G 2021/ use year property from previous search.)
-// USE THIS TO GET PLAYER STATS
-// WILL USE SIMULAR INFO TO GET FIXTURES
 
 const fetchTeamsFixtures = async function (seasonYear) {
   const res = await fetch(
@@ -416,13 +357,10 @@ const sortingHomeAwayCompareData = function (homeData, awayData) {
   console.log(state);
 };
 
-////***********////
+////***************************************////
 // wikipedia api
 
 export const fetchWiki = async function (query) {
-  // const searchquery = query.trim()
-  // const regex = /[ ]{2,}/gi;
-  // const searchTerm = searchquery.replaceAll(regex, " ")
   // relevance added by default
   const res = await fetch(
     `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&list=search&exintro=1&explaintext=2&srsearch=football%20club%20${query}&srsort=relevance&origin=*`
