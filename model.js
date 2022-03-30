@@ -66,7 +66,8 @@ export const fetchBasicTeamInfo = async function (query) {
   const data = await res.json();
   const teamData = data.response[0];
   const teamVenue = data.response[0];
-  storingTeamAndVenueData(teamData)
+  
+  return storingTeamAndVenueData(teamData)
 };
 
 // fetchBasicTeamInfo("arsenal")
@@ -89,7 +90,7 @@ const storingTeamAndVenueData = function (teamData) {
     teamCountry: country,
     teamLogo: logo,
   };
-  fetchLeagueInfo(id, country);
+  return fetchLeagueInfo(id, country);
 };
 
 
@@ -109,7 +110,7 @@ const fetchLeagueInfo = async function (teamCode, country) {
   state.queryTeamInfo.teamLeagueYear = leagueYear;
   console.log(state.queryTeamInfo.teamLeagueID);
   console.log(state.queryTeamInfo.teamLeagueYear);
-  fetchTeamStats(leagueID, leagueYear);
+  return fetchTeamStats(leagueID, leagueYear);
 };
 
 // fetchLeagueInfo()
@@ -130,7 +131,7 @@ const fetchTeamStats = async function (leagueID, seasonYear) {
   sortTeamRecordStats(teamWinDrawLose);
   sortTeamGoalStats(teamGoalStats);
   sortTeamLargestStats(biggestStats)
-  fetchLeagueStanding(leagueID,seasonYear)
+  return fetchLeagueStanding(leagueID,seasonYear)
 };
 
 const sortTeamGoalStats = function(goalStats){
@@ -172,7 +173,7 @@ const fetchLeagueStanding = async function (leagueID,seasonYear) {
   const data = await res.json();
   const { league = data.response[0].league.standings[0] } = data;
   sortLeagueStandings(league);
-  fetchTeamsFixtures(seasonYear)
+  return fetchTeamsFixtures(seasonYear)
 };
 // fetchLeagueStanding()
 
@@ -197,7 +198,7 @@ const fetchTeamsFixtures = async function (seasonYear) {
   const data = await res.json();
   const fixturesData = data.response;
   sortFixturesData(fixturesData);
-  fetchTeamsPlayersData(seasonYear)
+  return fetchTeamsPlayersData(seasonYear)
 };
 // fetchTeamsFixtures()
 
@@ -236,7 +237,7 @@ const fetchTeamsPlayersData = async function (seasonYear) {
     return o.response;
   });
   filterForFirstTeam(playerList)
-  fetchPredictionInfo(seasonYear)
+  return fetchPredictionInfo(seasonYear)
 };
 // fetchTeamsPlayersData()
 
@@ -292,7 +293,7 @@ const fetchPredictionInfo = async function (seasonYear) {
   const { fixtureID = data.response[0].fixture.id } = data;
   state.nextPredictionData.fixtureID = fixtureID;
   //
-  fetchPredictionData(fixtureID) // use fixtureID
+  return fetchPredictionData(fixtureID) // use fixtureID
 };
 
 const fetchPredictionData = async function (fixtureID) {
@@ -311,7 +312,7 @@ const fetchPredictionData = async function (fixtureID) {
 
   const homeTeamsData = data.response[0].teams.home;
   const awayTeamsData = data.response[0].teams.away;
-  sortingHomeAwayCompareData(homeTeamsData, awayTeamsData);
+  return sortingHomeAwayCompareData(homeTeamsData, awayTeamsData);
 };
 // fetchPredictionData()
 
@@ -355,6 +356,7 @@ const sortingHomeAwayCompareData = function (homeData, awayData) {
   state.nextPredictionData.predictionRadarData.awayGoalsAgainst =
     awayData.league.goals.against.total.total;
   console.log(state);
+  return state
 };
 
 ////***************************************////

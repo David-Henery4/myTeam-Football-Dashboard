@@ -26,10 +26,10 @@ const search = async function () {
   console.log(model.state);
   // const title = await model.fetchWiki(query)
   // const historyData = await model.fetchWikiIntro(title)
-  // historySection(historyData)
-  // historySection(data)
-  // model.fetchBasicTeamInfo(query);
-  // pieChartSection();
+  const mainData = await model.fetchBasicTeamInfo(query);
+  //
+  console.log(mainData)
+  //
   historySection(query);
 };
 
@@ -61,3 +61,6 @@ const init = function () {
 };
 
 init();
+
+
+//************************//
