@@ -28,8 +28,9 @@ const search = async function () {
   // const historyData = await model.fetchWikiIntro(title)
   const mainData = await model.fetchBasicTeamInfo(query);
   //
-  console.log(mainData)
+  console.log(mainData);
   //
+  pieChartSection(mainData.pieStats);
   historySection(query);
 };
 
@@ -43,7 +44,7 @@ const historySection = async function (query) {
   // console.log(data)
 };
 
-const pieChartSection = function () {
+const pieChartSection = function (pieStats) {
   // console.log(model.state);
 };
 
@@ -61,6 +62,5 @@ const init = function () {
 };
 
 init();
-
 
 //************************//

@@ -1,4 +1,3 @@
-
 export default class View {
   _data;
   // defaultChartTheme = [
@@ -18,9 +17,12 @@ export default class View {
     this._parentElement.insertAdjacentHTML("afterbegin", markup);
   }
 
-  renderChart(){
-
-  };
+  // renderChart(data) {
+  //   this._data = data;
+  //   const chart = this.myChart;
+  //   chart.destory();
+    
+  // }
 
   clear() {
     this._parentElement.innerHTML = "";
