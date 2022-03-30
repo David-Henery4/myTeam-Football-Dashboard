@@ -22,24 +22,24 @@ const search = async function () {
   const query = Header.searchQuery();
   console.log(`Heres the search query: ${query}`);
   console.log("works");
-  model.state.searchQuery = query
-  console.log(model.state)
+  model.state.searchQuery = query;
+  console.log(model.state);
   // const title = await model.fetchWiki(query)
   // const historyData = await model.fetchWikiIntro(title)
   // historySection(historyData)
   // historySection(data)
-  historySection(query)
+  historySection(query);
 };
 
-const historySection = async function(query){
+const historySection = async function (query) {
   // on history tab click works but not right because user can search while on history page.
   // const query = model.state.searchQuery
   const title = await model.fetchWiki(query);
   const historyData = await model.fetchWikiIntro(title);
-  console.log(historyData)
-  History.render(historyData)
+  console.log(historyData);
+  History.render(historyData);
   // console.log(data)
-}
+};
 
 const pieChartSection = function () {};
 

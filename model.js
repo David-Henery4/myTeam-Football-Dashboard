@@ -67,18 +67,20 @@ const headers = {
 // id, name, code, country, logo, venueImage
 const fetchBasicTeamInfo = async function (query) {
   const res = await fetch(
-    `https://v3.football.api-sports.io/teams?name=arsenal`,
+    `https://v3.football.api-sports.io/teams?name=${query}`,
     headers
   );
   const data = await res.json();
   const teamData = data.response[0];
   const teamVenue = data.response[0];
-  console.log(data.response[0].team);
-  console.log(data.response[0].venue);
-  // storingTeamAndVenueData(teamData)
-  // storingTeamAndVenueData(teamVenue)
-  //
-  // will move to: storingTeamAndVenueData
+  // console.log(data.response[0].team);
+  // console.log(data.response[0].venue);
+  storingTeamAndVenueData(teamData)
+};
+
+// fetchBasicTeamInfo("arsenal")
+
+const storingTeamAndVenueData = function (teamData) {
   const {
     id = teamData.team.id,
     name = teamData.team.name,
@@ -96,14 +98,8 @@ const fetchBasicTeamInfo = async function (query) {
     teamCountry: country,
     teamLogo: logo,
   };
-  // console.log(queryTeamInfo)
   fetchLeagueInfo(id, country);
-  console.log(state);
 };
-
-// fetchBasicTeamInfo()
-
-const storingTeamAndVenueData = function (teamData, venue) {};
 
 // 1) query string to get a teams info: DONE
 // We can use:
@@ -119,10 +115,14 @@ const fetchLeagueInfo = async function (teamCode, country) {
   const data = await res.json();
   console.log(data);
   console.log(data.response[0].league);
+  console.log(teamCode)
+  console.log(country)
   const leagueID = data.response[0].league.id;
   const leagueYear = data.response[0].seasons[0].year;
   state.queryTeamInfo.teamLeagueID = leagueID;
   state.queryTeamInfo.teamLeagueYear = leagueYear;
+  console.log(state.queryTeamInfo.teamLeagueID);
+  console.log(state.queryTeamInfo.teamLeagueYear);
   fetchTeamStats(leagueID, leagueYear);
 };
 
@@ -146,52 +146,87 @@ const fetchTeamStats = async function (leagueID, seasonYear) {
   // maybe change to array, use filter the
   // ones we wanna keep, then change back.
   const data = await res.json();
-  console.log(data);
+  // console.log(data);
   const { teamWinDrawLose = data.response.fixtures } = data;
   const { teamGoalStats = data.response.goals } = data;
   const { biggestStats = data.response.biggest } = data;
-  console.log(teamWinDrawLose);
-  console.log(teamGoalStats);
-  console.log(state);
+  // console.log(teamWinDrawLose);
+  // console.log(teamGoalStats);
+  // console.log(state);
+  sortTeamRecordStats(teamWinDrawLose);
+  sortTeamGoalStats(teamGoalStats);
+  sortTeamLargestStats(biggestStats)
+  fetchLeagueStanding(leagueID,seasonYear)
   //piedata
-  state.pieStats.wins = teamWinDrawLose.wins.total;
-  state.pieStats.draws = teamWinDrawLose.draws.total;
-  state.pieStats.loses = teamWinDrawLose.loses.total;
+  // state.pieStats.wins = teamWinDrawLose.wins.total;
+  // state.pieStats.draws = teamWinDrawLose.draws.total;
+  // state.pieStats.loses = teamWinDrawLose.loses.total;
   //        team goal stats
   // for:
   // avg goals scored
-  state.teamStats.avgGoalsScored = teamGoalStats.for.average.total;
-  // total goals scored
-  state.teamStats.totalGoalScored = teamGoalStats.for.total.total;
-  // against:
-  // avg goals against
-  state.teamStats.avgGoalsAgainst = teamGoalStats.against.average.total;
-  // total goals against
-  state.teamStats.totalGoalsAgainst = teamGoalStats.against.total.total;
+  // state.teamStats.avgGoalsScored = teamGoalStats.for.average.total;
+  // // total goals scored
+  // state.teamStats.totalGoalScored = teamGoalStats.for.total.total;
+  // // against:
+  // // avg goals against
+  // state.teamStats.avgGoalsAgainst = teamGoalStats.against.average.total;
+  // // total goals against
+  // state.teamStats.totalGoalsAgainst = teamGoalStats.against.total.total;
   // longest win streak
-  state.teamStats.longestWinStreak = biggestStats.streak.wins;
-  // largest win
-  state.teamStats.largestWin = biggestStats.wins;
+  // state.teamStats.longestWinStreak = biggestStats.streak.wins;
+  // // largest win
+  // state.teamStats.largestWin = biggestStats.wins;
 
   // minute goal stats
   // most likely to score
-  state.minuteGoalsData.minsToScore.push(teamGoalStats.for.minute);
-  // most likely to concede
-  state.minuteGoalsData.minsToConcede.push(teamGoalStats.against.minute);
-  console.log(state);
+  // state.minuteGoalsData.minsToScore.push(teamGoalStats.for.minute);
+  // // most likely to concede
+  // state.minuteGoalsData.minsToConcede.push(teamGoalStats.against.minute);
+  // console.log(state);
 };
 
+const sortTeamGoalStats = function(goalStats){
+  state.teamStats.avgGoalsScored = goalStats.for.average.total;
+  // total goals scored
+  state.teamStats.totalGoalScored = goalStats.for.total.total;
+  // against:
+  // avg goals against
+  state.teamStats.avgGoalsAgainst = goalStats.against.average.total;
+  // total goals against
+  state.teamStats.totalGoalsAgainst = goalStats.against.total.total;
+  // minute goal stats
+  // most likely to score
+  state.minuteGoalsData.minsToScore.push(goalStats.for.minute);
+  // most likely to concede
+  state.minuteGoalsData.minsToConcede.push(goalStats.against.minute);
+  // console.log(state);
+};
+
+const sortTeamRecordStats = function(record){
+  // PieChart Data
+  state.pieStats.wins = record.wins.total;
+  state.pieStats.draws = record.draws.total;
+  state.pieStats.loses = record.loses.total;
+};
+
+const sortTeamLargestStats = function(largeStats){
+  // longest win streak
+  state.teamStats.longestWinStreak = largeStats.streak.wins;
+  // largest win
+  state.teamStats.largestWin = largeStats.wins;
+};
 // ALSO USE League id, Season number and team id (optional)
 // to get standings (Use without team name to get whole league) Maybe sort by or use 'rank' to get correct positions.
 
-const fetchLeagueStanding = async function () {
+const fetchLeagueStanding = async function (leagueID,seasonYear) {
   const res = await fetch(
-    `https://v3.football.api-sports.io/standings?league=39&season=2021`,
+    `https://v3.football.api-sports.io/standings?league=${leagueID}&season=${seasonYear}`,
     headers
   );
   const data = await res.json();
   const { league = data.response[0].league.standings[0] } = data;
   sortLeagueStandings(league);
+  fetchTeamsFixtures(seasonYear)
 };
 // fetchLeagueStanding()
 
@@ -212,15 +247,16 @@ const sortLeagueStandings = function (league) {
 // USE THIS TO GET PLAYER STATS
 // WILL USE SIMULAR INFO TO GET FIXTURES
 
-const fetchTeamsFixtures = async function () {
+const fetchTeamsFixtures = async function (seasonYear) {
   const res = await fetch(
-    `https://v3.football.api-sports.io/fixtures?season=2021&team=42`,
+    `https://v3.football.api-sports.io/fixtures?season=${seasonYear}&team=${state.queryTeamInfo.teamId}`,
     headers
   );
   //
   const data = await res.json();
   const fixturesData = data.response;
   sortFixturesData(fixturesData);
+  fetchTeamsPlayersData(seasonYear)
 };
 // fetchTeamsFixtures()
 
@@ -238,17 +274,17 @@ const sortFixturesData = function (fixturesData) {
     fixtureBreakdown.score = e.score.fulltime;
     fixtureDetails.push(fixtureBreakdown);
   });
-  console.log(fixtureDetails);
+  // console.log(fixtureDetails);
   state.teamFixtures = fixtureDetails;
 };
 
-const fetchTeamsPlayersData = async function () {
+const fetchTeamsPlayersData = async function (seasonYear) {
   const pageNumbers = [1, 2, 3];
   const pagesCombined = [];
   await Promise.all(
     pageNumbers.map(async (page) => {
       const res = await fetch(
-        `https://v3.football.api-sports.io/players?season=2021&team=42&page=${page}`,
+        `https://v3.football.api-sports.io/players?season=${seasonYear}&team=${state.queryTeamInfo.teamId}&page=${page}`,
         headers
       );
       const data = await res.json();
@@ -259,6 +295,7 @@ const fetchTeamsPlayersData = async function () {
     return o.response;
   });
   filterForFirstTeam(playerList)
+  fetchPredictionInfo(seasonYear)
 };
 // fetchTeamsPlayersData()
 
@@ -296,32 +333,34 @@ const customPlayerStatObjs = function(firstTeam){
       player.avgRating.push(formattedRatings);
     });
     //
-    console.log(player);
+    // console.log(player);
     customPlayerList.push(player);
+    state.playerStats.push(player)
   });
-  console.log(customPlayerList)
+  // console.log(customPlayerList)
 }
 
-const fetchPredictionInfo = async function () {
+const fetchPredictionInfo = async function (seasonYear) {
   // for the fixture ID
   const res = await fetch(
-    `https://v3.football.api-sports.io/fixtures?season=2021&team=42&next=01`,
+    `https://v3.football.api-sports.io/fixtures?season=${seasonYear}&team=${state.queryTeamInfo.teamId}&next=01`,
     headers
   );
   const data = await res.json();
-  const { fixtureID = data.response.fixture.id } = data;
+  console.log(data.response[0].fixture.id);
+  const { fixtureID = data.response[0].fixture.id } = data;
   state.nextPredictionData.fixtureID = fixtureID;
   //
-  // fetchPredictionData() // use fixtureID
+  fetchPredictionData(fixtureID) // use fixtureID
 };
 
-const fetchPredictionData = async function () {
+const fetchPredictionData = async function (fixtureID) {
   const res = await fetch(
-    `https://v3.football.api-sports.io/predictions?fixture=710859`,
+    `https://v3.football.api-sports.io/predictions?fixture=${fixtureID}`,
     headers
   );
   const data = await res.json();
-  console.log(data);
+  // console.log(data);
   // need to replace strength stat for radar
   const predictionData = data.response[0].predictions;
   sortingPredictionData(predictionData);
@@ -374,7 +413,7 @@ const sortingHomeAwayCompareData = function (homeData, awayData) {
     awayData.league.goals.for.total.total;
   state.nextPredictionData.predictionRadarData.awayGoalsAgainst =
     awayData.league.goals.against.total.total;
-  console.log(state.nextPredictionData);
+  console.log(state);
 };
 
 ////***********////
@@ -389,7 +428,7 @@ export const fetchWiki = async function (query) {
     `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&list=search&exintro=1&explaintext=2&srsearch=football%20club%20${query}&srsort=relevance&origin=*`
   );
   const data = await res.json();
-  console.log(data.query.search[0].title);
+  // console.log(data.query.search[0].title);
   const title = data.query.search[0].title;
   return title;
   // fetchWikiIntro(title)
@@ -403,12 +442,12 @@ export const fetchWikiIntro = async function (team) {
     `https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&exlimit=2&titles=${team}&explaintext=2&format=json&formatversion=2&origin=*`
   );
   const data = await res.json();
-  console.log(data.query.pages[0]);
-  console.log(data); // data here
+  // console.log(data.query.pages[0]);
+  // console.log(data); // data here
   const { historyExtract = data.query.pages[0].extract } = data;
-  console.log(historyExtract);
+  // console.log(historyExtract);
   state.teamHistoryInfo.history = historyExtract;
-  console.log(state.teamHistoryInfo);
+  // console.log(state.teamHistoryInfo);
   return state.teamHistoryInfo;
 };
 
