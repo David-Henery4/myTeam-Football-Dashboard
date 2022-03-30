@@ -58,7 +58,7 @@ const headers = {
 //       DATA FETCHING & HANDLING
 
 
-const fetchBasicTeamInfo = async function (query) {
+export const fetchBasicTeamInfo = async function (query) {
   const res = await fetch(
     `https://v3.football.api-sports.io/teams?name=${query}`,
     headers

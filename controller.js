@@ -28,6 +28,8 @@ const search = async function () {
   // const historyData = await model.fetchWikiIntro(title)
   // historySection(historyData)
   // historySection(data)
+  // model.fetchBasicTeamInfo(query);
+  // pieChartSection();
   historySection(query);
 };
 
@@ -41,7 +43,9 @@ const historySection = async function (query) {
   // console.log(data)
 };
 
-const pieChartSection = function () {};
+const pieChartSection = function () {
+  // console.log(model.state);
+};
 
 const playersStatsVersion = function () {};
 
