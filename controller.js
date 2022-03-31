@@ -16,6 +16,7 @@ import teamNameView from "./views/teamNameView.js";
 import Prediction from "./views/predictionView.js";
 import Header from "./views/headerView.js";
 import History from "./views/historyView.js";
+import predictionView from "./views/predictionView.js";
 //
 
 const search = async function () {
@@ -31,6 +32,7 @@ const search = async function () {
   console.log(mainData);
   //
   pieChartSection(mainData.pieStats);
+  predictionSection(mainData.nextPredictionData)
   historySection(query);
 };
 
@@ -49,8 +51,8 @@ const pieChartSection = function (pieStats) {
   PieView.renderChart(pieStats)
 };
 
-const predictionSection = function(){
-
+const predictionSection = function(predictionData){
+  predictionView.renderChart(predictionData.predictionRadarData)
 }
 
 const playersStatsVersion = function () {};

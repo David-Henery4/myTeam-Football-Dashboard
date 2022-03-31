@@ -12,7 +12,7 @@ class PieView extends View {
   pieChartFontColor = "#0E0D0D";
   constructor() {
     super();
-    this._displayPieChart();
+    this._displayChart();
   }
   _defaultChartData = {
     wins: 14,
@@ -20,7 +20,7 @@ class PieView extends View {
     loses: 6,
   }
 
-  _displayPieChart() {
+  _displayChart() {
     const data = {
       labels: ["Wins", "Draws", "Loses"],
       datasets: [

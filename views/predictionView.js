@@ -3,13 +3,13 @@ import View from "./view";
 
 class Prediction extends View {
   radarChart = document.getElementById("radar__chart");
-  newRadar;
+  myChart
   radarTheme = "rgba(10,9,9, 0.05)";
   radarFontColor = "#0E0D0D";
 
   constructor() {
     super();
-    this._predictionChart();
+    this._displayChart();
   }
   _defaultChartData = {
     attack: {
@@ -48,7 +48,7 @@ class Prediction extends View {
     return [homeData,awayData]
   }
 
-  _predictionChart() {
+  _displayChart() {
     const data = {
       labels: [
         "Attack",
@@ -96,6 +96,8 @@ class Prediction extends View {
             pointLabels: {
               color: this.radarFontColor,
             },
+            min: 0,
+            max: 100,
           },
         },
         plugins: {
@@ -112,7 +114,7 @@ class Prediction extends View {
         },
       },
     };
-    this.newRadar = new Chart(this.radarChart, config);
+    this.myChart = new Chart(this.radarChart, config);
   }
 }
 

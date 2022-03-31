@@ -27,10 +27,10 @@ localStorage.setItem("darkMode", null);
 }
 
 const renderNewCharts = function(){
-  predictionView.newRadar.destroy();
-  predictionView._predictionChart();
+  predictionView.myChart.destroy();
+  predictionView._displayChart();
   pieView.myChart.destroy();
-  pieView._displayPieChart();
+  pieView._displayChart();
 }
 
 const darkModeChartTheme = function(){
