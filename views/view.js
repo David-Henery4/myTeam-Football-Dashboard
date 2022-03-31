@@ -1,3 +1,5 @@
+import Chart from "chart.js/auto";
+
 export default class View {
   _data;
   // defaultChartTheme = [
@@ -17,12 +19,11 @@ export default class View {
     this._parentElement.insertAdjacentHTML("afterbegin", markup);
   }
 
-  // renderChart(data) {
-  //   this._data = data;
-  //   const chart = this.myChart;
-  //   chart.destory();
-    
-  // }
+  renderChart(data) {
+    this._defaultChartData = data
+    this.myChart.destroy();
+    this._displayPieChart(); // will change to generic function for both charts!
+  }
 
   clear() {
     this._parentElement.innerHTML = "";

@@ -327,10 +327,11 @@ const sortingComparisonData = function (data) {
   state.nextPredictionData.predictionRadarData.attack = data.att;
   state.nextPredictionData.predictionRadarData.defence = data.def;
   // COMPARISON
-  state.nextPredictionData.comparisonData.possessionDist =
+  state.nextPredictionData.predictionRadarData.possessionDist =
     data.poisson_distribution;
-  state.nextPredictionData.comparisonData.h2h = data.h2h;
-  state.nextPredictionData.comparisonData.form = data.form;
+  state.nextPredictionData.predictionRadarData.h2h = data.h2h;
+  state.nextPredictionData.predictionRadarData.form = data.form;
+  state.nextPredictionData.predictionRadarData.goals = data.goals
 };
 
 const sortingHomeAwayCompareData = function (homeData, awayData) {
@@ -338,23 +339,30 @@ const sortingHomeAwayCompareData = function (homeData, awayData) {
   // Comparison
   state.nextPredictionData.comparisonData.homeName = homeData.name;
   // RADAR
-  state.nextPredictionData.predictionRadarData.homeFixtureData =
-    homeData.league.fixtures;
-  state.nextPredictionData.predictionRadarData.homeGoalsFor =
-    homeData.league.goals.for.total.total;
-  state.nextPredictionData.predictionRadarData.homeGoalsAgainst =
-    homeData.league.goals.against.total.total;
+  state.nextPredictionData.comparisonData.homeWins =
+    homeData.league.fixtures.wins.total
+  state.nextPredictionData.comparisonData.homeLoses =
+    homeData.league.fixtures.loses.total
+  state.nextPredictionData.comparisonData.homeDraws =
+    homeData.league.fixtures.draws.total
+  // state.nextPredictionData.predictionRadarData.homeGoalsFor =
+  //   homeData.league.goals.for.total.total;
+  // state.nextPredictionData.predictionRadarData.homeGoalsAgainst = homeData.league.goals.against.total.total;
 
   // AWAY TEAM
   // COMPARISON
   state.nextPredictionData.comparisonData.awayName = awayData.name;
   // RADAR
-  state.nextPredictionData.predictionRadarData.awayFixtureData =
-    awayData.league.fixtures;
-  state.nextPredictionData.predictionRadarData.awayGoalsFor =
-    awayData.league.goals.for.total.total;
-  state.nextPredictionData.predictionRadarData.awayGoalsAgainst =
-    awayData.league.goals.against.total.total;
+  state.nextPredictionData.comparisonData.awayWins =
+    awayData.league.fixtures.wins.total
+  state.nextPredictionData.comparisonData.awayLoses =
+    awayData.league.fixtures.loses.total
+  state.nextPredictionData.comparisonData.awayDraws =
+    awayData.league.fixtures.draws.total
+  // state.nextPredictionData.predictionRadarData.awayGoalsFor =
+  //   awayData.league.goals.for.total.total;
+  // state.nextPredictionData.predictionRadarData.awayGoalsAgainst =
+  //   awayData.league.goals.against.total.total;
   console.log(state);
   return state
 };

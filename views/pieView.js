@@ -14,6 +14,11 @@ class PieView extends View {
     super();
     this._displayPieChart();
   }
+  _defaultChartData = {
+    wins: 14,
+    draws: 4,
+    loses: 6,
+  }
 
   _displayPieChart() {
     const data = {
@@ -21,7 +26,7 @@ class PieView extends View {
       datasets: [
         {
           label: "My First Dataset",
-          data: [22, 4, 7],
+          data: [this._defaultChartData.wins, this._defaultChartData.draws, this._defaultChartData.loses],
           backgroundColor: this.pieChartTheme,
           hoverOffset: 4,
         },

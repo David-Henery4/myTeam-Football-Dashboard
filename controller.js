@@ -46,7 +46,12 @@ const historySection = async function (query) {
 
 const pieChartSection = function (pieStats) {
   // console.log(model.state);
+  PieView.renderChart(pieStats)
 };
+
+const predictionSection = function(){
+
+}
 
 const playersStatsVersion = function () {};
 
@@ -64,3 +69,6 @@ const init = function () {
 init();
 
 //************************//
+
+// TESTING SECTION
+
