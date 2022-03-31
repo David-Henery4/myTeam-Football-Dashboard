@@ -6,11 +6,19 @@ class Prediction extends View {
   myChart
   radarTheme = "rgba(10,9,9, 0.05)";
   radarFontColor = "#0E0D0D";
+  _homeTeamName = "Arsenal"
+  _awayTeamName = "Arsenal"
 
   constructor() {
     super();
     this._displayChart();
   }
+
+  _renderTeamPredictionNames(names){
+  this._homeTeamName = names.homeName
+  this._awayTeamName = names.awayName
+  }
+
   _defaultChartData = {
     attack: {
       home: "60%",
@@ -60,7 +68,7 @@ class Prediction extends View {
       ],
       datasets: [
         {
-          label: "Arsenal",
+          label: this._homeTeamName,
           data: this._formatChartData(this._defaultChartData)[0],
           fill: true,
           backgroundColor: "rgba(255, 99, 132, 0.2)",
@@ -71,7 +79,7 @@ class Prediction extends View {
           pointHoverBorderColor: "rgb(255, 99, 132)",
         },
         {
-          label: "Tottenham",
+          label: this._awayTeamName,
           data: this._formatChartData(this._defaultChartData)[1],
           fill: true,
           backgroundColor: "rgba(54, 162, 235, 0.2)",

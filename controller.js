@@ -16,7 +16,7 @@ import teamNameView from "./views/teamNameView.js";
 import Prediction from "./views/predictionView.js";
 import Header from "./views/headerView.js";
 import History from "./views/historyView.js";
-import predictionView from "./views/predictionView.js";
+// import predictionView from "./views/predictionView.js";
 import Comparison from "./views/comparison.js";
 //
 
@@ -54,7 +54,8 @@ const pieChartSection = function (pieStats) {
 };
 
 const predictionSection = function(predictionData){
-  predictionView.renderChart(predictionData.predictionRadarData)
+  Prediction._renderTeamPredictionNames(predictionData.comparisonData)
+  Prediction.renderChart(predictionData.predictionRadarData)
   Comparison.render(predictionData.comparisonData);
 }
 
