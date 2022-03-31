@@ -18,6 +18,7 @@ import Header from "./views/headerView.js";
 import History from "./views/historyView.js";
 // import predictionView from "./views/predictionView.js";
 import Comparison from "./views/comparison.js";
+import Fixtures from "./views/fixturesView.js";
 //
 
 const search = async function () {
@@ -33,7 +34,8 @@ const search = async function () {
   console.log(mainData);
   //
   pieChartSection(mainData.pieStats);
-  predictionSection(mainData.nextPredictionData)
+  predictionSection(mainData.nextPredictionData);
+  fixturesSection(mainData.teamFixtures);
   historySection(query, model.state.queryTeamInfo.stadiumImg);
 };
 
@@ -44,20 +46,24 @@ const historySection = async function (query, venueImg) {
   const historyData = await model.fetchWikiIntro(title);
   console.log(historyData);
   History.render(historyData);
-  History._renderStadiumImage(venueImg)
+  History._renderStadiumImage(venueImg);
   // console.log(data)
 };
 
 const pieChartSection = function (pieStats) {
   // console.log(model.state);
-  PieView.renderChart(pieStats)
+  PieView.renderChart(pieStats);
 };
 
-const predictionSection = function(predictionData){
-  Prediction._renderTeamPredictionNames(predictionData.comparisonData)
-  Prediction.renderChart(predictionData.predictionRadarData)
+const predictionSection = function (predictionData) {
+  Prediction._renderTeamPredictionNames(predictionData.comparisonData);
+  Prediction.renderChart(predictionData.predictionRadarData);
   Comparison.render(predictionData.comparisonData);
-}
+};
+
+const fixturesSection = function (fixtures) {
+  Fixtures.render(fixtures);
+};
 
 const playersStatsVersion = function () {};
 
@@ -75,4 +81,3 @@ const init = function () {
 init();
 
 //************************//
-

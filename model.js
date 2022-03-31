@@ -204,7 +204,6 @@ const fetchTeamsFixtures = async function (seasonYear) {
 
 // sort fixtures data
 const sortFixturesData = function (fixturesData) {
-  // will have to sort fixtures by date (BY DEFAULT SORTED BY COMPITITON)
   const fixtureDetails = [];
   fixturesData.forEach((e, i, arr) => {
     const fixtureBreakdown = {};
@@ -217,6 +216,12 @@ const sortFixturesData = function (fixturesData) {
     fixtureDetails.push(fixtureBreakdown);
   });
   // console.log(fixtureDetails);
+  // will have to sort fixtures by date (BY DEFAULT SORTED BY COMPITITON)
+  fixtureDetails.sort((a, b) => {
+    const dateA = new Date(a.fixtureDate);
+    const dateB = new Date(b.fixturesDate);
+    return dateA - dateB;
+  });
   state.teamFixtures = fixtureDetails;
 };
 
