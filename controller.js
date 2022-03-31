@@ -17,6 +17,7 @@ import Prediction from "./views/predictionView.js";
 import Header from "./views/headerView.js";
 import History from "./views/historyView.js";
 import predictionView from "./views/predictionView.js";
+import Comparison from "./views/comparison.js";
 //
 
 const search = async function () {
@@ -33,16 +34,17 @@ const search = async function () {
   //
   pieChartSection(mainData.pieStats);
   predictionSection(mainData.nextPredictionData)
-  historySection(query);
+  historySection(query, model.state.queryTeamInfo.stadiumImg);
 };
 
-const historySection = async function (query) {
+const historySection = async function (query, venueImg) {
   // on history tab click works but not right because user can search while on history page.
   // const query = model.state.searchQuery
   const title = await model.fetchWiki(query);
   const historyData = await model.fetchWikiIntro(title);
   console.log(historyData);
   History.render(historyData);
+  History._renderStadiumImage(venueImg)
   // console.log(data)
 };
 
@@ -53,6 +55,7 @@ const pieChartSection = function (pieStats) {
 
 const predictionSection = function(predictionData){
   predictionView.renderChart(predictionData.predictionRadarData)
+  Comparison.render(predictionData.comparisonData);
 }
 
 const playersStatsVersion = function () {};
