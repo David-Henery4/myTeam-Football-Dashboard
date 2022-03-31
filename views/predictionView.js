@@ -13,50 +13,55 @@ class Prediction extends View {
   }
   _defaultChartData = {
     attack: {
-      home: "",
-      away: "",
+      home: "60%",
+      away: "40%",
     },
     defence: {
-      home: "",
-      away: "",
+      home: "75%",
+      away: "45%",
     },
     possessionDist: {
-      home: "",
-      away: "",
+      home: "80%",
+      away: "76%",
     },
     h2h: {
-      home: "",
-      away: "",
+      home: "90%",
+      away: "55%",
     },
     form: {
-      home: "",
-      away: "",
+      home: "40%",
+      away: "60%",
     },
     goals: {
-      home: "",
-      away: "",
+      home: "85%",
+      away: "60%",
     },
   };
 
   _formatChartData(chartData){
-    const objInRay = [chartData]
-    
+    const homeData = []
+    const awayData = []
+    Object.values(chartData).forEach(od => {
+      homeData.push(+od.home.slice(0,-1))
+      awayData.push(+od.away.slice(0,-1))
+    })
+    return [homeData,awayData]
   }
 
   _predictionChart() {
     const data = {
       labels: [
-        "Goals",
-        "H2H",
         "Attack",
-        "Possession",
-        "Form",
         "Defense",
+        "Possession",
+        "H2H",
+        "Form",
+        "Goals",
       ],
       datasets: [
         {
           label: "Arsenal",
-          data: [90, 81, 56, 55, 40, 88],
+          data: this._formatChartData(this._defaultChartData)[0],
           fill: true,
           backgroundColor: "rgba(255, 99, 132, 0.2)",
           borderColor: "rgb(255, 99, 132)",
@@ -67,7 +72,7 @@ class Prediction extends View {
         },
         {
           label: "Tottenham",
-          data: [40, 19, 96, 27, 100, 10],
+          data: this._formatChartData(this._defaultChartData)[1],
           fill: true,
           backgroundColor: "rgba(54, 162, 235, 0.2)",
           borderColor: "rgb(54, 162, 235)",
