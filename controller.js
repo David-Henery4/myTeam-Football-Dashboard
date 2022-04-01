@@ -7,7 +7,7 @@ import * as model from "./model.js";
 import * as dark from "./darkMode.js";
 import * as navi from "./views/navView.js";
 //
-import TeamView from "./views/teamView.js";
+import Team from "./views/teamView.js";
 import PieView from "./views/pieView.js";
 import PlayersView from "./views/playersView.js";
 // import FormView from "./views/formView.js"; // rename
@@ -36,6 +36,7 @@ const search = async function () {
   pieChartSection(mainData.pieStats);
   predictionSection(mainData.nextPredictionData);
   fixturesSection(mainData.teamFixtures);
+  teamStatsSection(mainData.teamStats)
   historySection(query, model.state.queryTeamInfo.stadiumImg);
 };
 
@@ -65,9 +66,11 @@ const fixturesSection = function (fixtures) {
   Fixtures.render(fixtures);
 };
 
-const playersStatsVersion = function () {};
+const teamStatsSection = function (teamStats) {
+  Team.render(teamStats)
+};
 
-const teamStatsSection = function () {};
+const playersStatsVersion = function () {};
 
 const leagueTableSection = function () {};
 
@@ -81,4 +84,6 @@ const init = function () {
 init();
 
 //************************//
+
+
 

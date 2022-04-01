@@ -26,12 +26,12 @@ export const state = {
     totalGoalScored: 0,
     totalGoalsAgainst: 0,
     longestWinStreak: 0,
-    largestWin: 0,
+    mostGoalsOneGame: 0,
   },
   leagueStanding: [],
   minuteGoalsData: {
-    minsToScore: [],
-    minsToConcede: [],
+    minsToScore: {},
+    minsToConcede: {},
   },
   nextPredictionData: {
     fixtureID: 0,
@@ -145,9 +145,9 @@ const sortTeamGoalStats = function(goalStats){
   state.teamStats.totalGoalsAgainst = goalStats.against.total.total;
   // minute goal stats
   // most likely to score
-  state.minuteGoalsData.minsToScore.push(goalStats.for.minute);
+  state.minuteGoalsData.minsToScore = goalStats.for.minute
   // most likely to concede
-  state.minuteGoalsData.minsToConcede.push(goalStats.against.minute);
+  state.minuteGoalsData.minsToConcede = goalStats.against.minute
   // console.log(state);
 };
 
@@ -162,7 +162,7 @@ const sortTeamLargestStats = function(largeStats){
   // longest win streak
   state.teamStats.longestWinStreak = largeStats.streak.wins;
   // largest win
-  state.teamStats.largestWin = largeStats.wins;
+  state.teamStats.mostGoalsOneGame = largeStats.goals.for;
 };
 
 const fetchLeagueStanding = async function (leagueID,seasonYear) {

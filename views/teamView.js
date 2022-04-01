@@ -1,13 +1,17 @@
 import View from "./view.js";
 
 
-class TeamView extends View {
+class Team extends View {
   _parentElement = document.querySelector(".team__stats--content");
 
    
 //   teamHandler(handler){
 //     this.userQuery.addEventListener("keypress", handler)
 //   }
+
+  _formatMostGoals(goals){
+    return goals.home > goals.away? goals.home : goals.away
+  };
 
   _generateMarkup(){
     return `
@@ -16,7 +20,7 @@ class TeamView extends View {
                 <h6>Avg Goals Scored</h6>
             </div>
             <div class="team__stat--num">
-                <p>1.8</p>
+                <p>${this._data.avgGoalsScored}</p>
             </div>
         </div>
 
@@ -25,7 +29,7 @@ class TeamView extends View {
                 <h6>Avg Goals Against</h6>
             </div>
             <div class="team__stat--num">
-                <p>1.8</p>
+                <p>${this._data.avgGoalsAgainst}</p>
             </div>
         </div>
 
@@ -34,7 +38,7 @@ class TeamView extends View {
                 <h6>Total Goals Scored</h6>
             </div>
             <div class="team__stat--num">
-                <p>1</p>
+                <p>${this._data.totalGoalScored}</p>
             </div>
         </div>
 
@@ -43,7 +47,7 @@ class TeamView extends View {
                 <h6>Total Goals Against</h6>
             </div>
             <div class="team__stat--num">
-                <p>1</p>
+                <p>${this._data.totalGoalsAgainst}</p>
             </div>
         </div>
 
@@ -52,20 +56,20 @@ class TeamView extends View {
                 <h6>Longest Win Streak</h6>
             </div>
             <div class="team__stat--num">
-                <p>1</p>
+                <p>${this._data.longestWinStreak}</p>
             </div>
         </div>
 
         <div class="team__stats--box">
             <div class="team__stat--discription">
-                <h6>Largest Win</h6>
+                <h6>Most Goals in One Game</h6>
             </div>
             <div class="team__stat--num">
-                <p>1</p>
+                <p>${this._formatMostGoals(this._data.mostGoalsOneGame)}</p>
             </div>
         </div>
         `;
     };
 }
 
-export default new TeamView();
+export default new Team();

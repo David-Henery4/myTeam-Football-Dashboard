@@ -21,7 +21,6 @@ class Fixtures extends View {
         const formattedTime = new Intl.DateTimeFormat(local, options).format(
         fixtureDate
         );
-        console.log(formattedTime);
         return this._formatKoDateTime(formattedTime)
     }
 
