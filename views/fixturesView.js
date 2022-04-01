@@ -7,8 +7,8 @@ class Fixtures extends View {
     super();
     }
 
-    _formatDateKickOffTime(time,date){
-        const fixtureDate = new Date(time);
+    _getDateKickOffTime(time){
+        const fixtureDate = new Date(time * 1000);
         const local = navigator.language;
         const options = {
             year: "numeric",
@@ -19,9 +19,17 @@ class Fixtures extends View {
             minute: "numeric",
             };
         const formattedTime = new Intl.DateTimeFormat(local, options).format(
-          fixtureDate
+        fixtureDate
         );
         console.log(formattedTime);
+        return this._formatKoDateTime(formattedTime)
+    }
+
+    _formatKoDateTime(timeDate){
+        const timeArr = timeDate.split(" ")
+        const koTime = timeArr.slice(-2).join("")
+        const koDate = timeArr[0].slice(0,-1)
+        return `${koTime}/${koDate}`
     }
     
     _generateScoreString(score){
@@ -34,10 +42,12 @@ class Fixtures extends View {
 
     _generateMarkup(){
         return this._data.map((o,i,a) => {
-            `<div class="fixture">
+            return `<div class="fixture">
                 <p class="fixture__competition">${o.compitition}</p>
-                <p class="fixture__time">3:00pm / 12th mar 22</p>
-                <p class="fixture__teams">${o.homeTeam} ${this._generateScoreString(o.score)} ${o.awayTeam}</p>
+                <p class="fixture__time">${this._getDateKickOffTime(o.kickOffTime)}</p>
+                <p class="fixture__teams">${
+                o.homeTeam
+                } ${this._generateScoreString(o.score)} ${o.awayTeam}</p>
             </div>`;
         }).join("")
     }
