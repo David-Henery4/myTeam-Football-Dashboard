@@ -19,14 +19,19 @@
     .pie__chart--title{
         height: 25%;
     }
-    .league__table--content{
-        .league-table{
-            table{
-                width: 100%;
-                height: 100%
-            }
-        }
-    }
+
+    .league__table--name{
+        bottom: 0px;
+    };
+
+    // .league__table--content{
+    //     .league-table{
+    //         table{
+    //             width: 100%;
+    //             height: 100%
+    //         }
+    //     }
+    // }
     
     .player__stats--title{
         h4{

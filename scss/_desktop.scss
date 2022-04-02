@@ -174,4 +174,15 @@
     .fixtures__section--content{
       height: 100%
     }
+
+    // LEAGUE TABLE SECTION
+    .league__table--content{
+      table{
+        font-size: 0.7rem
+      }
+    }
+
+    .league__table--name{
+        bottom: 5px;
+    };
 };

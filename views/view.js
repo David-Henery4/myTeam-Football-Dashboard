@@ -15,7 +15,7 @@ export default class View {
   renderChart(data) {
     this._defaultChartData = data;
     this.myChart.destroy();
-    this._displayChart(); // will change to generic function for both charts!
+    this._displayChart();
   }
 
   clear() {

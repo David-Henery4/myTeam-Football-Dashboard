@@ -11,7 +11,7 @@ import Team from "./views/teamView.js";
 import PieView from "./views/pieView.js";
 import Players from "./views/playersView.js";
 import Minute from "./views/minuteView.js"; // rename
-import LeagueView from "./views/leagueView.js";
+import LeagueTable from "./views/leagueView.js";
 import TeamName from "./views/teamNameView.js";
 import Prediction from "./views/predictionView.js";
 import Header from "./views/headerView.js";
@@ -40,6 +40,7 @@ const search = async function () {
   minuteStatsSection(mainData.minuteGoalsData);
   playersStatsSection(mainData.playerStats);
   teamNameSection(mainData.queryTeamInfo.teamName);
+  leagueTableSection(mainData.leagueStanding)
   historySection(query, model.state.queryTeamInfo.stadiumImg);
 };
 
@@ -48,8 +49,6 @@ const teamNameSection = function(name){
 };
 
 const historySection = async function (query, venueImg) {
-  // on history tab click works but not right because user can search while on history page.
-  // const query = model.state.searchQuery
   const title = await model.fetchWiki(query);
   const historyData = await model.fetchWikiIntro(title);
   console.log(historyData);
@@ -86,7 +85,9 @@ const playersStatsSection = function (playerStats) {
 Players.render(playerStats)
 };
 
-const leagueTableSection = function () {};
+const leagueTableSection = function (tableData) {
+  LeagueTable.updateTable(tableData)
+};
 
 
 const init = function () {
