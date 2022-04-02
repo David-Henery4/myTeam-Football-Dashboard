@@ -216,7 +216,7 @@ const sortFixturesData = function (fixturesData) {
     fixtureDetails.push(fixtureBreakdown);
   });
   // console.log(fixtureDetails);
-  // will have to sort fixtures by date (BY DEFAULT SORTED BY COMPITITON)
+  // will have to sort fixtures by date (BY DEFAULT SORTED BY COMPITITON) // TRY AGAIN
   fixtureDetails.sort((a, b) => {
     const dateA = new Date(a.fixtureDate);
     const dateB = new Date(b.fixturesDate);
@@ -282,7 +282,7 @@ const customPlayerStatObjs = function(firstTeam){
     //
     // console.log(player);
     customPlayerList.push(player);
-    state.playerStats.push(player)
+    state.playerStats.push(player);
   });
   // console.log(customPlayerList)
 }
