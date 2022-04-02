@@ -178,6 +178,7 @@ const fetchLeagueStanding = async function (leagueID,seasonYear) {
 // fetchLeagueStanding()
 
 const sortLeagueStandings = function (league) {
+  let table = []
   league.forEach((e) => {
     const tableDetails = {};
     tableDetails.rank = e.rank;
@@ -185,8 +186,10 @@ const sortLeagueStandings = function (league) {
     tableDetails.points = e.points;
     tableDetails.goalDiff = e.goalsDiff;
     tableDetails.tableData = e.all;
-    state.leagueStanding.push(tableDetails);
+    table.push(tableDetails);
   });
+  state.leagueStanding = table
+  table = []
 };
 
 const fetchTeamsFixtures = async function (seasonYear) {
@@ -204,7 +207,7 @@ const fetchTeamsFixtures = async function (seasonYear) {
 
 // sort fixtures data
 const sortFixturesData = function (fixturesData) {
-  const fixtureDetails = [];
+  let fixtureDetails = [];
   fixturesData.forEach((e, i, arr) => {
     const fixtureBreakdown = {};
     fixtureBreakdown.homeTeam = e.teams.home.name;
@@ -223,6 +226,7 @@ const sortFixturesData = function (fixturesData) {
     return dateA - dateB;
   });
   state.teamFixtures = fixtureDetails;
+  fixtureDetails = []
 };
 
 const fetchTeamsPlayersData = async function (seasonYear) {
@@ -257,7 +261,7 @@ const filterForFirstTeam = function(playerList){
 }
 
 const customPlayerStatObjs = function(firstTeam){
-  const customPlayerList = [];
+  let customPlayerList = [];
   firstTeam.forEach((e) => {
     const player = {
       totalAppearences: 0,
@@ -282,8 +286,10 @@ const customPlayerStatObjs = function(firstTeam){
     //
     // console.log(player);
     customPlayerList.push(player);
-    state.playerStats.push(player);
+    // state.playerStats.push(player);
+    state.playerStats = customPlayerList
   });
+  customPlayerList = []
   // console.log(customPlayerList)
 }
 

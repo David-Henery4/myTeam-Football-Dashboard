@@ -22,11 +22,6 @@ class Minute extends View {
   }
 
   _sortScoreData(min){
-    // const timesAndDetails = Object.entries(min)
-    // const commonMins = timesAndDetails.filter((a,i,ray) => a[1].total > ray[0][1].total);
-    // const mins = commonMins[0][0];
-    // const percent = commonMins[0][1].percentage;
-    // return [mins,percent]
     const timesAndDetails = Object.entries(min)
     const sorted = timesAndDetails.sort((a, b) => b[1].total - a[1].total);
     const commonMinsData = sorted[0];
@@ -34,11 +29,6 @@ class Minute extends View {
     const percent = commonMinsData[1].percentage;
     return [minsRange,percent]
   }
-
-  // _sortConcedeData(min){
-  //   const minsRange = Object.keys(min);
-  //   const totalsAndPercentage = Object.values(min);
-  // }
 
   _minuteScoreMarkup() {
     return `
