@@ -22,17 +22,27 @@ import Fixtures from "./views/fixturesView.js";
 //
 
 const search = async function () {
-  const query = Header.searchQuery();
-  console.log(`Heres the search query: ${query}`);
-  console.log("works");
-  model.state.searchQuery = query;
-  console.log(model.state);
+  try{
+    const query = Header.searchQuery();
+    console.log(`Heres the search query: ${query}`);
+    console.log("works");
+    model.state.searchQuery = query;
+    console.log(model.state);
   // const title = await model.fetchWiki(query)
   // const historyData = await model.fetchWikiIntro(title)
   const mainData = await model.fetchBasicTeamInfo(query);
   //
   console.log(mainData);
+  dataDistribution(mainData,query)
   //
+} catch(err){
+  console.log(`Data Error: ${err.message}`);
+  console.error(`MainData error happening: ${err}`);
+}
+};
+
+
+const dataDistribution = function(mainData,query){
   pieChartSection(mainData.pieStats);
   predictionSection(mainData.nextPredictionData);
   fixturesSection(mainData.teamFixtures);
@@ -41,7 +51,7 @@ const search = async function () {
   playersStatsSection(mainData.playerStats);
   teamNameSection(mainData.queryTeamInfo.teamName);
   leagueTableSection(mainData.leagueStanding)
-  historySection(query, model.state.queryTeamInfo.stadiumImg);
+  historySection(query, mainData.queryTeamInfo.stadiumImg);
 };
 
 const teamNameSection = function(name){
@@ -49,12 +59,17 @@ const teamNameSection = function(name){
 };
 
 const historySection = async function (query, venueImg) {
-  const title = await model.fetchWiki(query);
-  const historyData = await model.fetchWikiIntro(title);
-  console.log(historyData);
-  History.render(historyData);
-  History._renderStadiumImage(venueImg);
-  // console.log(data)
+  try{
+    const title = await model.fetchWiki(query);
+    const historyData = await model.fetchWikiIntro(title);
+    console.log(historyData);
+    History.render(historyData);
+    History._renderStadiumImage(venueImg);
+    // console.log(data)
+  } catch(err){
+    console.log(`Wiki Error: ${err.message}`)
+    console.error(`History error happening: ${err}`);
+  }
 };
 
 const pieChartSection = function (pieStats) {

@@ -59,15 +59,20 @@ const headers = {
 
 
 export const fetchBasicTeamInfo = async function (query) {
-  const res = await fetch(
-    `https://v3.football.api-sports.io/teams?name=${query}`,
-    headers
-  );
-  const data = await res.json();
-  const teamData = data.response[0];
-  const teamVenue = data.response[0];
-  
-  return storingTeamAndVenueData(teamData)
+  try{
+    const res = await fetch(
+      `https://v3.football.api-sports.io/teams?name=${query}`,
+      headers
+      );
+      if (!res.ok) throw new Error("Problem getting basic team info")
+      const data = await res.json();
+      const teamData = data.response[0];
+      const teamVenue = data.response[0];
+      return storingTeamAndVenueData(teamData)
+    } catch(err){
+      console.error(`Error at basic info:${err.message}`)
+      throw err
+    }
 };
 
 // fetchBasicTeamInfo("arsenal")
@@ -95,45 +100,57 @@ const storingTeamAndVenueData = function (teamData) {
 
 
 const fetchLeagueInfo = async function (teamCode, country) {
-  const res = await fetch(
-    `https://v3.football.api-sports.io/leagues?country=${country}&current=true&team=${teamCode}`,
+  try{
+    const res = await fetch(
+      `https://v3.football.api-sports.io/leagues?country=${country}&current=true&team=${teamCode}`,
     headers
-  );
-  const data = await res.json();
-  console.log(data);
-  console.log(data.response[0].league);
-  console.log(teamCode)
-  console.log(country)
-  const leagueID = data.response[0].league.id;
-  const leagueYear = data.response[0].seasons[0].year;
-  state.queryTeamInfo.teamLeagueID = leagueID;
-  state.queryTeamInfo.teamLeagueYear = leagueYear;
-  console.log(state.queryTeamInfo.teamLeagueID);
-  console.log(state.queryTeamInfo.teamLeagueYear);
-  return fetchTeamStats(leagueID, leagueYear);
-};
-
-// fetchLeagueInfo()
+    );
+    if (!res.ok) throw new Error("Problem getting league info");
+    const data = await res.json();
+    console.log(data);
+    console.log(data.response[0].league);
+    console.log(teamCode)
+    console.log(country)
+    const leagueID = data.response[0].league.id;
+    const leagueYear = data.response[0].seasons[0].year;
+    state.queryTeamInfo.teamLeagueID = leagueID;
+    state.queryTeamInfo.teamLeagueYear = leagueYear;
+    console.log(state.queryTeamInfo.teamLeagueID);
+    console.log(state.queryTeamInfo.teamLeagueYear);
+    return fetchTeamStats(leagueID, leagueYear);
+  } catch(err){
+    console.error(`error at fetch league info: ${err.message}`)
+    throw err
+    }
+  };
+  
+  // fetchLeagueInfo()
 
 const fetchTeamStats = async function (leagueID, seasonYear) {
-  const team = state.queryTeamInfo.teamId;
-  const res = await fetch(
-    `https://v3.football.api-sports.io/teams/statistics?league=${leagueID}&season=${seasonYear}&team=${team}`,
-    headers
-  );
-  // maybe change to array, use filter the
-  // ones we wanna keep, then change back.
-  const data = await res.json();
-  // console.log(data);
-  const { teamWinDrawLose = data.response.fixtures } = data;
-  const { teamGoalStats = data.response.goals } = data;
-  const { biggestStats = data.response.biggest } = data;
-  sortTeamRecordStats(teamWinDrawLose);
-  sortTeamGoalStats(teamGoalStats);
-  sortTeamLargestStats(biggestStats)
-  return fetchLeagueStanding(leagueID,seasonYear)
-};
-
+  try{
+    const team = state.queryTeamInfo.teamId;
+    const res = await fetch(
+      `https://v3.football.api-sports.io/teams/statistics?league=${leagueID}&season=${seasonYear}&team=${team}`,
+      headers
+      );
+      if (!res.ok) throw new Error("Problem team stats");
+      // maybe change to array, use filter the
+      // ones we wanna keep, then change back.
+      const data = await res.json();
+      // console.log(data);
+      const { teamWinDrawLose = data.response.fixtures } = data;
+      const { teamGoalStats = data.response.goals } = data;
+      const { biggestStats = data.response.biggest } = data;
+      sortTeamRecordStats(teamWinDrawLose);
+      sortTeamGoalStats(teamGoalStats);
+      sortTeamLargestStats(biggestStats)
+      return fetchLeagueStanding(leagueID,seasonYear)
+    } catch(err){
+      console.error(`Error at fetch team stats: ${err.message}`)
+      throw err
+    }
+    };
+    
 const sortTeamGoalStats = function(goalStats){
   state.teamStats.avgGoalsScored = goalStats.for.average.total;
   // total goals scored
@@ -166,19 +183,25 @@ const sortTeamLargestStats = function(largeStats){
 };
 
 const fetchLeagueStanding = async function (leagueID,seasonYear) {
-  const res = await fetch(
-    `https://v3.football.api-sports.io/standings?league=${leagueID}&season=${seasonYear}`,
-    headers
-  );
-  const data = await res.json();
-  const { 
-    league = data.response[0].league.standings[0],
-    leagueName = data.response[0].league.name
-   } = data;
-  
-  sortLeagueStandings(league,leagueName);
-  return fetchTeamsFixtures(seasonYear)
-};
+  try{
+    const res = await fetch(
+      `https://v3.football.api-sports.io/standings?league=${leagueID}&season=${seasonYear}`,
+      headers
+      );
+      if (!res.ok) throw new Error("Problem getting league standing");
+      const data = await res.json();
+      const { 
+        league = data.response[0].league.standings[0],
+        leagueName = data.response[0].league.name
+      } = data;
+      
+      sortLeagueStandings(league,leagueName);
+      return fetchTeamsFixtures(seasonYear)
+    } catch(err){
+      console.error(`Error at fetch league standing: ${err.message}`)
+      throw err
+    }
+    };
 // fetchLeagueStanding()
 
 const sortLeagueStandings = function (league,leagueName) {
@@ -198,15 +221,21 @@ const sortLeagueStandings = function (league,leagueName) {
 };
 
 const fetchTeamsFixtures = async function (seasonYear) {
-  const res = await fetch(
-    `https://v3.football.api-sports.io/fixtures?season=${seasonYear}&team=${state.queryTeamInfo.teamId}`,
+  try{
+    const res = await fetch(
+      `https://v3.football.api-sports.io/fixtures?season=${seasonYear}&team=${state.queryTeamInfo.teamId}`,
     headers
-  );
-  //
-  const data = await res.json();
-  const fixturesData = data.response;
-  sortFixturesData(fixturesData);
-  return fetchTeamsPlayersData(seasonYear)
+    );
+    if (!res.ok) throw new Error("Problem getting team fixtures");
+    //
+    const data = await res.json();
+    const fixturesData = data.response;
+    sortFixturesData(fixturesData);
+    return fetchTeamsPlayersData(seasonYear)
+  } catch (err){
+    console.error(`Error at fetch teams fixtures: ${err.message}`)
+    throw err
+  }
 };
 // fetchTeamsFixtures()
 
@@ -235,24 +264,30 @@ const sortFixturesData = function (fixturesData) {
 };
 
 const fetchTeamsPlayersData = async function (seasonYear) {
-  const pageNumbers = [1, 2, 3];
-  const pagesCombined = [];
-  await Promise.all(
-    pageNumbers.map(async (page) => {
-      const res = await fetch(
-        `https://v3.football.api-sports.io/players?season=${seasonYear}&team=${state.queryTeamInfo.teamId}&page=${page}`,
-        headers
-      );
-      const data = await res.json();
-      pagesCombined.push(data);
-    })
-  );
-  const playerList = pagesCombined.flatMap((o) => {
-    return o.response;
-  });
-  filterForFirstTeam(playerList)
-  return fetchPredictionInfo(seasonYear)
-};
+  try{
+    const pageNumbers = [1, 2, 3];
+    const pagesCombined = [];
+    await Promise.all(
+      pageNumbers.map(async (page) => {
+        const res = await fetch(
+          `https://v3.football.api-sports.io/players?season=${seasonYear}&team=${state.queryTeamInfo.teamId}&page=${page}`,
+          headers
+          );
+          if (!res.ok) throw new Error("Problem getting teams player data");
+          const data = await res.json();
+          pagesCombined.push(data);
+        })
+        );
+        const playerList = pagesCombined.flatMap((o) => {
+          return o.response;
+        });
+        filterForFirstTeam(playerList)
+        return fetchPredictionInfo(seasonYear)
+      } catch (err){
+        console.error(`Error at team players data: ${err.message}`)
+        throw err
+      }
+      };
 // fetchTeamsPlayersData()
 
 const filterForFirstTeam = function(playerList){
@@ -299,36 +334,48 @@ const customPlayerStatObjs = function(firstTeam){
 }
 
 const fetchPredictionInfo = async function (seasonYear) {
-  // for the fixture ID
-  const res = await fetch(
-    `https://v3.football.api-sports.io/fixtures?season=${seasonYear}&team=${state.queryTeamInfo.teamId}&next=01`,
-    headers
-  );
-  const data = await res.json();
-  console.log(data.response[0].fixture.id);
-  const { fixtureID = data.response[0].fixture.id } = data;
-  state.nextPredictionData.fixtureID = fixtureID;
-  //
-  return fetchPredictionData(fixtureID) // use fixtureID
-};
+  try{
+    // for the fixture ID
+    const res = await fetch(
+      `https://v3.football.api-sports.io/fixtures?season=${seasonYear}&team=${state.queryTeamInfo.teamId}&next=01`,
+      headers
+      );
+      if (!res.ok) throw new Error("Problem getting prediction info");
+      const data = await res.json();
+      console.log(data.response[0].fixture.id);
+      const { fixtureID = data.response[0].fixture.id } = data;
+      state.nextPredictionData.fixtureID = fixtureID;
+      //
+      return fetchPredictionData(fixtureID) // use fixtureID
+    } catch (err){
+      console.error(`Error at fetch prediction info: ${err.message}`)
+        throw err
+    }
+    };
 
 const fetchPredictionData = async function (fixtureID) {
-  const res = await fetch(
-    `https://v3.football.api-sports.io/predictions?fixture=${fixtureID}`,
-    headers
-  );
-  const data = await res.json();
-  // console.log(data);
-  // need to replace strength stat for radar
-  const predictionData = data.response[0].predictions;
+  try{
+    const res = await fetch(
+      `https://v3.football.api-sports.io/predictions?fixture=${fixtureID}`,
+      headers
+      );
+      if (!res.ok) throw new Error("Problem getting league data");
+      const data = await res.json();
+      // console.log(data);
+      // need to replace strength stat for radar
+      const predictionData = data.response[0].predictions;
   sortingPredictionData(predictionData);
-
+  
   const comparisonData = data.response[0].comparison;
   sortingComparisonData(comparisonData);
-
+  
   const homeTeamsData = data.response[0].teams.home;
   const awayTeamsData = data.response[0].teams.away;
   return sortingHomeAwayCompareData(homeTeamsData, awayTeamsData);
+} catch (err){
+  console.error(`Error at prediction data: ${err.message}`)
+  throw err
+}
 };
 // fetchPredictionData()
 
@@ -374,25 +421,36 @@ const sortingHomeAwayCompareData = function (homeData, awayData) {
 // wikipedia api
 
 export const fetchWiki = async function (query) {
-  // relevance added by default
-  const res = await fetch(
-    `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&list=search&exintro=1&explaintext=2&srsearch=football%20club%20${query}&srsort=relevance&origin=*`
-  );
-  const data = await res.json();
-  // console.log(data.query.search[0].title);
-  const title = data.query.search[0].title;
-  return title;
-  // fetchWikiIntro(title)
+  try{
+    // relevance added by default
+    const res = await fetch(
+      `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&list=search&exintro=1&explaintext=2&srsearch=football%20club%20${query}&srsort=relevance&origin=*`
+      );
+      if (!res.ok) throw new Error("Problem getting wiki query");
+      const data = await res.json();
+      // console.log(data.query.search[0].title);
+      const title = data.query.search[0].title;
+      return title;
+      // fetchWikiIntro(title)
   // fetchWikiImage(title)
+} catch (err){
+  console.error(`Error at fetching wiki: ${err.message}`)
+  throw err
+}
 };
 
 // fetchWiki("arsenal");
 
 export const fetchWikiIntro = async function (team) {
-  const res = await fetch(
-    `https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&exlimit=2&titles=${team}&explaintext=2&format=json&formatversion=2&origin=*`
-  );
-  const data = await res.json();
+  try{
+
+    const res = await fetch(
+      `https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&exlimit=2&titles=${team}&explaintext=2&format=json&formatversion=2&origin=*`
+      );
+      if (!res.ok){
+        throw new Error("Problem getting wiki data")
+      }
+      const data = await res.json();
   // console.log(data.query.pages[0]);
   // console.log(data); // data here
   const { historyExtract = data.query.pages[0].extract } = data;
@@ -400,12 +458,18 @@ export const fetchWikiIntro = async function (team) {
   state.teamHistoryInfo.history = historyExtract;
   // console.log(state.teamHistoryInfo);
   return state.teamHistoryInfo;
+} catch (err){
+  console.error(`Error at fetch wiki info: ${err.message}`)
+  throw err
+}
 };
 
-const fetchWikiImage = async function (query) {
-  const res = await fetch(
-    `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=pageimages&titles=${query}&piprop=original&pilicense=any&origin=*`
-  );
-  const data = await res.json();
-  console.log(data); // data here
-};
+
+// NOT USED
+// const fetchWikiImage = async function (query) {
+//   const res = await fetch(
+//     `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=pageimages&titles=${query}&piprop=original&pilicense=any&origin=*`
+//   );
+//   const data = await res.json();
+//   console.log(data); // data here
+// };
