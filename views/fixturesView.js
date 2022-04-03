@@ -40,7 +40,8 @@ class Fixtures extends View {
     }
 
     _generateMarkup(){
-        return this._data.map((o,i,a) => {
+        return this._data.sort((a,b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+        .map((o,i,a) => {
             return `<div class="fixture">
                 <p class="fixture__competition">${o.compitition}</p>
                 <p class="fixture__time">${this._getDateKickOffTime(o.kickOffTime)}</p>

@@ -15,7 +15,7 @@ class Players extends View {
 
   _generateMarkup(){
     // will use map to loop over data when available
-    return this._data
+    return [...new Map(this._data.map(obj => [JSON.stringify(obj),obj])).values()]
       .sort((a, b) => b.totalGoals - a.totalGoals)
       .map((o, i, a) => {
         return `

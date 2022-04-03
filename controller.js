@@ -101,5 +101,124 @@ init();
 
 //************************//
 
+// const fixture = {
+// id: 310556,
+// referee: "Michael Oliver, England",
+// timezone: "UTC",
+// date: "2019-09-13T19:00:00+00:00",
+// timestamp: 1628881200,
+// periods: {
+//   first: 1628881200,
+//   second: 1628884800
+//   },
+// }
+// const fixture1 = {
+// id: 410556,
+// referee: "Michael Oliver, England",
+// timezone: "UTC",
+// date: "2017-10-13T19:00:00+00:00",
+// timestamp: 1628881200,
+// periods: {
+//   first: 1628881200,
+//   second: 1628884800
+//   },
+// }
+// const fixture2 = {
+// id: 217556,
+// referee: "Michael Oliver, England",
+// timezone: "UTC",
+// date: "2022-08-13T19:00:00+00:00",
+// timestamp: 1628881200,
+// periods: {
+//   first: 1628881200,
+//   second: 1628884800
+//   },
+// }
+// const fixture3 = {
+// id: 150556,
+// referee: "Michael Oliver, England",
+// timezone: "UTC",
+// date: "2015-05-13T19:00:00+00:00",
+// timestamp: 1628881200,
+// periods: {
+//   first: 1628881200,
+//   second: 1628884800
+//   },
+// }
 
+// const testObj = [fixture,fixture1,fixture2,fixture3]
+
+
+// function sortObjByDate(obj){
+//   obj.sort((a,b) => new Date(a.date).getTime() -
+//     new Date(b.date).getTime()
+//   );
+//   console.log(obj)
+// };
+
+// sortObjByDate(testObj)
+
+//////////////
+
+// testing set
+
+// const player0 = {
+//   totalAppearences: 0,
+//   totalGoals: 0,
+//   totalAssists: 0,
+//   avgRating: [],
+//   names: {
+//     firstName: "dddd",
+//     lastName: "frrrf",
+//     fullName: "dddd frrrf",
+//   }
+// };
+
+// const player1 = {
+//   totalAppearences: 0,
+//   totalGoals: 0,
+//   totalAssists: 0,
+//   avgRating: [],
+//   names: {
+//     firstName: "dddd",
+//     lastName: "frrrf",
+//     fullName: "dddd frrrf",
+//   }
+// };
+
+// const player2 = {
+//   totalAppearences: 0,
+//   totalGoals: 0,
+//   totalAssists: 0,
+//   avgRating: [],
+//   names: {
+//     firstName: "dddd",
+//     lastName: "frrrf",
+//     fullName: "dddd frrrf",
+//   }
+// };
+// const player3 = {
+//   totalAppearences: 0,
+//   totalGoals: 0,
+//   totalAssists: 0,
+//   avgRating: [],
+//   names: {
+//     firstName: "dddd",
+//     lastName: "frrrf",
+//     fullName: "dddd frrrf",
+//   }
+// };
+
+// const playerArray = [player0,player1,player2];
+
+
+// // let noDuplicates = [...new Set()]
+// // noDuplicates.push(...playerArray)
+// // // noDuplicates = [...new Set()];
+// // noDuplicates.forEach(e => console.log(e))
+// // console.log(noDuplicates)
+// // const newRay = [...new Set(playerArray)].map(e => e.names.fullName);
+// const newRay = new Set()
+// playerArray.forEach(e => newRay.add(e))
+// console.log([...newRay])
 
