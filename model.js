@@ -171,16 +171,21 @@ const fetchLeagueStanding = async function (leagueID,seasonYear) {
     headers
   );
   const data = await res.json();
-  const { league = data.response[0].league.standings[0] } = data;
-  sortLeagueStandings(league);
+  const { 
+    league = data.response[0].league.standings[0],
+    leagueName = data.response[0].league.name
+   } = data;
+  
+  sortLeagueStandings(league,leagueName);
   return fetchTeamsFixtures(seasonYear)
 };
 // fetchLeagueStanding()
 
-const sortLeagueStandings = function (league) {
+const sortLeagueStandings = function (league,leagueName) {
   let table = []
   league.forEach((e) => {
     const tableDetails = {};
+    tableDetails.leagueName = leagueName
     tableDetails.rank = e.rank;
     tableDetails.teamName = e.team.name;
     tableDetails.points = e.points;

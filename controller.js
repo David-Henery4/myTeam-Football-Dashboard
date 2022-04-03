@@ -86,7 +86,9 @@ Players.render(playerStats)
 };
 
 const leagueTableSection = function (tableData) {
-  LeagueTable.updateTable(tableData)
+  // LeagueTable.updateTable(tableData)
+  LeagueTable.renderLeagueName(tableData)
+  LeagueTable.render(tableData)
 };
 
 
