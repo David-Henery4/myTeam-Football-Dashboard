@@ -56,7 +56,11 @@ class Comparison extends View {
         <div class="prediction__section--winner">
             <p class="result">Winner</p>
             <p class="team">${this._data.outcomePrediction.name}</p>
-            <p class="outcomes">${this._data.outcomePrediction.comment}</p>
+            <p class="outcomes">${
+              this._data.outcomePrediction.comment === null
+                ? ""
+                : this._data.outcomePrediction.comment
+            }</p>
         </div>`;
   }
 };

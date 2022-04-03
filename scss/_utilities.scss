@@ -11,10 +11,19 @@
     -webkit-backdrop-filter: blur(30px); // this helps
 }
 
-// .active__tab--fixtures{
-//     display: block;
-// }
+// SECTION SCROLL BAR STYLES
 
-// .unActive__tab{
-//     display: none;
-// }
+.scrollbar__styles{
+    width: 20px;
+}
+
+.scrollbar-track__styles{
+    background-color: var(--shade-color);
+    border-radius: 20px;
+    border-bottom-right-radius: 100px;
+}
+
+.scrollbar-thumb__styles{
+    background-color: var(--flair-color);
+    border-radius: 20px;
+}

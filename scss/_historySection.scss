@@ -31,6 +31,18 @@
     overflow-y: scroll;
 }
 
+.history__section--text::-webkit-scrollbar{
+    @extend .scrollbar__styles;
+}
+
+.history__section--text::-webkit-scrollbar-track{
+    @extend .scrollbar-track__styles;
+}
+
+.history__section--text::-webkit-scrollbar-thumb{
+    @extend .scrollbar-thumb__styles;
+}
+
 .history__section--img{
     width: 100%;
     padding: 2% 5%;
