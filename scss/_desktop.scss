@@ -86,15 +86,9 @@
     justify-content: flex-end;
   }
   .search__input {
-    max-width: 100%;
     input {
-      border-radius: 40px;
       font-size: 0.7rem;
       padding: 5% 12%;
-    }
-    .search__icon {
-      top: 10px;
-      left: 10px;
     }
   }
   .team__name--wrap {

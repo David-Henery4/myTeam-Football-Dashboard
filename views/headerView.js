@@ -12,6 +12,7 @@ class Header extends View {
   _sideNav = document.querySelector(".nav__slide");
   _tabs = document.querySelectorAll(".tab__btn"); // use for styling
   _sections = document.querySelectorAll(".section");
+  _searchIcon = document.querySelector(".search__icon");
   //
   constructor() {
     super();
@@ -32,13 +33,16 @@ class Header extends View {
     this._formInput.addEventListener("submit", handler);
   }
   //
+  searchIconHandler(handler){
+    this._searchIcon.addEventListener("click", handler)
+  };
+  //
   searchQuery() {
     const query = this.userQuery.value;
     this.userQuery.value = "";
     this.userQuery.blur();
     return query;
   }
-
   // Switching Content Methods (NAV)
   _switchingSectionsEvent(e) {
     const clicked = e.target.closest(".tab__btn");

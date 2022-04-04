@@ -112,6 +112,7 @@ const leagueTableSection = function (tableData) {
 
 const init = function () {
   Header.headerHandler(search);
+  Header.searchIconHandler(search);
   // History.historyHandler(historySection);
 };
 

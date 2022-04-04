@@ -12,16 +12,12 @@
       }
     }
     .search__input{
-        // width: 100%;
-        max-width: 350px;
         input{
-            border-radius:40px;
             font-size: 1.1rem;
             padding: 5% 12%;
         }
         .search__icon {
-            top: 15px;
-            left: 10px;
+            font-size: 1.4rem;
         }
     }
 }

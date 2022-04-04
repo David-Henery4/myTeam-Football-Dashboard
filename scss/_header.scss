@@ -123,17 +123,23 @@ header {
   width: 90%;
   max-width: 360px;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   .search__icon {
     position: absolute;
-    top: 9px;
-    left: 4px;
+    left: 2%;
+    font-size: 1.2rem;
+  }
+  .search__form{
+    width: 100%;
   }
   input {
     width: 100%;
     color: var(--text-color);
     // text-align: center;
     padding: 5% 12%;
-    border-radius: 20px;
+    border-radius: 40px;
     border: none;
     outline: none;
     background-color: var(--shade-color);
@@ -151,4 +157,14 @@ header {
     h4{
         font-size: 2.8rem;
     }
+}
+
+// media queries
+
+@media(min-width:375px){
+.search__input{
+  .search__icon{
+    font-size: 1.5rem;
+  }
+}
 }
