@@ -13,16 +13,21 @@ header {
 }
 
 .nav__top {
-  height: 20%;
-  width: 100%;
+  height: 10vh;
+  width: 100vw;
+  padding: 0 5%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   grid-area: navT;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: var(--primary-color);
 }
 
 .burger__wrap {
-  width: 25%;
+  width: 15%;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -33,9 +38,8 @@ header {
 }
 
 .theme__toggle--wrap {
-  height: 100%;
-  width: 25%;
-  max-width: 100px;
+  height: 2rem;
+  width: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
