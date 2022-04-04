@@ -1,16 +1,31 @@
 
+.overlay{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 50;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(30px);
+    // opacity: 0;
+    // visibility: hidden;
+    // transition: 1s ease-in;
+    display:none;
+}
+
 .error__msg--wrap{
     height: 50%;
-    width: 75%;
-    background-color: var(--secondary-color);
+    width: 85%;
+    max-width: 595px;
+    background-color: var(--error-color);
     border-radius: 25px;
     border: 2px solid var(--flair-color);
     color: var(--text--color);
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     z-index: 100;
     transform: translate(-50%,-50%);
+    display: none;// temp
 }
 
 .error__msg--content{
@@ -34,14 +49,28 @@
 }
 
 .error__msg--icon{
-    // width: 2rem;
-    // height: 40%;
+    svg{
+        stroke:var(--text-color);
+        transition: 1s;
+    }
 }
 
 .error__msg--text{
     text-align: center;
-    // height: 40%;
     span{
         display: block
     }
+}
+
+// ACTIVE CLASSES
+
+.error__msg--active{
+    display: block;
+};
+
+.overlay__active{
+    // opacity: 1;
+    // visibility: visible;
+    // transition: 1s ease-in;
+    display: block;
 }

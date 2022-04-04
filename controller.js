@@ -19,6 +19,7 @@ import History from "./views/historyView.js";
 // import predictionView from "./views/predictionView.js";
 import Comparison from "./views/comparison.js";
 import Fixtures from "./views/fixturesView.js";
+import ErrorMessages from "./errorMsg.js";
 //
 
 const search = async function () {
@@ -38,6 +39,7 @@ const search = async function () {
 } catch(err){
   console.log(`Data Error: ${err.message}`);
   console.error(`MainData error happening: ${err}`);
+  ErrorMessages.showErrorMsg();
 }
 };
 
@@ -68,7 +70,8 @@ const historySection = async function (query, venueImg) {
     // console.log(data)
   } catch(err){
     console.log(`Wiki Error: ${err.message}`)
-    console.error(`History error happening: ${err}`);
+    console.error(`History error happening: ${err.message}`);
+    ErrorMessages.showErrorMsg()
   }
 };
 

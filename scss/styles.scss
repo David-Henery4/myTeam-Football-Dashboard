@@ -1,5 +1,4 @@
 @import "variables";
-@import "errorMsgs";
 @import "dataSection";
 @import "dataSectionTablet";
 @import "mainSection";
@@ -11,6 +10,7 @@
 @import "prediction";
 @import "desktop";
 @import "utilities";
+@import "errorMsgs";
 
 * {
   padding: 0;
