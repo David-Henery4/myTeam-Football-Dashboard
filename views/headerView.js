@@ -10,15 +10,20 @@ class Header extends View {
   closeNavIcon = document.querySelector(".close__nav--icon");
   //
   _sideNav = document.querySelector(".nav__slide");
-  _tabs = document.querySelectorAll(".tab__btn"); // use for styling
-  _sections = document.querySelectorAll(".section");
   _searchIcon = document.querySelector(".search__icon");
+  //
+  _desktopWidth = window.matchMedia("(min-width: 1020px)");
+  // use for styling
+  _tabs = document.querySelectorAll(".tab__btn");
+  _sections = document.querySelectorAll(".section");
   //
   constructor() {
     super();
     this.submitEvent();
     this._switchingSectionsListener();
     this._activeSideNavListener();
+    this._navCloseOnDesktopListener()
+    this._navCloseOnDesktopAction(this._desktopWidth)
   }
   // Search Query Methods
   _submitAction(e) {
@@ -33,9 +38,9 @@ class Header extends View {
     this._formInput.addEventListener("submit", handler);
   }
   //
-  searchIconHandler(handler){
-    this._searchIcon.addEventListener("click", handler)
-  };
+  searchIconHandler(handler) {
+    this._searchIcon.addEventListener("click", handler);
+  }
   //
   searchQuery() {
     const query = this.userQuery.value;
@@ -57,7 +62,7 @@ class Header extends View {
     );
     currentSectionTab.classList.add("active__tab");
     //
-    this._removeNavSlide()
+    this._removeNavSlide();
   }
 
   _switchingSectionsListener() {
@@ -72,16 +77,31 @@ class Header extends View {
     this._sideNav.classList.toggle("active__slide--nav");
   }
   // Remove navigation
-  _removeNavSlide(){
-    this._sideNav.classList.remove("active__slide--nav")
+  _removeNavSlide() {
+    this._sideNav.classList.remove("active__slide--nav");
   }
   //
   _activeSideNavListener() {
     this.burger.addEventListener("click", this._activeSideNavEvent.bind(this));
     //
-    this.closeNavIcon.addEventListener("click", this._activeSideNavEvent.bind(this));
+    this.closeNavIcon.addEventListener(
+      "click",
+      this._activeSideNavEvent.bind(this)
+    );
     //
   }
+
+  // NAV BAR CLOSE WHEN REACHES DESKTOP
+  _navCloseOnDesktopAction(e){
+    if (e.matches){
+      this._removeNavSlide()
+    }
+  };
+
+  _navCloseOnDesktopListener(){
+    this._desktopWidth.addEventListener("change", this._navCloseOnDesktopAction.bind(this))
+  }
+
 }
 
 export default new Header();

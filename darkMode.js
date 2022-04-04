@@ -11,7 +11,7 @@ const lightIcon = document.querySelector(".light__icon");
 
 
 const enableDarkMode = function(){
-const body = document.getElementById("body--ele");
+const body = document.body;
 
 body.classList.add("dark-theme");
 //
@@ -19,7 +19,7 @@ localStorage.setItem("darkMode", "enabled");
 }
 
 const disableDarkMode = function(){
-const body = document.getElementById("body--ele");
+const body = document.body;
 
 body.classList.remove("dark-theme");
 //
