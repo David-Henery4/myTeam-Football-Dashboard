@@ -14,7 +14,6 @@ class Fixtures extends View {
             year: "numeric",
             day: "numeric",
             month: "numeric",
-            hour12: true,
             hour: "numeric",
             minute: "numeric",
             };
@@ -26,8 +25,8 @@ class Fixtures extends View {
 
     _formatKoDateTime(timeDate){
         const timeArr = timeDate.split(" ")
-        const koTime = timeArr.slice(-2).join("")
-        const koDate = timeArr[0].slice(-5)
+        const koTime = timeArr[1]
+        const koDate = timeArr[0].slice(0,-3)
         return `${koTime} / ${koDate}`
     }
     
