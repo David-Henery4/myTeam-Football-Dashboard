@@ -1,3 +1,6 @@
+import "core-js/stable";
+import "regenerator-runtime/runtime";
+
 // Module Replacement
 if (module.hot) {
   module.hot.accept();
@@ -23,28 +26,27 @@ import ErrorMessages from "./errorMsg.js";
 //
 
 const search = async function () {
-  try{
+  try {
     const query = Header.searchQuery();
     console.log(`Heres the search query: ${query}`);
     console.log("works");
     model.state.searchQuery = query;
     console.log(model.state);
-  // const title = await model.fetchWiki(query)
-  // const historyData = await model.fetchWikiIntro(title)
-  const mainData = await model.fetchBasicTeamInfo(query);
-  //
-  console.log(mainData);
-  dataDistribution(mainData,query)
-  //
-} catch(err){
-  console.log(`Data Error: ${err.message}`);
-  console.error(`MainData error happening: ${err}`);
-  ErrorMessages.showErrorMsg();
-}
+    // const title = await model.fetchWiki(query)
+    // const historyData = await model.fetchWikiIntro(title)
+    const mainData = await model.fetchBasicTeamInfo(query);
+    //
+    console.log(mainData);
+    dataDistribution(mainData, query);
+    //
+  } catch (err) {
+    console.log(`Data Error: ${err.message}`);
+    console.error(`MainData error happening: ${err}`);
+    ErrorMessages.showErrorMsg();
+  }
 };
 
-
-const dataDistribution = function(mainData,query){
+const dataDistribution = function (mainData, query) {
   pieChartSection(mainData.pieStats);
   predictionSection(mainData.nextPredictionData);
   fixturesSection(mainData.teamFixtures);
@@ -52,26 +54,26 @@ const dataDistribution = function(mainData,query){
   minuteStatsSection(mainData.minuteGoalsData);
   playersStatsSection(mainData.playerStats);
   teamNameSection(mainData.queryTeamInfo.teamName);
-  leagueTableSection(mainData.leagueStanding)
+  leagueTableSection(mainData.leagueStanding);
   historySection(query, mainData.queryTeamInfo.stadiumImg);
 };
 
-const teamNameSection = function(name){
-  TeamName.render(name)
+const teamNameSection = function (name) {
+  TeamName.render(name);
 };
 
 const historySection = async function (query, venueImg) {
-  try{
+  try {
     const title = await model.fetchWiki(query);
     const historyData = await model.fetchWikiIntro(title);
     console.log(historyData);
     History.render(historyData);
     History._renderStadiumImage(venueImg);
     // console.log(data)
-  } catch(err){
-    console.log(`Wiki Error: ${err.message}`)
+  } catch (err) {
+    console.log(`Wiki Error: ${err.message}`);
     console.error(`History error happening: ${err.message}`);
-    ErrorMessages.showErrorMsg()
+    ErrorMessages.showErrorMsg();
   }
 };
 
@@ -91,7 +93,7 @@ const fixturesSection = function (fixtures) {
 };
 
 const teamStatsSection = function (teamStats) {
-  Team.render(teamStats)
+  Team.render(teamStats);
 };
 
 const minuteStatsSection = function (minuteData) {
@@ -100,15 +102,14 @@ const minuteStatsSection = function (minuteData) {
 };
 
 const playersStatsSection = function (playerStats) {
-Players.render(playerStats)
+  Players.render(playerStats);
 };
 
 const leagueTableSection = function (tableData) {
   // LeagueTable.updateTable(tableData)
-  LeagueTable.renderLeagueName(tableData)
-  LeagueTable.render(tableData)
+  LeagueTable.renderLeagueName(tableData);
+  LeagueTable.render(tableData);
 };
-
 
 const init = function () {
   Header.headerHandler(search);
@@ -119,66 +120,3 @@ const init = function () {
 init();
 
 //************************//
-
-// const fixture = {
-// id: 310556,
-// referee: "Michael Oliver, England",
-// timezone: "UTC",
-// date: "2019-09-13T19:00:00+00:00",
-// timestamp: 1628881200,
-// periods: {
-//   first: 1628881200,
-//   second: 1628884800
-//   },
-// }
-// const fixture1 = {
-// id: 410556,
-// referee: "Michael Oliver, England",
-// timezone: "UTC",
-// date: "2017-10-13T19:00:00+00:00",
-// timestamp: 1628881200,
-// periods: {
-//   first: 1628881200,
-//   second: 1628884800
-//   },
-// }
-// const fixture2 = {
-// id: 217556,
-// referee: "Michael Oliver, England",
-// timezone: "UTC",
-// date: "2022-08-13T19:00:00+00:00",
-// timestamp: 1628881200,
-// periods: {
-//   first: 1628881200,
-//   second: 1628884800
-//   },
-// }
-// const fixture3 = {
-// id: 150556,
-// referee: "Michael Oliver, England",
-// timezone: "UTC",
-// date: "2015-05-13T19:00:00+00:00",
-// timestamp: 1628881200,
-// periods: {
-//   first: 1628881200,
-//   second: 1628884800
-//   },
-// }
-
-// const testObj = [fixture,fixture1,fixture2,fixture3]
-
-
-// function sortObjByDate(obj){
-//   obj.sort((a,b) => new Date(a.date).getTime() -
-//     new Date(b.date).getTime()
-//   );
-//   console.log(obj)
-// };
-
-// sortObjByDate(testObj)
-
-////////////////
-
-// date time formating
-
-    
