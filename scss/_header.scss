@@ -22,7 +22,7 @@ header {
   grid-area: navT;
   position: fixed;
   top: 0;
-  left: 0;
+  right: 0;
   background-color: var(--primary-color);
 }
 
@@ -151,6 +151,9 @@ header {
 }
 ::placeholder {
   color: var(--text-color);
+}
+.search__icon:hover{
+  cursor: pointer;
 }
 
 .team__name--wrap{

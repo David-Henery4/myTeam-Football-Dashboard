@@ -6,8 +6,8 @@ class Prediction extends View {
   myChart
   radarTheme = "rgba(10,9,9, 0.05)";
   radarFontColor = "#0E0D0D";
-  _homeTeamName = "Arsenal"
-  _awayTeamName = "Arsenal"
+  _homeTeamName = "Team 1"
+  _awayTeamName = "Team 2"
 
   constructor() {
     super();

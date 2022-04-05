@@ -27,8 +27,8 @@ class Fixtures extends View {
     _formatKoDateTime(timeDate){
         const timeArr = timeDate.split(" ")
         const koTime = timeArr.slice(-2).join("")
-        const koDate = timeArr[0].slice(0,-1)
-        return `${koTime}/${koDate}`
+        const koDate = timeArr[0].slice(-5)
+        return `${koTime} / ${koDate}`
     }
     
     _generateScoreString(score){

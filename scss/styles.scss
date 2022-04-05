@@ -11,6 +11,7 @@
 @import "desktop";
 @import "utilities";
 @import "errorMsgs";
+@import "starterMenu";
 
 * {
   padding: 0;
@@ -32,10 +33,7 @@ body {
 }
 
 .body__wrap {
-  // padding: 5%;
   padding: 5%;
-  // height: 100vh;
-  // width: 100vw;
 }
 
 @media (min-width: 1020px) {
