@@ -1,5 +1,8 @@
 import View from "./view.js";
 
+/**
+ * Contains all methods and properties relevent to the playersView UI.
+ */
 class Players extends View {
   _parentElement = document.querySelector(".player__stats--body");
 

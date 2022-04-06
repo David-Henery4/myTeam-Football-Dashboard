@@ -1,4 +1,7 @@
 
+/**
+ * Class that has the methods that controll the error messages
+ */
 class ErrorMessages {
   _errorMsgElement = document.querySelector(".error__msg--wrap");
   _closeIcon = document.querySelector(".error__close--icon");

@@ -1,5 +1,8 @@
 import View from "./view";
 
+/**
+ * Contains all methods and properties relevent to the comparisonView UI.
+ */
 class Comparison extends View {
   _parentElement = document.querySelector(".prediction__section--content");
   constructor() {

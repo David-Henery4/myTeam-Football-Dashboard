@@ -1,5 +1,8 @@
 import View from "./view";
 
+/**
+ * Contains all methods and properties relevent to the fixturesView UI.
+ */
 class Fixtures extends View {
     _parentElement = document.querySelector(".fixtures__section--content");
 

@@ -1,7 +1,9 @@
 import View from "./view.js";
 
 
-
+/**
+ * Contains all methods and properties relevent to the leagueView UI.
+ */
 class LeagueTable extends View {
   _parentElement = document.querySelector(".league__table--body");
   _leagueNameElement = document.querySelector(".league__table--name");

@@ -1,5 +1,8 @@
 
 
+/**
+ * Contains all methods and properties relevent to the navView UI.
+ */
 class Navigation {
   dateTimeWrap = document.querySelector(".dateTime")
   constructor() {

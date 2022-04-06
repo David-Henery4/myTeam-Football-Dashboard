@@ -1,6 +1,9 @@
 import View from "./view";
 
  
+/**
+ * Contains all methods and properties relevent to the minuteView UI.
+ */
 class Minute extends View {
   _minuteScoreElement = document.querySelector(".minute__stat--score");
   _minuteConcedeElement = document.querySelector(".minute__stat--concede");

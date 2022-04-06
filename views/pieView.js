@@ -1,6 +1,9 @@
 import View from "./view.js";
 import Chart from "chart.js/auto";
 
+/**
+ * Contains all methods and properties relevent to the pieView UI.
+ */
 class PieView extends View {
   _chartElement = document.getElementById("myChart");
   myChart;

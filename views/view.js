@@ -1,5 +1,8 @@
 import Chart from "chart.js/auto";
 
+/**
+ * View class contains all method and properties that are inherited by the other views.
+ */
 export default class View {
   _data;
 

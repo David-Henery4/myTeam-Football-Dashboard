@@ -1,6 +1,9 @@
 import View from "./view";
 
 
+/**
+ * Contains all methods and properties relevent to the headerView UI.
+ */
 class Header extends View {
   //Properties
   userQuery = document.querySelector(".search__input--query");

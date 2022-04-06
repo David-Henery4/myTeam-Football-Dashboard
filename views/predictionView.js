@@ -1,6 +1,10 @@
 import Chart from "chart.js/auto";
 import View from "./view";
 
+
+/**
+ * Contains all methods and properties relevent to the predictionView UI.
+ */
 class Prediction extends View {
   radarChart = document.getElementById("radar__chart");
   myChart

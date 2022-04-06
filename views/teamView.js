@@ -1,6 +1,8 @@
 import View from "./view.js";
 
-
+/**
+ * Contains all methods and properties relevent to the team stats UI
+ */
 class Team extends View {
   _parentElement = document.querySelector(".team__stats--content");
 

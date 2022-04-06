@@ -1,5 +1,8 @@
 import View from "./view";
 
+/**
+ * Contains all methods and properties relevent to the historyView UI.
+ */
 class History extends View {
   _parentElement = document.querySelector(".history__section--text");
   // _historyBtn = document.getElementById("history-btn");
