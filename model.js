@@ -1,13 +1,3 @@
-console.log("model module works!");
-
-// USING THIS ONE
-// API-FOOTBALL API-KEY (NEW): a78d0ec5177a3799beb9c9a2c3bb19ba
-//a78d0ec5177a3799beb9c9a2c3bb19ba
-// URL: https://v3.football.api-sports.io/
-
-// Using
-
-//******************************************//
 
 // DATA STATE OBJECT
 
@@ -572,11 +562,4 @@ export const fetchWikiIntro = async function (team) {
 };
 
 
-// NOT USED
-// const fetchWikiImage = async function (query) {
-//   const res = await fetch(
-//     `https://en.wikipedia.org/w/api.php?action=query&format=json&prop=pageimages&titles=${query}&piprop=original&pilicense=any&origin=*`
-//   );
-//   const data = await res.json();
-//   console.log(data); // data here
-// };
+

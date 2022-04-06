@@ -1,10 +1,6 @@
 import "core-js/stable";
 import "regenerator-runtime/runtime";
 
-// Module Replacement
-if (module.hot) {
-  module.hot.accept();
-}
 //              CONTROLLER
 import * as model from "./model.js";
 import * as dark from "./darkMode.js";
