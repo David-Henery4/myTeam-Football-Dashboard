@@ -42,6 +42,8 @@ The main technologies used to create this were **HTML**, **Scss** & **Javascript
 I also used **parcel** as my bundler in order to compile everything together for the final version.
 **Git** was used for version control thoughout the building of the project. Aswell as being connected to gitHub for a online intergration with the repo.
 
+**core.js** & **regenerator-runtime** were used for polyfilling and ensuring that all modern features used will be backwards compatiable and work on older browsers.
+
 I also used npm to install and use **Chart.js**. This was used in order to render some of the data to the pie charts & the radar charts and display the data in a clean and more visual way.
 
 ### APIs used
