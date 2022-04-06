@@ -32,7 +32,7 @@ To use any of the features just click any one of the tabs on the left side for t
 
 ![features-gif](/readme-images/myTeam%20Football%20Dashboard-features.gif)
 
-If you want to change the colour theme, its as easy as a click of a button. Which is located in the top left corner.
+If you want to change the colour theme, its as easy as a click of a button. Which is located in the top right corner.
 
 ![theme-gif](/readme-images/myTeam%20Football%20Dashboard-themes.gif)
 
