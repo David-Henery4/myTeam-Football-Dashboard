@@ -30,6 +30,7 @@ body {
   background-color: var(--primary-color);
   font-family: $font-poppins;
   color: var(--text-color);
+  overflow-x: hidden;
 }
 
 .body__wrap {

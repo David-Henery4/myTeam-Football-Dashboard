@@ -11,6 +11,11 @@ console.log("model module works!");
 
 // DATA STATE OBJECT
 
+/**
+ * Stores overall data from the fetch function that we use    thoughout our appliction.
+ * @type Object
+ * holds whole relevent app data
+ */
 export const state = {
   queryTeamInfo: {
   },
@@ -46,6 +51,9 @@ export const state = {
   teamFixtures: {},
 };
 
+/**
+ * Holds the header data needed for the api calls
+ */
 // API Header:
 const headers = {
   method: "GET",
@@ -57,7 +65,12 @@ const headers = {
 
 //       DATA FETCHING & HANDLING
 
-
+/**
+ * 
+ * @param {string} query Takes in user search query-
+ * Takes query to get the basic team info needed in order to start fetching 
+ * @returns {object} will return the very last functions return value because all the fetch functions return values have been chained to return the next functions return value in sequence
+ */
 export const fetchBasicTeamInfo = async function (query) {
   try{
     const res = await fetch(
@@ -77,6 +90,11 @@ export const fetchBasicTeamInfo = async function (query) {
 
 // fetchBasicTeamInfo("arsenal")
 
+/**
+ * 
+ * @param {JSON} teamData Takes basic team data and destructors it into the 'queryTeamInfo' property in the state object.
+ * @returns {object} The next function in sequences return value (fetchLeagueInfo).
+ */
 const storingTeamAndVenueData = function (teamData) {
   const {
     id = teamData.team.id,
@@ -98,7 +116,12 @@ const storingTeamAndVenueData = function (teamData) {
   return fetchLeagueInfo(id, country);
 };
 
-
+/**
+ * Fetchs teams league info and destructors the teams League ID & current league year.
+ * @param {number} teamCode Searched team API ID
+ * @param {string} country Searched teams country
+ * @returns {object} The next function in sequences return value (fetchTeamStats).
+ */
 const fetchLeagueInfo = async function (teamCode, country) {
   try{
     const res = await fetch(
@@ -124,8 +147,13 @@ const fetchLeagueInfo = async function (teamCode, country) {
     }
   };
   
-  // fetchLeagueInfo()
 
+/**
+ * Fetches and breaks up teams stats and sends them to different functions for destructoring and storing in the state object.
+ * @param {number} leagueID searched teams league ID
+ * @param {number} seasonYear searced teams current season year
+ * @returns {object} The next function in sequences return value (fetchLeagueStanding).
+ */
 const fetchTeamStats = async function (leagueID, seasonYear) {
   try{
     const team = state.queryTeamInfo.teamId;
@@ -151,6 +179,10 @@ const fetchTeamStats = async function (leagueID, seasonYear) {
     }
     };
     
+    /**
+     * Takes teams goal stats data and destructors them and places them in the state object.
+     * @param {object} goalStats Teams goal stats
+     */
 const sortTeamGoalStats = function(goalStats){
   state.teamStats.avgGoalsScored = goalStats.for.average.total;
   // total goals scored
@@ -168,6 +200,10 @@ const sortTeamGoalStats = function(goalStats){
   // console.log(state);
 };
 
+/**
+ * Takes teams wins/draws/lose record and destructors it to the state object.
+ * @param {object} record teams w/d/l record
+ */
 const sortTeamRecordStats = function(record){
   // PieChart Data
   state.pieStats.wins = record.wins.total;
@@ -175,6 +211,10 @@ const sortTeamRecordStats = function(record){
   state.pieStats.loses = record.loses.total;
 };
 
+/**
+ * Takes teams streaks and record stats and destructors them into the state object
+ * @param {object} largeStats teams largest stats
+ */
 const sortTeamLargestStats = function(largeStats){
   // longest win streak
   state.teamStats.longestWinStreak = largeStats.streak.wins;
@@ -182,6 +222,12 @@ const sortTeamLargestStats = function(largeStats){
   state.teamStats.mostGoalsOneGame = largeStats.goals.for;
 };
 
+/**
+ * Takes league ID and season years to fetch the league standing data and leagues name & passes them into a function for destructoring, sorting and storing into the state object.
+ * @param {number} leagueID searched team league ID.
+ * @param {number} seasonYear teams current season year.
+ * @returns {object} The next function in sequences return value (fetchTeamsFixtures).
+ */
 const fetchLeagueStanding = async function (leagueID,seasonYear) {
   try{
     const res = await fetch(
@@ -204,6 +250,11 @@ const fetchLeagueStanding = async function (leagueID,seasonYear) {
     };
 // fetchLeagueStanding()
 
+/**
+ * Takes league standings data and league name. Loops though league standings and destructors only the needed data into its own objects (one object per team) and stores the created array of objects in the state object.
+ * @param {object} league Whole teams League standing data
+ * @param {object} leagueName Teams League name  
+ */
 const sortLeagueStandings = function (league,leagueName) {
   let table = []
   league.forEach((e) => {
@@ -220,6 +271,11 @@ const sortLeagueStandings = function (league,leagueName) {
   table = []
 };
 
+/**
+ * Takes in teams current season year & fetches teams fixture data and sends it to 'sortFixturesData' to be destructored into the state object
+ * @param {number} seasonYear Teams current season year
+ * @returns {object} The next function in sequences return value (fetchTeamsPlayerData).
+ */
 const fetchTeamsFixtures = async function (seasonYear) {
   try{
     const res = await fetch(
@@ -240,6 +296,10 @@ const fetchTeamsFixtures = async function (seasonYear) {
 // fetchTeamsFixtures()
 
 // sort fixtures data
+/**
+ * Takes fixtures data, destructors the data into its own object (one per fixture), sorts it & sends the array to the state object.
+ * @param {object} fixturesData Teams fixtures data
+ */
 const sortFixturesData = function (fixturesData) {
   let fixtureDetails = [];
   fixturesData.forEach((e, i, arr) => {
@@ -263,6 +323,11 @@ const sortFixturesData = function (fixturesData) {
   fixtureDetails = []
 };
 
+/**
+ * Takes teams current season year, fetches the teams player data, maps all three player pages together & sends the data to "filterForFirstTeam" function to be filtered and destructored into the state object.
+ * @param {number} seasonYear Teams current season start year.
+ * @returns {object} The next function in sequences return value (fetchPredictionInfo).
+ */
 const fetchTeamsPlayersData = async function (seasonYear) {
   try{
     const pageNumbers = [1, 2, 3];
@@ -290,6 +355,10 @@ const fetchTeamsPlayersData = async function (seasonYear) {
       };
 // fetchTeamsPlayersData()
 
+/**
+ * Takes in teams full player list and filters out the squad players from the first team players, based on the number of appearences. Then sends them to the 'customPlayerStatsObj' to be destructored into their custom objects to be stored in a array and stored in the state object.
+ * @param {Array} playerList Array of objects containing teams players
+ */
 const filterForFirstTeam = function(playerList){
     const firstTeam = [];
     playerList.forEach((p) => {
@@ -300,6 +369,10 @@ const filterForFirstTeam = function(playerList){
     customPlayerStatObjs(firstTeam)
 }
 
+/**
+ * Destructors first team data into custom objects to be stored in the state object.
+ * @param {Array} firstTeam Array of objects containing data for the first team players.
+ */
 const customPlayerStatObjs = function(firstTeam){
   let customPlayerList = [];
   firstTeam.forEach((e) => {
@@ -333,6 +406,11 @@ const customPlayerStatObjs = function(firstTeam){
   // console.log(customPlayerList)
 }
 
+/**
+ * Fetches the teams next fixture ID and sends it to 'fetchPredictionData' in order to get prediction for the next fixture
+ * @param {number} seasonYear Teams current season start year.
+ * @returns The next function in sequences return value (fetchPredictionData).
+ */
 const fetchPredictionInfo = async function (seasonYear) {
   try{
     // for the fixture ID
@@ -353,6 +431,11 @@ const fetchPredictionInfo = async function (seasonYear) {
     }
     };
 
+    /**
+     * Fetches teams next fixture prediction data, splits the data into three different sections to be destuctored
+     * @param {number} fixtureID Teams next fixture ID
+     * @returns The next function in sequences return value (sortingHomeAwayCompareData).
+     */
 const fetchPredictionData = async function (fixtureID) {
   try{
     const res = await fetch(
@@ -379,12 +462,20 @@ const fetchPredictionData = async function (fixtureID) {
 };
 // fetchPredictionData()
 
+/**
+ * Sorts and destructors outcome prediction data for the teams next fixture into the state object.
+ * @param {object} data Takes in teams next fixture prediction data
+ */
 const sortingPredictionData = function (data) {
   state.nextPredictionData.comparisonData.outcomePrediction = data.winner;
   state.nextPredictionData.comparisonData.overUnderGoalsData = data.goals;
   state.nextPredictionData.comparisonData.outcomePercentage = data.percent;
 };
 
+/**
+ * Destructors the teams next fixtures comparison data and stores in the state object, to be used to render in the radar chart.
+ * @param {object} data Takes teams next fixture comparison data.
+ */
 const sortingComparisonData = function (data) {
   // RADAR
   state.nextPredictionData.predictionRadarData.attack = data.att;
@@ -396,6 +487,12 @@ const sortingComparisonData = function (data) {
   state.nextPredictionData.predictionRadarData.goals = data.goals
 };
 
+/**
+ * Takes home & away teams comparison and destructors them into the state object.
+ * @param {object} homeData Home teams comparison data
+ * @param {object} awayData Away teams comparison data
+ * @returns Returns the whole state object containing all the data we need back up to the first function call and then becomes the return value of that first function, which is sent to the 'controller' module where it was original called, to be rendered to the UI view sections. 
+ */
 const sortingHomeAwayCompareData = function (homeData, awayData) {
   // HOME TEAM DATA
   state.nextPredictionData.comparisonData.homeName = homeData.name;
@@ -420,6 +517,11 @@ const sortingHomeAwayCompareData = function (homeData, awayData) {
 ////***************************************////
 // wikipedia api
 
+/**
+ * fetchs wiki search results for the query and 'football' search results, to ensure the information is about the users searched for team.
+ * @param {string} query Users team search query
+ * @returns Returns the first results title from the search.
+ */
 export const fetchWiki = async function (query) {
   try{
     // relevance added by default
@@ -441,6 +543,11 @@ export const fetchWiki = async function (query) {
 
 // fetchWiki("arsenal");
 
+/**
+ * Fetches the history article for the searched for team.
+ * @param {string} team The title name of the teams wiki page.
+ * @returns Intro article of the users searched for team.
+ */
 export const fetchWikiIntro = async function (team) {
   try{
 
