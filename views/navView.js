@@ -15,7 +15,8 @@ class Navigation {
       year: "numeric",
       day: "numeric",
       month: "numeric",
-      hour12: true,
+      // hour12: true,
+      hourCycle: 'h12',
       hour: "numeric",
       minute: "numeric",
     };
