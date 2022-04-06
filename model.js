@@ -152,10 +152,7 @@ const fetchTeamStats = async function (leagueID, seasonYear) {
       headers
       );
       if (!res.ok) throw new Error("Problem team stats");
-      // maybe change to array, use filter the
-      // ones we wanna keep, then change back.
       const data = await res.json();
-      // console.log(data);
       const { teamWinDrawLose = data.response.fixtures } = data;
       const { teamGoalStats = data.response.goals } = data;
       const { biggestStats = data.response.biggest } = data;
@@ -187,7 +184,6 @@ const sortTeamGoalStats = function(goalStats){
   state.minuteGoalsData.minsToScore = goalStats.for.minute
   // most likely to concede
   state.minuteGoalsData.minsToConcede = goalStats.against.minute
-  // console.log(state);
 };
 
 /**
@@ -238,7 +234,6 @@ const fetchLeagueStanding = async function (leagueID,seasonYear) {
       throw err
     }
     };
-// fetchLeagueStanding()
 
 /**
  * Takes league standings data and league name. Loops though league standings and destructors only the needed data into its own objects (one object per team) and stores the created array of objects in the state object.
@@ -283,7 +278,6 @@ const fetchTeamsFixtures = async function (seasonYear) {
     throw err
   }
 };
-// fetchTeamsFixtures()
 
 // sort fixtures data
 /**
@@ -302,8 +296,7 @@ const sortFixturesData = function (fixturesData) {
     fixtureBreakdown.score = e.score.fulltime;
     fixtureDetails.push(fixtureBreakdown);
   });
-  // console.log(fixtureDetails);
-  // will have to sort fixtures by date (BY DEFAULT SORTED BY COMPITITON) // TRY AGAIN
+
   fixtureDetails.sort((a, b) => {
     const dateA = new Date(a.fixtureDate);
     const dateB = new Date(b.fixturesDate);
@@ -343,7 +336,6 @@ const fetchTeamsPlayersData = async function (seasonYear) {
         throw err
       }
       };
-// fetchTeamsPlayersData()
 
 /**
  * Takes in teams full player list and filters out the squad players from the first team players, based on the number of appearences. Then sends them to the 'customPlayerStatsObj' to be destructored into their custom objects to be stored in a array and stored in the state object.
@@ -387,13 +379,10 @@ const customPlayerStatObjs = function(firstTeam){
       player.avgRating.push(formattedRatings);
     });
     //
-    // console.log(player);
     customPlayerList.push(player);
-    // state.playerStats.push(player);
     state.playerStats = customPlayerList
   });
   customPlayerList = []
-  // console.log(customPlayerList)
 }
 
 /**
@@ -434,8 +423,6 @@ const fetchPredictionData = async function (fixtureID) {
       );
       if (!res.ok) throw new Error("Problem getting league data");
       const data = await res.json();
-      // console.log(data);
-      // need to replace strength stat for radar
       const predictionData = data.response[0].predictions;
   sortingPredictionData(predictionData);
   
@@ -450,7 +437,6 @@ const fetchPredictionData = async function (fixtureID) {
   throw err
 }
 };
-// fetchPredictionData()
 
 /**
  * Sorts and destructors outcome prediction data for the teams next fixture into the state object.
@@ -520,18 +506,14 @@ export const fetchWiki = async function (query) {
       );
       if (!res.ok) throw new Error("Problem getting wiki query");
       const data = await res.json();
-      // console.log(data.query.search[0].title);
       const title = data.query.search[0].title;
       return title;
-      // fetchWikiIntro(title)
-  // fetchWikiImage(title)
 } catch (err){
   console.error(`Error at fetching wiki: ${err.message}`)
   throw err
 }
 };
 
-// fetchWiki("arsenal");
 
 /**
  * Fetches the history article for the searched for team.

@@ -6,7 +6,6 @@
 class Navigation {
   dateTimeWrap = document.querySelector(".dateTime")
   constructor() {
-    // this._displayDateandTime();
     this._formatDateAndTime()
   }
 
@@ -18,7 +17,6 @@ class Navigation {
       year: "numeric",
       day: "numeric",
       month: "numeric",
-      // hour12: true,
       hourCycle: 'h12',
       hour: "numeric",
       minute: "numeric",

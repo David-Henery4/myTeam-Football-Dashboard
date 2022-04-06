@@ -9,13 +9,12 @@ import * as navi from "./views/navView.js";
 import Team from "./views/teamView.js";
 import PieView from "./views/pieView.js";
 import Players from "./views/playersView.js";
-import Minute from "./views/minuteView.js"; // rename
+import Minute from "./views/minuteView.js";
 import LeagueTable from "./views/leagueView.js";
 import TeamName from "./views/teamNameView.js";
 import Prediction from "./views/predictionView.js";
 import Header from "./views/headerView.js";
 import History from "./views/historyView.js";
-// import predictionView from "./views/predictionView.js";
 import Comparison from "./views/comparison.js";
 import Fixtures from "./views/fixturesView.js";
 import ErrorMessages from "./errorMsg.js";
@@ -32,8 +31,6 @@ const search = async function () {
     console.log("works");
     model.state.searchQuery = query;
     console.log(model.state);
-    // const title = await model.fetchWiki(query)
-    // const historyData = await model.fetchWikiIntro(title)
     const mainData = await model.fetchBasicTeamInfo(query);
     //
     console.log(mainData);
@@ -83,7 +80,6 @@ const historySection = async function (query, venueImg) {
     console.log(historyData);
     History.render(historyData);
     History._renderStadiumImage(venueImg);
-    // console.log(data)
   } catch (err) {
     console.log(`Wiki Error: ${err.message}`);
     console.error(`History error happening: ${err.message}`);
@@ -96,7 +92,6 @@ const historySection = async function (query, venueImg) {
  * @param {object} pieStats Object containing data for the pieChart
  */
 const pieChartSection = function (pieStats) {
-  // console.log(model.state);
   PieView.renderChart(pieStats);
 };
 
@@ -160,7 +155,6 @@ const leagueTableSection = function (tableData) {
 const init = function () {
   Header.headerHandler(search);
   Header.searchIconHandler(search);
-  // History.historyHandler(historySection);
 };
 
 init();

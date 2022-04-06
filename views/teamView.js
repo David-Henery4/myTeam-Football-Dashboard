@@ -6,11 +6,6 @@ import View from "./view.js";
 class Team extends View {
   _parentElement = document.querySelector(".team__stats--content");
 
-   
-//   teamHandler(handler){
-//     this.userQuery.addEventListener("keypress", handler)
-//   }
-
   _formatMostGoals(goals){
     return goals.home > goals.away? goals.home : goals.away
   };
