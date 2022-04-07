@@ -17,6 +17,7 @@
   "dependencies": {
     "chart.js": "^3.7.1",
     "core-js": "^3.21.1",
+    "posthtml-doctype": "^1.1.1",
     "regenerator-runtime": "^0.13.9"
   }
 }
