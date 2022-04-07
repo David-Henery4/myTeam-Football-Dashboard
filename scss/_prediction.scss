@@ -12,7 +12,7 @@
     "chart chart chart chart"
     "chart chart chart chart"
     ;
-    // gap: 60px;
+    gap: 60px;
     grid-template-rows: 50px repeat(4, 1fr);
 }
 
@@ -72,8 +72,7 @@
 .prediction__section--winner{
     height: 20%;
     width: 220px;
-    // margin-top: 3rem;
-    margin: 2rem 0rem 4rem;
+    margin-top: 3rem;
     border-radius: 45px;
     display: flex;
     flex-direction: column;
@@ -81,7 +80,6 @@
     align-items: center;
     text-align: center;
     background-color: var(--fixture-shade-color);
-
     .result,
     .outcomes{
         font-size: 0.8rem;
