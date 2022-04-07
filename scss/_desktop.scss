@@ -138,6 +138,7 @@
 
   .history__section--text{
     grid-area: tex;
+    overflow-y: scroll;
   }
 
   .history__section--img{
