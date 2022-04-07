@@ -51,6 +51,10 @@
     height: 100%;
     width: 100%;
     object-fit: cover;
+    -webkit-object-fit: cover;
+    -moz-object-fit: cover;
     object-position: 100% 100%;
+    -webkit-object-position: 100% 100%;
+    -moz-object-position: 100% 100%;
     }
 };
