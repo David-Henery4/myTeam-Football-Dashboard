@@ -24,15 +24,13 @@
     height: 100%;
     width: 100%;
     padding: 1px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .prediction__chart--radar{
     position: relative;
     height: 95%;
     width: 95%;
+    margin: 0 auto;
 }
 
 .prediction__section--title{
@@ -79,12 +77,8 @@
     height: 50%;
     width: 100%;
     font-size: 0.8rem;
-    display: flex;
-    // flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
     div{
+        margin: 0 auto;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
@@ -97,20 +91,6 @@
         max-width: 215px;
     }
 }
-
-@media(max-width:1020px){
-    .prediction__section--wrap{
-        //     grid-template-areas:
-        // ". title title ."
-        // "pred pred pred pred"
-        // "pred pred pred pred"
-        // "chart chart chart chart"
-        // "chart chart chart chart"
-        // ;
-        // gap: 60px;
-        // grid-template-rows: 50px repeat(4, 1fr);
-    }
-};
 
 // Mobile font size
 @media(max-width:420px){
