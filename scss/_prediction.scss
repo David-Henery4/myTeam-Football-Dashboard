@@ -1,7 +1,7 @@
 .prediction__section--wrap{
     height: 100%;
     width: 100%;
-    padding: 1%;
+    padding: 2%;
     display: none;
     background-color: var(--secondary-color);
     border-radius: 20px;
@@ -20,6 +20,7 @@
     grid-area: chart;
     height: 100%;
     width: 100%;
+    padding: 1px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -45,6 +46,7 @@
     grid-area: pred;
     height: 100%;
     width: 100%;
+    padding: 1px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
