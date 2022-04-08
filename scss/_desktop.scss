@@ -158,7 +158,7 @@
     ". title title ."
     "chart chart pred pred"
     "chart chart pred pred"
-    "chart chart pred pred"
+    "chart chart win win"
     ;
     grid-template-columns: repeat(4,1fr);
     grid-template-rows: none;
@@ -167,6 +167,7 @@
 
     .prediction__section--winner{
         margin: 0;
+        height: 100%;
     }
 
     // FIXTURES SECTION
