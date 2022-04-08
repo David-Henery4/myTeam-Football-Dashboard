@@ -6,17 +6,17 @@
     background-color: var(--secondary-color);
     border-radius: 20px;
     grid-template-areas:
-    "title"
-    "pred"
-    "pred"
-    "."
-    "chart"
-    "chart"
+    ". title title ."
+    "pred pred pred pred"
+    "pred pred pred pred"
+    ". . . . "
+    "chart chart chart chart"
+    "chart chart chart chart"
     ;
     gap: 60px;
     -webkit-gap: 60px;
-    grid-template-rows: 30px repeat(5, 1fr);
-    -webkit-grid-template-rows: 30px repeat(4, 1fr);
+    grid-template-rows: 50px 1fr 1fr 1fr 1fr;
+    -webkit-grid-template-rows: 50px 1fr 1fr 1fr 1fr;
 }
 
 .prediction__chart--wrap{
