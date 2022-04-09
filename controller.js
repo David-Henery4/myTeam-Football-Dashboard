@@ -103,6 +103,7 @@ const predictionSection = function (predictionData) {
   Prediction._renderTeamPredictionNames(predictionData.comparisonData);
   Prediction.renderChart(predictionData.predictionRadarData);
   Comparison.render(predictionData.comparisonData);
+  Comparison.renderOutcome()
 };
 
 /**

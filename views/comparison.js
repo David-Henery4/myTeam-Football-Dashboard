@@ -5,11 +5,26 @@ import View from "./view";
  */
 class Comparison extends View {
   _parentElement = document.querySelector(".prediction__section--content");
+  _outcomeElement = document.querySelector(".prediction__section--winner");
   constructor() {
     super();
   }
 
-  _generateMarkup(){
+  renderOutcome(){
+      this._outcomeElement.innerHTML = ""
+      const markup = `<div>
+              <p class="result">Winner</p>
+              <p class="team">${this._data.outcomePrediction.name}</p>
+              <p class="outcomes">${
+                this._data.outcomePrediction.comment === null
+                  ? ""
+                  : this._data.outcomePrediction.comment
+              }</p>
+            </div>`;
+            this._outcomeElement.insertAdjacentHTML("afterbegin", markup)
+  }
+
+  _generateMarkup() {
     return `
         <table>
             <tbody>
@@ -55,16 +70,7 @@ class Comparison extends View {
                     <td>Away: ${this._data.outcomePercentage.away}</td>
                 </tr>
             </tbody>
-        </table>
-        <div class="prediction__section--winner">
-            <p class="result">Winner</p>
-            <p class="team">${this._data.outcomePrediction.name}</p>
-            <p class="outcomes">${
-              this._data.outcomePrediction.comment === null
-                ? ""
-                : this._data.outcomePrediction.comment
-            }</p>
-        </div>`;
+        </table>`;
   }
 };
 
