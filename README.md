@@ -7,8 +7,10 @@
 **Version 1.0.0**
 
 This is a dashboard style site for people to check for basic information about a football team.
+If your intrested and want to check it out follow this link:
+https://myteam-football-dashboard.netlify.app
 
-Although it is a dashboard, it is still fully responsive and will work for users on all screen sizes.
+Although it is a dashboard, it is still fully responsive and will work for users on all screen sizes, from mobile to desktop.
 
 ## Features
 
